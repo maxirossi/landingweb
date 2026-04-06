@@ -6,74 +6,80 @@ const projects = [
     type: 'Plataforma SaaS',
     descKey: 'eco1Desc',
     description: 'Workspace multiagente para coordinar modelos de IA como un equipo real. Conversaciones estructuradas, memoria persistente y orquestación multi-LLM.',
-    color: 'violet',
     href: 'https://octomatelabs.site',
     ctaKey: 'eco1Cta',
-    cta: 'Conocer más'
+    cta: 'Conocer más',
+    tags: ['Multi-LLM', 'Agentes IA', 'Control de tokens', 'Memory'],
+    accent: 'violet',
+    gradient: 'from-violet-500/10 to-violet-500/5'
   },
   {
-    name: 'QueriCoRosario',
+    name: 'QuéRicoRosario',
     typeKey: 'eco2Type',
     type: 'Producto digital',
     descKey: 'eco2Desc',
     description: 'Plataforma gastronómica para Rosario. Búsqueda inteligente de restaurantes, menús y experiencias culinarias en la ciudad.',
-    color: 'brand',
     href: 'https://quericorosario.com',
     ctaKey: 'eco2Cta',
-    cta: 'Conocer más'
+    cta: 'Conocer más',
+    tags: ['SEO local', 'Mapas', 'Panel admin', 'Astro SSR'],
+    accent: 'brand',
+    gradient: 'from-brand/10 to-brand/5'
   }
 ];
-
-const colorMap: Record<string, { bg: string; border: string; text: string; hoverGlow: string }> = {
-  violet: {
-    bg: 'bg-violet-500/10',
-    border: 'border-violet-500/20',
-    text: 'text-violet-400',
-    hoverGlow: 'hover:shadow-[0_20px_40px_rgba(0,0,0,.4),0_0_30px_rgba(139,92,246,0.1)]'
-  },
-  brand: {
-    bg: 'bg-brand/10',
-    border: 'border-brand/20',
-    text: 'text-brand',
-    hoverGlow: 'hover:shadow-[0_20px_40px_rgba(0,0,0,.4),0_0_30px_rgba(20,184,166,0.1)]'
-  }
-};
 ---
 
 <section id="proyectos" class="section relative overflow-hidden">
-  <div class="bg-orb w-[400px] h-[400px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent/[0.06]" style="animation-delay: 2s;"></div>
+  <div class="bg-orb w-[400px] h-[400px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent/[0.05]" style="animation-delay: 2s;"></div>
 
   <div class="container-safe relative z-10">
-    <!-- Section Header -->
-    <div data-reveal class="text-center max-w-2xl mx-auto mb-8">
+    <div data-reveal class="text-center max-w-2xl mx-auto mb-10">
       <div class="section-line w-16 mx-auto mb-6 rounded-full"></div>
       <h2 class="text-3xl sm:text-4xl font-semibold text-white" data-i18n="ecoTitle">
-        Nuestro ecosistema
+        Proyectos
       </h2>
       <p class="mt-4 text-slate-400" data-i18n="ecoSubtitle">
-        No solo hacemos servicios. Construimos productos propios, plataformas y herramientas que forman parte de un ecosistema vivo.
+        No solo hacemos servicios. Construimos productos propios que funcionan en producción.
       </p>
     </div>
 
-    <!-- Projects Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
       {projects.map((project, i) => {
-        const colors = colorMap[project.color];
+        const isViolet = project.accent === 'violet';
+        const badgeBg = isViolet ? 'bg-violet-500/10' : 'bg-brand/10';
+        const badgeBorder = isViolet ? 'border-violet-500/20' : 'border-brand/20';
+        const badgeText = isViolet ? 'text-violet-400' : 'text-brand';
+        const tagBg = isViolet ? 'rgba(139,92,246,0.08)' : 'rgba(20,184,166,0.08)';
+        const tagBorder = isViolet ? 'rgba(139,92,246,0.15)' : 'rgba(20,184,166,0.15)';
+        const tagColor = isViolet ? '#a78bfa' : '#5eead4';
+
         return (
           <a
             data-reveal
             href={project.href}
-            class={`group card card-hover flex flex-col justify-between ${colors.hoverGlow}`}
+            class="group project-card card card-hover flex flex-col justify-between"
             style={`transition-delay: ${i * 100}ms;`}
-            target={project.href.startsWith('http') ? '_blank' : undefined}
-            rel={project.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <div>
-              <span class={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold ${colors.bg} ${colors.border} ${colors.text} border mb-4`} data-i18n={project.typeKey}>
+              <span class={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold ${badgeBg} ${badgeBorder} ${badgeText} border mb-4`} data-i18n={project.typeKey}>
                 {project.type}
               </span>
               <h3 class="text-xl font-semibold text-white mb-2">{project.name}</h3>
-              <p class="text-sm text-slate-400 leading-relaxed" data-i18n={project.descKey}>{project.description}</p>
+              <p class="text-sm text-slate-400 leading-relaxed mb-4" data-i18n={project.descKey}>{project.description}</p>
+
+              <!-- Feature tags -->
+              <div class="flex flex-wrap gap-1.5">
+                {project.tags.map(tag => (
+                  <span
+                    class="px-2 py-0.5 rounded text-[11px] font-medium"
+                    style={`background: ${tagBg}; border: 1px solid ${tagBorder}; color: ${tagColor};`}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
 
             <div class="mt-6 flex items-center gap-1.5 text-sm font-medium text-slate-300 group-hover:text-white transition-colors duration-200">

@@ -20,23 +20,17 @@ export const translations: Record<string, Record<string, string>> = {
 
     // Services
     servicesTitle: 'Qué hacemos',
-    servicesSubtitle: 'Combinamos diseño, desarrollo y tecnología para construir soluciones digitales que funcionan.',
+    servicesSubtitle: 'Diseñamos y construimos software que funciona en producción.',
     svc1Title: 'Desarrollo de software a medida',
-    svc1Desc: 'Aplicaciones web, APIs y sistemas backend diseñados para resolver problemas concretos de tu negocio.',
+    svc1Desc: 'Sistemas backend, APIs y plataformas robustas diseñadas para escalar.',
     svc2Title: 'Plataformas web y SaaS',
-    svc2Desc: 'Productos digitales completos: frontend, backend, base de datos, autenticación y deploy en la nube.',
+    svc2Desc: 'Productos digitales completos: frontend, backend y arquitectura.',
     svc3Title: 'Integración de inteligencia artificial',
-    svc3Desc: 'Agentes de IA, automatización inteligente y modelos de lenguaje integrados a tu flujo de trabajo.',
-    svc4Title: 'Automatización de procesos',
-    svc4Desc: 'Workflows automatizados que eliminan tareas manuales y conectan tus herramientas entre sí.',
-    svc5Title: 'Arquitectura y backend',
-    svc5Desc: 'Infraestructura sólida, APIs escalables y decisiones técnicas con criterio de producto.',
-    svc6Title: 'MVPs y productos digitales',
-    svc6Desc: 'Desde la idea hasta un producto funcional. Validamos rápido, construimos con foco y iteramos con datos.',
+    svc3Desc: 'Automatización, agentes de IA y modelos aplicados a problemas reales.',
 
     // Ecosystem
-    ecoTitle: 'Nuestro ecosistema',
-    ecoSubtitle: 'No solo hacemos servicios. Construimos productos propios, plataformas y herramientas que forman parte de un ecosistema vivo.',
+    ecoTitle: 'Proyectos',
+    ecoSubtitle: 'No solo hacemos servicios. Construimos productos propios que funcionan en producción.',
     eco1Type: 'Plataforma SaaS',
     eco1Desc: 'Workspace multiagente para coordinar modelos de IA como un equipo real. Conversaciones estructuradas, memoria persistente y orquestación multi-LLM.',
     eco1Cta: 'Conocer más',
@@ -46,7 +40,7 @@ export const translations: Record<string, Record<string, string>> = {
 
     // Process
     processTitle: 'Cómo trabajamos',
-    processSubtitle: 'Un proceso claro, sin vueltas, enfocado en entregar valor real lo antes posible.',
+    processSubtitle: 'Un proceso claro, enfocado en entregar valor real lo antes posible.',
     step1Title: 'Entender',
     step1Desc: 'Analizamos el problema, el contexto del negocio y los objetivos reales antes de escribir una línea de código.',
     step2Title: 'Diseñar',
@@ -74,7 +68,7 @@ export const translations: Record<string, Record<string, string>> = {
 
     // Contact
     contactTitle: 'Tenés un proyecto en mente?',
-    contactSubtitle: 'Ya sea una plataforma nueva, una automatización, una integración con IA o una idea que necesita tomar forma — escribinos y lo charlamos.',
+    contactSubtitle: 'Contanos qué querés construir y vemos cómo hacerlo realidad.',
     contactName: 'Nombre',
     contactNamePlaceholder: 'Tu nombre',
     contactEmail: 'Email',
@@ -126,23 +120,17 @@ export const translations: Record<string, Record<string, string>> = {
 
     // Services
     servicesTitle: 'What we do',
-    servicesSubtitle: 'We combine design, development and technology to build digital solutions that work.',
+    servicesSubtitle: 'We design and build software that works in production.',
     svc1Title: 'Custom software development',
-    svc1Desc: 'Web applications, APIs and backend systems designed to solve real problems in your business.',
+    svc1Desc: 'Backend systems, APIs and robust platforms designed to scale.',
     svc2Title: 'Web platforms & SaaS',
-    svc2Desc: 'Complete digital products: frontend, backend, database, authentication and cloud deployment.',
+    svc2Desc: 'Complete digital products: frontend, backend and architecture.',
     svc3Title: 'AI integration',
-    svc3Desc: 'AI agents, intelligent automation and language models integrated into your workflow.',
-    svc4Title: 'Process automation',
-    svc4Desc: 'Automated workflows that eliminate manual tasks and connect your tools together.',
-    svc5Title: 'Architecture & backend',
-    svc5Desc: 'Solid infrastructure, scalable APIs and technical decisions with product-driven criteria.',
-    svc6Title: 'MVPs & digital products',
-    svc6Desc: 'From idea to working product. We validate fast, build with focus and iterate with data.',
+    svc3Desc: 'Automation, AI agents and models applied to real problems.',
 
     // Ecosystem
-    ecoTitle: 'Our ecosystem',
-    ecoSubtitle: 'We don\'t just offer services. We build our own products, platforms and tools as part of a living ecosystem.',
+    ecoTitle: 'Projects',
+    ecoSubtitle: 'We don\'t just offer services. We build our own products that work in production.',
     eco1Type: 'SaaS Platform',
     eco1Desc: 'Multi-agent workspace to coordinate AI models as a real team. Structured conversations, persistent memory and multi-LLM orchestration.',
     eco1Cta: 'Learn more',
@@ -152,7 +140,7 @@ export const translations: Record<string, Record<string, string>> = {
 
     // Process
     processTitle: 'How we work',
-    processSubtitle: 'A clear process, no detours, focused on delivering real value as soon as possible.',
+    processSubtitle: 'A clear process, focused on delivering real value as soon as possible.',
     step1Title: 'Understand',
     step1Desc: 'We analyze the problem, business context and real objectives before writing a single line of code.',
     step2Title: 'Design',
@@ -180,7 +168,7 @@ export const translations: Record<string, Record<string, string>> = {
 
     // Contact
     contactTitle: 'Have a project in mind?',
-    contactSubtitle: 'Whether it\'s a new platform, an automation, an AI integration or an idea that needs to take shape — reach out and let\'s talk.',
+    contactSubtitle: 'Tell us what you want to build and let\'s figure out how to make it happen.',
     contactName: 'Name',
     contactNamePlaceholder: 'Your name',
     contactEmail: 'Email',

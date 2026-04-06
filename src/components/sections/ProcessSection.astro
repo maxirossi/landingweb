@@ -1,34 +1,138 @@
 ---
 const steps = [
-  { number: '01', titleKey: 'step1Title', descKey: 'step1Desc', title: 'Entender', description: 'Analizamos el problema, el contexto del negocio y los objetivos reales antes de escribir una línea de código.' },
-  { number: '02', titleKey: 'step2Title', descKey: 'step2Desc', title: 'Dise��ar', description: 'Definimos la arquitectura, el alcance y la experiencia de usuario con foco en simplicidad y eficiencia.' },
-  { number: '03', titleKey: 'step3Title', descKey: 'step3Desc', title: 'Construir', description: 'Desarrollamos con tecnología moderna, buenas prácticas y entregas incrementales que se pueden probar rápido.' },
-  { number: '04', titleKey: 'step4Title', descKey: 'step4Desc', title: 'Iterar', description: 'Medimos, ajustamos y mejoramos. Un producto no termina en el deploy — evoluciona con datos y feedback.' }
+  { number: '01', titleKey: 'step1Title', descKey: 'step1Desc', title: 'Entender', description: 'Analizamos el problema y definimos objetivos claros antes de escribir una línea de código.' },
+  { number: '02', titleKey: 'step2Title', descKey: 'step2Desc', title: 'Diseñar', description: 'Diseñamos la solución técnica y experiencia de usuario con foco en simplicidad.' },
+  { number: '03', titleKey: 'step3Title', descKey: 'step3Desc', title: 'Construir', description: 'Desarrollamos con foco en calidad, performance y escalabilidad.' },
+  { number: '04', titleKey: 'step4Title', descKey: 'step4Desc', title: 'Iterar', description: 'Medimos, mejoramos y evolucionamos el producto con datos y feedback.' }
 ];
 ---
 
 <section id="proceso" class="section">
   <div class="container-safe">
-    <div data-reveal class="text-center max-w-2xl mx-auto mb-8">
+    <div data-reveal class="text-center max-w-2xl mx-auto mb-12">
       <div class="section-line w-16 mx-auto mb-6 rounded-full"></div>
       <h2 class="text-3xl sm:text-4xl font-semibold text-white" data-i18n="processTitle">
         Cómo trabajamos
       </h2>
       <p class="mt-4 text-slate-400" data-i18n="processSubtitle">
-        Un proceso claro, sin vueltas, enfocado en entregar valor real lo antes posible.
+        Un proceso claro, enfocado en entregar valor real lo antes posible.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+    <div class="process-track max-w-5xl mx-auto">
       {steps.map((step, i) => (
-        <div data-reveal class="card card-hover text-center sm:text-left" style={`transition-delay: ${i * 80}ms;`}>
-          <span class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-brand to-accent">
-            {step.number}
-          </span>
-          <h3 class="text-lg font-medium text-white mt-3 mb-2" data-i18n={step.titleKey}>{step.title}</h3>
-          <p class="text-sm text-slate-400 leading-relaxed" data-i18n={step.descKey}>{step.description}</p>
+        <div data-reveal class="process-step" style={`transition-delay: ${i * 120}ms;`}>
+          <!-- Number -->
+          <div class="process-number">
+            <span class="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text" style="background-image: linear-gradient(135deg, #14b8a6, #22d3ee, #8b5cf6);">
+              {step.number}
+            </span>
+            <div class="process-dot"></div>
+          </div>
+          <!-- Content -->
+          <div class="process-content">
+            <h3 class="text-lg font-semibold text-white mb-1.5" data-i18n={step.titleKey}>{step.title}</h3>
+            <p class="text-sm text-slate-400 leading-relaxed" data-i18n={step.descKey}>{step.description}</p>
+          </div>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .process-track {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Vertical connecting line */
+  .process-track::before {
+    content: '';
+    position: absolute;
+    left: 23px;
+    top: 40px;
+    bottom: 40px;
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(20,184,166,0.3), rgba(34,211,238,0.2), rgba(139,92,246,0.3));
+  }
+
+  .process-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    position: relative;
+  }
+
+  .process-number {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 48px;
+  }
+
+  .process-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #14b8a6;
+    margin-top: 0.5rem;
+    box-shadow: 0 0 10px rgba(20,184,166,0.4);
+    position: relative;
+    z-index: 2;
+  }
+
+  .process-content {
+    padding-top: 0.15rem;
+    max-width: 420px;
+  }
+
+  /* Desktop: horizontal layout */
+  @media (min-width: 768px) {
+    .process-track {
+      flex-direction: row;
+      gap: 0;
+      justify-content: space-between;
+    }
+
+    /* Horizontal connecting line */
+    .process-track::before {
+      left: 60px;
+      right: 60px;
+      top: 23px;
+      bottom: auto;
+      height: 1px;
+      width: auto;
+    }
+
+    .process-step {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      flex: 1;
+      padding: 0 0.75rem;
+      gap: 0;
+    }
+
+    .process-number {
+      flex-direction: row;
+      gap: 0;
+      width: auto;
+      margin-bottom: 1.25rem;
+    }
+
+    .process-dot {
+      display: none;
+    }
+
+    .process-content {
+      padding-top: 0;
+      max-width: 200px;
+    }
+  }
+</style>
