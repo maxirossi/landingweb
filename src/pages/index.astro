@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import ServicesSection from '../components/sections/ServicesSection.astro';
+import EcosystemSection from '../components/sections/EcosystemSection.astro';
+import ProcessSection from '../components/sections/ProcessSection.astro';
+import WhySection from '../components/sections/WhySection.astro';
+import ContactSection from '../components/sections/ContactSection.astro';
+import ContactWidget from '../components/ContactWidget.astro';
+---
+
+<Layout
+  title="MateLabs — Software a medida, productos digitales e inteligencia artificial"
+  description="Estudio de software en Rosario, Argentina. Desarrollo web, plataformas SaaS, integración de IA y automatización para negocios reales."
+>
+  <Header />
+
+  <main>
+    <HeroSection />
+    <ServicesSection />
+    <EcosystemSection />
+    <ProcessSection />
+    <WhySection />
+    <ContactSection />
+  </main>
+
+  <Footer />
+  <ContactWidget />
+</Layout>

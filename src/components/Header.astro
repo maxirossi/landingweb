@@ -1,0 +1,86 @@
+---
+import Logo from './Logo.astro';
+
+const navLinks = [
+  { label: 'Servicios', key: 'navServices', href: '#servicios' },
+  { label: 'Proyectos', key: 'navProjects', href: '#proyectos' },
+  { label: 'Proceso', key: 'navProcess', href: '#proceso' },
+  { label: 'Nosotros', key: 'navAbout', href: '#nosotros' },
+];
+---
+
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50 navbar-glass">
+  <div class="container-safe flex items-center justify-between h-16 navbar-inner">
+    <Logo />
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-8">
+      {navLinks.map(link => (
+        <a href={link.href} class="nav-link" data-i18n={link.key}>
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <!-- Language Switcher -->
+      <div class="hidden sm:flex items-center gap-1 rounded-lg border border-white/[0.06] p-1" style="background: rgba(255,255,255,0.04);">
+        <button class="h-7 w-8 grid place-items-center rounded text-base hover:bg-white/10 transition-colors duration-200 bg-white/10" data-lang-switch="es" aria-label="Castellano">🇦🇷</button>
+        <button class="h-7 w-8 grid place-items-center rounded text-base hover:bg-white/10 transition-colors duration-200" data-lang-switch="en" aria-label="English">🇺🇸</button>
+      </div>
+
+      <!-- CTA -->
+      <a href="#contacto" class="btn btn-primary btn-sm" data-i18n="navContact">
+        Contactar
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button id="menu-toggle" class="md:hidden p-2 text-slate-400 hover:text-white transition-colors duration-200" aria-label="Abrir menú">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Nav -->
+  <nav id="mobile-menu" class="hidden md:hidden border-t border-white/[0.06] pb-4" style="background: rgba(3,7,18,0.97);">
+    <div class="container-safe flex flex-col gap-1 pt-3">
+      {navLinks.map(link => (
+        <a href={link.href} class="mobile-nav-link block py-2.5 px-3 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200" data-i18n={link.key}>
+          {link.label}
+        </a>
+      ))}
+      <!-- Mobile language switcher -->
+      <div class="flex items-center gap-2 mt-3 pt-3 px-3 border-t border-white/[0.06]">
+        <button class="h-7 w-8 grid place-items-center rounded text-base bg-white/10 hover:bg-white/15 transition-colors duration-200" data-lang-switch="es">🇦🇷</button>
+        <button class="h-7 w-8 grid place-items-center rounded text-base hover:bg-white/10 transition-colors duration-200" data-lang-switch="en">🇺🇸</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
+    menu.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => menu.classList.add('hidden'));
+    });
+  }
+
+  const navbar = document.getElementById('navbar');
+  if (navbar) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          navbar.classList.toggle('is-scrolled', window.scrollY > 32);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+</script>

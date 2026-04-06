@@ -1,0 +1,34 @@
+---
+const steps = [
+  { number: '01', titleKey: 'step1Title', descKey: 'step1Desc', title: 'Entender', description: 'Analizamos el problema, el contexto del negocio y los objetivos reales antes de escribir una línea de código.' },
+  { number: '02', titleKey: 'step2Title', descKey: 'step2Desc', title: 'Dise��ar', description: 'Definimos la arquitectura, el alcance y la experiencia de usuario con foco en simplicidad y eficiencia.' },
+  { number: '03', titleKey: 'step3Title', descKey: 'step3Desc', title: 'Construir', description: 'Desarrollamos con tecnología moderna, buenas prácticas y entregas incrementales que se pueden probar rápido.' },
+  { number: '04', titleKey: 'step4Title', descKey: 'step4Desc', title: 'Iterar', description: 'Medimos, ajustamos y mejoramos. Un producto no termina en el deploy — evoluciona con datos y feedback.' }
+];
+---
+
+<section id="proceso" class="section">
+  <div class="container-safe">
+    <div data-reveal class="text-center max-w-2xl mx-auto mb-8">
+      <div class="section-line w-16 mx-auto mb-6 rounded-full"></div>
+      <h2 class="text-3xl sm:text-4xl font-semibold text-white" data-i18n="processTitle">
+        Cómo trabajamos
+      </h2>
+      <p class="mt-4 text-slate-400" data-i18n="processSubtitle">
+        Un proceso claro, sin vueltas, enfocado en entregar valor real lo antes posible.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+      {steps.map((step, i) => (
+        <div data-reveal class="card card-hover text-center sm:text-left" style={`transition-delay: ${i * 80}ms;`}>
+          <span class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-brand to-accent">
+            {step.number}
+          </span>
+          <h3 class="text-lg font-medium text-white mt-3 mb-2" data-i18n={step.titleKey}>{step.title}</h3>
+          <p class="text-sm text-slate-400 leading-relaxed" data-i18n={step.descKey}>{step.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

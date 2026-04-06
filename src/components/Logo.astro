@@ -1,0 +1,22 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<a href="#" class:list={['flex items-center gap-2.5 group', className]}>
+  <!-- Robot mascot as logo -->
+  <img
+    src="/images/robot.png"
+    alt="MateLabs"
+    width="32"
+    height="32"
+    class="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 object-contain"
+    style="filter: drop-shadow(0 0 6px rgba(20,184,166,0.3));"
+  />
+  <!-- Wordmark -->
+  <span class="text-lg sm:text-xl font-bold tracking-tight text-white">
+    Mate<span class="text-transparent bg-clip-text" style="background-image: linear-gradient(90deg, #14b8a6, #22d3ee);">Labs</span>
+  </span>
+</a>

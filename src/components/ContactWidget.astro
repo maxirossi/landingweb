@@ -1,0 +1,363 @@
+<!-- Floating contact widget — bottom right -->
+<div id="contact-widget" class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+  <!-- Panel -->
+  <div id="widget-panel" class="hidden widget-panel w-[360px] max-w-[calc(100vw-2.5rem)] rounded-2xl overflow-hidden">
+    <!-- Header -->
+    <div class="flex items-center justify-between px-5 pt-5 pb-3">
+      <div>
+        <h3 class="text-white font-semibold text-base" data-i18n="widgetTitle">¿Te ayudamos?</h3>
+        <p class="text-slate-400 text-sm mt-0.5" data-i18n="widgetSubtitle">Elegí una opción y te guiamos</p>
+      </div>
+      <button id="widget-close" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Cerrar">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="section-line mx-5 opacity-30"></div>
+
+    <!-- Step 1: Options -->
+    <div id="widget-options" class="px-5 py-4 flex flex-col gap-2">
+      <button class="widget-opt" data-widget-opt="1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
+        </svg>
+        <span data-i18n="widgetOpt1">Quiero cotizar un proyecto</span>
+      </button>
+      <button class="widget-opt" data-widget-opt="2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25A2.25 2.25 0 0 1 5.25 3h13.5A2.25 2.25 0 0 1 21 5.25Z" />
+        </svg>
+        <span data-i18n="widgetOpt2">Necesito una app o sistema</span>
+      </button>
+      <button class="widget-opt" data-widget-opt="3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+        </svg>
+        <span data-i18n="widgetOpt3">Quiero integrar IA</span>
+      </button>
+      <button class="widget-opt" data-widget-opt="4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
+        </svg>
+        <span data-i18n="widgetOpt4">Solo tengo una consulta</span>
+      </button>
+    </div>
+
+    <!-- Step 2: Form -->
+    <div id="widget-form-view" class="hidden px-5 py-4">
+      <!-- Context bubble -->
+      <div class="rounded-xl p-3 mb-4" style="background: rgba(20,184,166,0.06); border: 1px solid rgba(20,184,166,0.1);">
+        <p id="widget-reply-text" class="text-sm text-slate-300 leading-relaxed"></p>
+      </div>
+
+      <form id="widget-form" class="flex flex-col gap-3">
+        <input type="hidden" id="widget-topic" name="topic" value="" />
+        <div>
+          <input
+            type="text"
+            name="name"
+            required
+            class="widget-input"
+            placeholder="Tu nombre"
+            data-i18n-placeholder="contactNamePlaceholder"
+          />
+        </div>
+        <div>
+          <input
+            type="email"
+            name="email"
+            required
+            class="widget-input"
+            placeholder="tu@email.com"
+            data-i18n-placeholder="contactEmailPlaceholder"
+          />
+        </div>
+        <div>
+          <textarea
+            name="message"
+            rows="3"
+            required
+            class="widget-input resize-none"
+            placeholder="Contanos sobre tu proyecto o idea..."
+            data-i18n-placeholder="contactMessagePlaceholder"
+          ></textarea>
+        </div>
+        <button type="submit" id="widget-submit" class="btn btn-primary btn-md w-full text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+          </svg>
+          <span data-i18n="contactSend">Enviar mensaje</span>
+        </button>
+        <p id="widget-status" class="hidden text-xs text-center"></p>
+      </form>
+
+      <button id="widget-back" class="mt-2 w-full text-center text-xs text-slate-500 hover:text-slate-300 transition-colors py-1.5">
+        <span data-i18n="widgetBack">Volver</span>
+      </button>
+    </div>
+
+    <!-- Step 3: Success -->
+    <div id="widget-success" class="hidden px-5 py-8 text-center">
+      <div class="w-12 h-12 mx-auto mb-3 rounded-full grid place-items-center" style="background: rgba(20,184,166,0.1); border: 1px solid rgba(20,184,166,0.2);">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+        </svg>
+      </div>
+      <p id="widget-success-text" class="text-sm text-slate-300">Mensaje enviado correctamente!</p>
+      <p class="text-xs text-slate-500 mt-1.5" data-i18n="widgetSuccessSub">Te respondemos a la brevedad.</p>
+    </div>
+  </div>
+
+  <!-- FAB trigger -->
+  <button id="widget-fab" class="widget-fab" aria-label="Abrir asistente de contacto">
+    <svg id="fab-icon-open" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
+    </svg>
+    <svg id="fab-icon-close" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+    </svg>
+  </button>
+</div>
+
+<style>
+  .widget-fab {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: white;
+    cursor: pointer;
+    border: none;
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 60%, #0f766e 100%);
+    box-shadow: 0 4px 20px rgba(20,184,166,0.35), 0 2px 8px rgba(0,0,0,0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .widget-fab:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 28px rgba(20,184,166,0.5), 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .widget-fab.is-open {
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+
+  .widget-panel {
+    background: linear-gradient(135deg, rgba(8,12,28,0.95) 0%, rgba(3,7,18,0.97) 100%);
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 32px rgba(20,184,166,0.06), inset 0 1px 0 rgba(255,255,255,0.05);
+    animation: widgetSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .widget-opt {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .widget-opt:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(20,184,166,0.15);
+    color: white;
+    transform: translateX(2px);
+  }
+
+  .widget-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 0.5rem;
+    font-size: 0.8125rem;
+    color: white;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .widget-input::placeholder {
+    color: #64748b;
+  }
+  .widget-input:focus {
+    border-color: rgba(20,184,166,0.3);
+    box-shadow: 0 0 0 2px rgba(20,184,166,0.08);
+  }
+
+  @keyframes widgetSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @media (max-width: 400px) {
+    .widget-panel {
+      width: calc(100vw - 2rem) !important;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    const fab = document.getElementById('widget-fab');
+    const panel = document.getElementById('widget-panel');
+    const closeBtn = document.getElementById('widget-close');
+    const optionsView = document.getElementById('widget-options');
+    const formView = document.getElementById('widget-form-view');
+    const successView = document.getElementById('widget-success');
+    const replyText = document.getElementById('widget-reply-text');
+    const backBtn = document.getElementById('widget-back');
+    const iconOpen = document.getElementById('fab-icon-open');
+    const iconClose = document.getElementById('fab-icon-close');
+    const form = document.getElementById('widget-form') as HTMLFormElement | null;
+    const topicInput = document.getElementById('widget-topic') as HTMLInputElement | null;
+    const submitBtn = document.getElementById('widget-submit');
+    const statusEl = document.getElementById('widget-status');
+    const successText = document.getElementById('widget-success-text');
+
+    if (!fab || !panel) return;
+
+    const replies: Record<string, Record<string, string>> = {
+      es: {
+        '1': 'Contanos un poco sobre tu proyecto y te armamos una propuesta a medida.',
+        '2': 'Podemos ayudarte con desarrollo web, mobile o sistemas a medida. Dejanos tus datos.',
+        '3': 'Trabajamos con agentes de IA, automatización y modelos de lenguaje. Contanos tu caso.',
+        '4': 'Sin compromiso. Dejanos tu consulta y te respondemos a la brevedad.',
+      },
+      en: {
+        '1': 'Tell us about your project and we\'ll put together a custom proposal.',
+        '2': 'We can help with web, mobile or custom systems. Leave us your details.',
+        '3': 'We work with AI agents, automation and language models. Tell us about your case.',
+        '4': 'No commitment. Leave your question and we\'ll get back to you shortly.',
+      },
+    };
+
+    let isOpen = false;
+
+    function showView(view: 'options' | 'form' | 'success') {
+      optionsView?.classList.toggle('hidden', view !== 'options');
+      formView?.classList.toggle('hidden', view !== 'form');
+      successView?.classList.toggle('hidden', view !== 'success');
+    }
+
+    function toggle() {
+      isOpen = !isOpen;
+      panel.classList.toggle('hidden', !isOpen);
+      fab.classList.toggle('is-open', isOpen);
+      iconOpen?.classList.toggle('hidden', isOpen);
+      iconClose?.classList.toggle('hidden', !isOpen);
+      if (isOpen) {
+        showView('options');
+        form?.reset();
+        statusEl?.classList.add('hidden');
+      }
+    }
+
+    function selectOption(opt: string) {
+      const lang = document.documentElement.lang === 'en' ? 'en' : 'es';
+      if (replyText) replyText.textContent = replies[lang]?.[opt] || '';
+      if (topicInput) topicInput.value = opt;
+      showView('form');
+    }
+
+    // FAB & close
+    fab.addEventListener('click', toggle);
+    closeBtn?.addEventListener('click', toggle);
+    backBtn?.addEventListener('click', () => showView('options'));
+
+    // Option buttons
+    document.querySelectorAll('[data-widget-opt]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const opt = btn.getAttribute('data-widget-opt');
+        if (opt) selectOption(opt);
+      });
+    });
+
+    // Form submit
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!submitBtn || !statusEl) return;
+
+      submitBtn.setAttribute('disabled', '');
+      const origHTML = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span class="animate-pulse">...</span>';
+      statusEl.classList.add('hidden');
+
+      const body = {
+        name: (form.querySelector('[name="name"]') as HTMLInputElement)?.value,
+        email: (form.querySelector('[name="email"]') as HTMLInputElement)?.value,
+        message: (form.querySelector('[name="message"]') as HTMLTextAreaElement)?.value,
+        topic: topicInput?.value || '',
+        source: 'widget',
+      };
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+
+        if (res.ok) {
+          const lang = document.documentElement.lang;
+          if (successText) {
+            successText.textContent = lang === 'en'
+              ? 'Message sent successfully!'
+              : 'Mensaje enviado correctamente!';
+          }
+          showView('success');
+          form.reset();
+
+          // Auto-close after 4s
+          setTimeout(() => {
+            if (isOpen) toggle();
+          }, 4000);
+        } else if (res.status === 429) {
+          statusEl.textContent = document.documentElement.lang === 'en'
+            ? 'Too many attempts. Try again later.'
+            : 'Demasiados intentos. Probá en unos minutos.';
+          statusEl.className = 'text-xs text-center text-amber-400';
+          statusEl.classList.remove('hidden');
+        } else {
+          throw new Error();
+        }
+      } catch {
+        statusEl.textContent = document.documentElement.lang === 'en'
+          ? 'Something went wrong. Try again.'
+          : 'Algo salió mal. Intentá de nuevo.';
+        statusEl.className = 'text-xs text-center text-red-400';
+        statusEl.classList.remove('hidden');
+      }
+
+      submitBtn.innerHTML = origHTML;
+      submitBtn.removeAttribute('disabled');
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen) toggle();
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+      const target = e.target as Node;
+      const widget = document.getElementById('contact-widget');
+      if (isOpen && widget && !widget.contains(target)) toggle();
+    });
+  })();
+</script>

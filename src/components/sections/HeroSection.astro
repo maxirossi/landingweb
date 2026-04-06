@@ -1,0 +1,287 @@
+<section class="hero-section relative overflow-hidden">
+  <!-- Background glows — positioned to wrap around the robot -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full" style="background: radial-gradient(ellipse, rgba(20,184,166,0.12) 0%, rgba(20,184,166,0.04) 40%, transparent 70%);"></div>
+    <div class="absolute top-[20%] right-[5%] w-[500px] h-[500px] rounded-full" style="background: radial-gradient(circle, rgba(0,255,200,0.1) 0%, transparent 50%);"></div>
+    <div class="absolute top-[40%] right-[15%] w-[400px] h-[400px] rounded-full" style="background: radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 50%);"></div>
+    <div class="absolute -bottom-10 -left-20 w-[400px] h-[300px] rounded-full" style="background: radial-gradient(ellipse, rgba(34,211,238,0.06) 0%, transparent 60%);"></div>
+  </div>
+
+  <!-- Animated orbs -->
+  <div class="bg-orb w-[400px] h-[400px] -top-40 -left-40 bg-brand/[0.08]" style="animation-delay: 0s;"></div>
+  <div class="bg-orb w-[350px] h-[350px] top-20 -right-32 bg-accent/[0.07]" style="animation-delay: 3s;"></div>
+  <div class="bg-orb w-[250px] h-[250px] bottom-0 left-1/3 bg-cyan-400/[0.05]" style="animation-delay: 6s;"></div>
+
+  <div class="container-safe relative z-10">
+    <div class="hero-grid">
+      <!-- Left: Content -->
+      <div class="hero-content">
+        <!-- Badge -->
+        <div class="hero-enter hero-enter-1 inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-semibold mb-6" style="background: linear-gradient(135deg, rgba(20,184,166,0.1), rgba(139,92,246,0.08)); border-color: rgba(20,184,166,0.2); color: #2dd4bf;">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></span>
+          <span data-i18n="heroBadge">Software studio — Rosario, Argentina</span>
+        </div>
+
+        <!-- H1: fixed line + typewriter -->
+        <h1 class="hero-enter hero-enter-2 font-semibold leading-none">
+          <span class="block text-4xl sm:text-5xl lg:text-6xl text-white" data-i18n="heroTitleFixed">Construimos</span>
+          <span class="block mt-2 sm:mt-3 text-4xl sm:text-5xl lg:text-6xl min-h-[1.15em]">
+            <span
+              id="hero-typewriter"
+              class="text-transparent bg-clip-text gradient-shimmer typewriter-cursor"
+              style="background-image: linear-gradient(90deg, #14b8a6, #22d3ee, #8b5cf6, #14b8a6); background-size: 200% auto;"
+              aria-label=""
+            ></span>
+          </span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="hero-enter hero-enter-3 mt-6 text-lg sm:text-xl text-slate-400 max-w-xl leading-relaxed" data-i18n="heroSubtitle">
+          Diseño, desarrollo e inteligencia artificial para productos que necesitan ejecutarse de verdad. Software a medida y tecnología aplicada a negocios reales.
+        </p>
+
+        <!-- CTAs -->
+        <div class="hero-enter hero-enter-4 mt-8 flex flex-col sm:flex-row items-start gap-4">
+          <a href="#proyectos" class="btn btn-primary btn-lg group">
+            <span data-i18n="heroCta1">Ver proyectos</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+          <a href="#contacto" class="btn btn-secondary btn-lg group">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2 transition-transform duration-200 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
+            </svg>
+            <span data-i18n="heroCta2">Hablemos</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Robot mascot -->
+      <div class="hero-visual hero-enter hero-enter-3">
+        <div class="robot-wrapper">
+          <img
+            src="/images/robot.png"
+            alt="MateLabs AI Robot Mascot"
+            width="420"
+            height="420"
+            class="robot-img"
+            loading="eager"
+          />
+          <!-- Glow behind robot -->
+          <div class="robot-glow" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .hero-content {
+    max-width: 580px;
+  }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .robot-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .robot-img {
+    width: 85%;
+    max-width: 400px;
+    height: auto;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 0 40px rgba(0,255,200,0.2)) drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+  }
+
+  .robot-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(20,184,166,0.15) 0%, rgba(139,92,246,0.08) 40%, transparent 70%);
+    filter: blur(40px);
+    z-index: 1;
+  }
+
+  /* Responsive: mobile stacks vertically, robot on top centered */
+  @media (max-width: 768px) {
+    .hero-section {
+      min-height: auto;
+      padding-top: 6rem;
+      padding-bottom: 2rem;
+    }
+
+    .hero-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hero-visual {
+      order: -1;
+      margin-bottom: 1rem;
+    }
+
+    .robot-img {
+      width: 55%;
+      max-width: 260px;
+    }
+
+    .hero-content {
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-content .flex {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-content p {
+      max-width: 100%;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .robot-img {
+      width: 80%;
+      max-width: 320px;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ── Robot floating animation ──
+    const robotImg = document.querySelector('.robot-img');
+    if (robotImg && !prefersReduced) {
+      robotImg.animate([
+        { transform: 'translateY(0px)' },
+        { transform: 'translateY(-14px)' },
+        { transform: 'translateY(0px)' },
+      ], {
+        duration: 6000,
+        easing: 'ease-in-out',
+        iterations: Infinity,
+      });
+    }
+
+    // ── Visor glow pulse ──
+    const robotGlow = document.querySelector('.robot-glow');
+    if (robotGlow && !prefersReduced) {
+      robotGlow.animate([
+        { opacity: 0.6 },
+        { opacity: 1 },
+        { opacity: 0.6 },
+      ], {
+        duration: 4000,
+        easing: 'ease-in-out',
+        iterations: Infinity,
+      });
+    }
+
+    // ── Typewriter ──
+    const el = document.getElementById('hero-typewriter');
+    if (!el) return;
+
+    const phrasesEs = [
+      'software a medida.',
+      'plataformas web.',
+      'soluciones con IA.',
+      'productos digitales.',
+    ];
+    const phrasesEn = [
+      'custom software.',
+      'web platforms.',
+      'AI-powered solutions.',
+      'digital products.',
+    ];
+
+    function getPhrases() {
+      return document.documentElement.lang === 'en' ? phrasesEn : phrasesEs;
+    }
+
+    if (prefersReduced) {
+      el.textContent = getPhrases()[0];
+      el.setAttribute('aria-label', getPhrases()[0]);
+      el.classList.remove('typewriter-cursor');
+      return;
+    }
+
+    let phraseIdx = 0;
+    let charIdx = 0;
+    let deleting = false;
+    let timeout: ReturnType<typeof setTimeout> | null = null;
+
+    function tick() {
+      const phrases = getPhrases();
+      const current = phrases[phraseIdx % phrases.length];
+
+      if (!deleting) {
+        charIdx++;
+        el.textContent = current.slice(0, charIdx);
+        el.setAttribute('aria-label', current);
+
+        if (charIdx === current.length) {
+          timeout = setTimeout(() => { deleting = true; tick(); }, 2400);
+          return;
+        }
+        timeout = setTimeout(tick, 60);
+      } else {
+        charIdx--;
+        el.textContent = current.slice(0, charIdx);
+
+        if (charIdx === 0) {
+          deleting = false;
+          phraseIdx++;
+          timeout = setTimeout(tick, 350);
+          return;
+        }
+        timeout = setTimeout(tick, 35);
+      }
+    }
+
+    setTimeout(tick, 700);
+
+    const observer = new MutationObserver(() => {
+      if (timeout) clearTimeout(timeout);
+      charIdx = 0;
+      deleting = false;
+      el.textContent = '';
+      setTimeout(tick, 200);
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  })();
+</script>

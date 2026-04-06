@@ -1,0 +1,41 @@
+---
+const differentiators = [
+  { titleKey: 'why1Title', descKey: 'why1Desc', title: 'Enfoque técnico real', description: 'No delegamos ni improvisamos. Cada decisión técnica tiene fundamento y criterio de producto detrás.' },
+  { titleKey: 'why2Title', descKey: 'why2Desc', title: 'Velocidad de ejecución', description: 'Trabajamos con foco, entregas cortas y comunicación directa. Sin burocracia innecesaria.' },
+  { titleKey: 'why3Title', descKey: 'why3Desc', title: 'Criterio de producto', description: 'No solo escribimos código: pensamos en el usuario, el negocio y la escalabilidad desde el día uno.' },
+  { titleKey: 'why4Title', descKey: 'why4Desc', title: 'Software + IA + Negocio', description: 'Integramos inteligencia artificial donde realmente suma valor, no como buzzword.' },
+  { titleKey: 'why5Title', descKey: 'why5Desc', title: 'Soluciones modernas', description: 'Stack actualizado, arquitectura limpia y tecnología elegida con criterio, no por moda.' },
+  { titleKey: 'why6Title', descKey: 'why6Desc', title: 'Visión de largo plazo', description: 'Construimos para que funcione hoy y se pueda mantener, escalar y evolucionar mañana.' }
+];
+---
+
+<section id="nosotros" class="section">
+  <div class="container-safe">
+    <div data-reveal class="text-center max-w-2xl mx-auto mb-8">
+      <div class="section-line w-16 mx-auto mb-6 rounded-full"></div>
+      <h2 class="text-3xl sm:text-4xl font-semibold text-white" data-i18n="whyTitle">
+        Por qué MateLabs
+      </h2>
+      <p class="mt-4 text-slate-400" data-i18n="whySubtitle">
+        Un estudio de software con mentalidad de producto, foco técnico y ejecución concreta.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+      {differentiators.map((item, i) => (
+        <div
+          data-reveal
+          class="group flex gap-4 p-5 rounded-xl border border-white/[0.06] transition-all duration-300 hover:border-brand/20"
+          style="background: linear-gradient(135deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.01) 100%);"
+          style={`transition-delay: ${i * 70}ms;`}
+        >
+          <div class="flex-shrink-0 w-2 h-2 rounded-full bg-brand mt-2 transition-shadow duration-300 group-hover:shadow-[0_0_8px_rgba(20,184,166,0.4)]"></div>
+          <div>
+            <h3 class="text-base font-medium text-white mb-1" data-i18n={item.titleKey}>{item.title}</h3>
+            <p class="text-sm text-slate-400 leading-relaxed" data-i18n={item.descKey}>{item.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
