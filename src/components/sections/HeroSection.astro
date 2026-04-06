@@ -17,13 +17,13 @@
       <!-- Left: Content -->
       <div class="hero-content">
         <!-- Badge -->
-        <div class="hero-enter hero-enter-1 inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-semibold mb-6" style="background: linear-gradient(135deg, rgba(20,184,166,0.1), rgba(139,92,246,0.08)); border-color: rgba(20,184,166,0.2); color: #2dd4bf;">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-semibold mb-6" style="background: linear-gradient(135deg, rgba(20,184,166,0.1), rgba(139,92,246,0.08)); border-color: rgba(20,184,166,0.2); color: #2dd4bf;">
           <span class="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></span>
           <span data-i18n="heroBadge">Software studio — Rosario, Argentina</span>
         </div>
 
         <!-- H1: fixed line + typewriter -->
-        <h1 class="hero-enter hero-enter-2 font-semibold leading-none">
+        <h1 class="font-semibold leading-none">
           <span class="block text-4xl sm:text-5xl lg:text-6xl text-white" data-i18n="heroTitleFixed">Construimos</span>
           <span class="block mt-2 sm:mt-3 text-4xl sm:text-5xl lg:text-6xl min-h-[1.15em]">
             <span
@@ -36,12 +36,12 @@
         </h1>
 
         <!-- Subtitle -->
-        <p class="hero-enter hero-enter-3 mt-6 text-lg sm:text-xl text-slate-400 max-w-xl leading-relaxed" data-i18n="heroSubtitle">
+        <p class="mt-6 text-lg sm:text-xl text-slate-400 max-w-xl leading-relaxed" data-i18n="heroSubtitle">
           Diseño, desarrollo e inteligencia artificial para productos que necesitan ejecutarse de verdad. Software a medida y tecnología aplicada a negocios reales.
         </p>
 
         <!-- CTAs -->
-        <div class="hero-enter hero-enter-4 mt-8 flex flex-col sm:flex-row items-start gap-4">
+        <div class="mt-8 flex flex-col sm:flex-row items-start gap-4">
           <a href="#proyectos" class="btn btn-primary btn-lg group">
             <span data-i18n="heroCta1">Ver proyectos</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -58,7 +58,7 @@
       </div>
 
       <!-- Right: Robot mascot -->
-      <div class="hero-visual hero-enter hero-enter-3">
+      <div class="hero-visual">
         <div class="robot-wrapper">
           <img
             src="/images/robot.png"
@@ -116,7 +116,7 @@
     height: auto;
     position: relative;
     z-index: 2;
-    filter: drop-shadow(0 0 40px rgba(0,255,200,0.2)) drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+    filter: drop-shadow(0 0 30px rgba(0,255,200,0.2)) drop-shadow(0 20px 40px rgba(0,0,0,0.3));
   }
 
   .robot-glow {
@@ -130,6 +130,59 @@
     background: radial-gradient(circle, rgba(20,184,166,0.15) 0%, rgba(139,92,246,0.08) 40%, transparent 70%);
     filter: blur(40px);
     z-index: 1;
+  }
+
+  /* ── Animations (motion-gated) ── */
+  @media (prefers-reduced-motion: no-preference) {
+    /* 1. Float + micro rotation */
+    .robot-img {
+      animation: robotFloat 6s ease-in-out infinite, robotGlow 4s ease-in-out infinite;
+    }
+
+    @keyframes robotFloat {
+      0%   { transform: translateY(0) rotate(0deg); }
+      50%  { transform: translateY(-12px) rotate(1deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    /* 2. Glow pulse on drop-shadow */
+    @keyframes robotGlow {
+      0%   { filter: drop-shadow(0 0 30px rgba(0,255,200,0.2)) drop-shadow(0 20px 40px rgba(0,0,0,0.3)); }
+      50%  { filter: drop-shadow(0 0 50px rgba(0,255,200,0.35)) drop-shadow(0 20px 40px rgba(0,0,0,0.3)); }
+      100% { filter: drop-shadow(0 0 30px rgba(0,255,200,0.2)) drop-shadow(0 20px 40px rgba(0,0,0,0.3)); }
+    }
+
+    /* 3. Background glow pulse */
+    .robot-glow {
+      animation: bgGlowPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes bgGlowPulse {
+      0%   { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+      50%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.05); }
+      100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    /* 4. Hero entrance — content fades up, robot fades in with scale */
+    .hero-content {
+      opacity: 0;
+      animation: heroContentIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
+    }
+
+    .hero-visual {
+      opacity: 0;
+      animation: heroVisualIn 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+    }
+
+    @keyframes heroContentIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes heroVisualIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to   { opacity: 1; transform: scale(1); }
+    }
   }
 
   /* Responsive: mobile stacks vertically, robot on top centered */
@@ -183,34 +236,6 @@
 <script>
   (function () {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // ── Robot floating animation ──
-    const robotImg = document.querySelector('.robot-img');
-    if (robotImg && !prefersReduced) {
-      robotImg.animate([
-        { transform: 'translateY(0px)' },
-        { transform: 'translateY(-14px)' },
-        { transform: 'translateY(0px)' },
-      ], {
-        duration: 6000,
-        easing: 'ease-in-out',
-        iterations: Infinity,
-      });
-    }
-
-    // ── Visor glow pulse ──
-    const robotGlow = document.querySelector('.robot-glow');
-    if (robotGlow && !prefersReduced) {
-      robotGlow.animate([
-        { opacity: 0.6 },
-        { opacity: 1 },
-        { opacity: 0.6 },
-      ], {
-        duration: 4000,
-        easing: 'ease-in-out',
-        iterations: Infinity,
-      });
-    }
 
     // ── Typewriter ──
     const el = document.getElementById('hero-typewriter');
