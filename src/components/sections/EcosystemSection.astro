@@ -14,6 +14,32 @@ const projects = [
     gradient: 'from-violet-500/10 to-violet-500/5'
   },
   {
+    name: 'MatesBot',
+    typeKey: 'eco3Type',
+    type: 'Plataforma SaaS',
+    descKey: 'eco3Desc',
+    description: 'Crea chatbots en minutos para guiar usuarios, automatizar conversaciones y convertir visitas en leads de forma simple y efectiva.',
+    href: 'https://matesbot.site',
+    ctaKey: 'eco3Cta',
+    cta: 'Conocer más',
+    tags: ['Chatbots', 'Leads', 'No-code', 'Widget web'],
+    accent: 'emerald',
+    gradient: 'from-emerald-500/10 to-emerald-500/5'
+  },
+  {
+    name: 'MateTurnos',
+    typeKey: 'eco4Type',
+    type: 'Plataforma SaaS',
+    descKey: 'eco4Desc',
+    description: 'Sistema de turnos online para profesionales y negocios. Tus clientes reservan desde una página pública y vos gestionás todo desde un solo lugar.',
+    href: 'https://mateturnos.site',
+    ctaKey: 'eco4Cta',
+    cta: 'Conocer más',
+    tags: ['Turnos', 'Agenda', 'Reservas', 'No-code'],
+    accent: 'blue',
+    gradient: 'from-blue-500/10 to-blue-500/5'
+  },
+  {
     name: 'QuéRicoRosario',
     typeKey: 'eco2Type',
     type: 'Producto digital',
@@ -25,6 +51,19 @@ const projects = [
     tags: ['SEO local', 'Mapas', 'Panel admin', 'Astro SSR'],
     accent: 'brand',
     gradient: 'from-brand/10 to-brand/5'
+  },
+  {
+    name: 'Eymate',
+    typeKey: 'eco5Type',
+    type: 'Plataforma SaaS',
+    descKey: 'eco5Desc',
+    description: 'Plataforma para crear landings y sitios personales con foco en conversión. Templates editables, dominio propio, chatbot y reservas integrados.',
+    href: 'https://eymate.site',
+    ctaKey: 'eco5Cta',
+    cta: 'Conocer más',
+    tags: ['Sitios web', 'Landing builder', 'No-code', 'Dominio propio'],
+    accent: 'amber',
+    gradient: 'from-amber-500/10 to-amber-500/5'
   }
 ];
 ---
@@ -43,15 +82,17 @@ const projects = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
       {projects.map((project, i) => {
-        const isViolet = project.accent === 'violet';
-        const badgeBg = isViolet ? 'bg-violet-500/10' : 'bg-brand/10';
-        const badgeBorder = isViolet ? 'border-violet-500/20' : 'border-brand/20';
-        const badgeText = isViolet ? 'text-violet-400' : 'text-brand';
-        const tagBg = isViolet ? 'rgba(139,92,246,0.08)' : 'rgba(20,184,166,0.08)';
-        const tagBorder = isViolet ? 'rgba(139,92,246,0.15)' : 'rgba(20,184,166,0.15)';
-        const tagColor = isViolet ? '#a78bfa' : '#5eead4';
+        const colors = {
+          violet: { badgeBg: 'bg-violet-500/10', badgeBorder: 'border-violet-500/20', badgeText: 'text-violet-400', tagBg: 'rgba(139,92,246,0.08)', tagBorder: 'rgba(139,92,246,0.15)', tagColor: '#a78bfa' },
+          emerald: { badgeBg: 'bg-emerald-500/10', badgeBorder: 'border-emerald-500/20', badgeText: 'text-emerald-400', tagBg: 'rgba(16,185,129,0.08)', tagBorder: 'rgba(16,185,129,0.15)', tagColor: '#6ee7b7' },
+          blue: { badgeBg: 'bg-blue-500/10', badgeBorder: 'border-blue-500/20', badgeText: 'text-blue-400', tagBg: 'rgba(59,130,246,0.08)', tagBorder: 'rgba(59,130,246,0.15)', tagColor: '#93c5fd' },
+          brand: { badgeBg: 'bg-brand/10', badgeBorder: 'border-brand/20', badgeText: 'text-brand', tagBg: 'rgba(20,184,166,0.08)', tagBorder: 'rgba(20,184,166,0.15)', tagColor: '#5eead4' },
+          amber: { badgeBg: 'bg-amber-500/10', badgeBorder: 'border-amber-500/20', badgeText: 'text-amber-400', tagBg: 'rgba(245,158,11,0.08)', tagBorder: 'rgba(245,158,11,0.15)', tagColor: '#fcd34d' },
+        };
+        const c = colors[project.accent] || colors.brand;
+        const { badgeBg, badgeBorder, badgeText, tagBg, tagBorder, tagColor } = c;
 
         return (
           <a

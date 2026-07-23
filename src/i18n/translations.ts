@@ -37,6 +37,15 @@ export const translations: Record<string, Record<string, string>> = {
     eco2Type: 'Producto digital',
     eco2Desc: 'Plataforma gastronómica para Rosario. Búsqueda inteligente de restaurantes, menús y experiencias culinarias en la ciudad.',
     eco2Cta: 'Conocer más',
+    eco3Type: 'Plataforma SaaS',
+    eco3Desc: 'Crea chatbots en minutos para guiar usuarios, automatizar conversaciones y convertir visitas en leads de forma simple y efectiva.',
+    eco3Cta: 'Conocer más',
+    eco4Type: 'Plataforma SaaS',
+    eco4Desc: 'Sistema de turnos online para profesionales y negocios. Tus clientes reservan desde una página pública y vos gestionás todo desde un solo lugar.',
+    eco4Cta: 'Conocer más',
+    eco5Type: 'Plataforma SaaS',
+    eco5Desc: 'Plataforma para crear landings y sitios personales con foco en conversión. Templates editables, dominio propio, chatbot y reservas integrados.',
+    eco5Cta: 'Conocer más',
 
     // Process
     processTitle: 'Cómo trabajamos',
@@ -137,6 +146,15 @@ export const translations: Record<string, Record<string, string>> = {
     eco2Type: 'Digital product',
     eco2Desc: 'Gastronomic platform for Rosario. Intelligent search for restaurants, menus and culinary experiences in the city.',
     eco2Cta: 'Learn more',
+    eco3Type: 'SaaS Platform',
+    eco3Desc: 'Build chatbots in minutes to guide users, automate conversations and convert visitors into leads in a simple, effective way.',
+    eco3Cta: 'Learn more',
+    eco4Type: 'SaaS Platform',
+    eco4Desc: 'Online booking system for professionals and small businesses. Your customers self-book from a public page, you manage everything from one place.',
+    eco4Cta: 'Learn more',
+    eco5Type: 'SaaS Platform',
+    eco5Desc: 'Platform to build personal landing pages focused on conversion. Editable templates, custom domain, chatbot and bookings included.',
+    eco5Cta: 'Learn more',
 
     // Process
     processTitle: 'How we work',
