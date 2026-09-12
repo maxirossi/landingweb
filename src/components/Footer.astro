@@ -5,20 +5,14 @@ const currentYear = new Date().getFullYear();
 
 const navLinks = [
   { label: 'Servicios', key: 'navServices', href: '#servicios' },
-  { label: 'Proyectos', key: 'navProjects', href: '#proyectos' },
   { label: 'Proceso', key: 'navProcess', href: '#proceso' },
   { label: 'Contacto', key: 'navContact', href: '#contacto' },
-];
-
-const projects = [
-  { label: 'OctoMateLabs', href: 'https://octomatelabs.site' },
-  { label: 'QueriCoRosario', href: 'https://quericorosario.com' },
 ];
 ---
 
 <footer class="border-t border-white/[0.06]" style="background: rgba(3,7,18,0.8);">
   <div class="container-safe py-10">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       <!-- Brand -->
       <div class="lg:col-span-2">
         <Logo />
@@ -34,25 +28,6 @@ const projects = [
           {navLinks.map(link => (
             <li>
               <a href={link.href} class="text-sm text-slate-400 hover:text-white transition-colors" data-i18n={link.key}>
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <!-- Projects -->
-      <div>
-        <h4 class="text-sm font-semibold text-slate-200 mb-3" data-i18n="footerProjects">Proyectos</h4>
-        <ul class="space-y-2">
-          {projects.map(link => (
-            <li>
-              <a
-                href={link.href}
-                class="text-sm text-slate-400 hover:text-white transition-colors"
-                target={link.href.startsWith('http') ? '_blank' : undefined}
-                rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              >
                 {link.label}
               </a>
             </li>

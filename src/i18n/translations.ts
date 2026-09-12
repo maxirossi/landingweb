@@ -6,7 +6,6 @@ export const translations: Record<string, Record<string, string>> = {
 
     // Nav
     navServices: 'Servicios',
-    navProjects: 'Proyectos',
     navProcess: 'Proceso',
     navAbout: 'Nosotros',
     navContact: 'Contactar',
@@ -15,7 +14,7 @@ export const translations: Record<string, Record<string, string>> = {
     heroBadge: 'Software studio — Rosario, Argentina',
     heroTitleFixed: 'Construimos',
     heroSubtitle: 'Diseño, desarrollo e inteligencia artificial para productos que necesitan ejecutarse de verdad. Software a medida y tecnología aplicada a negocios reales.',
-    heroCta1: 'Ver proyectos',
+    heroCta1: 'Ver servicios',
     heroCta2: 'Hablemos',
 
     // Services
@@ -27,25 +26,6 @@ export const translations: Record<string, Record<string, string>> = {
     svc2Desc: 'Productos digitales completos: frontend, backend y arquitectura.',
     svc3Title: 'Integración de inteligencia artificial',
     svc3Desc: 'Automatización, agentes de IA y modelos aplicados a problemas reales.',
-
-    // Ecosystem
-    ecoTitle: 'Proyectos',
-    ecoSubtitle: 'No solo hacemos servicios. Construimos productos propios que funcionan en producción.',
-    eco1Type: 'Plataforma SaaS',
-    eco1Desc: 'Workspace multiagente para coordinar modelos de IA como un equipo real. Conversaciones estructuradas, memoria persistente y orquestación multi-LLM.',
-    eco1Cta: 'Conocer más',
-    eco2Type: 'Producto digital',
-    eco2Desc: 'Plataforma gastronómica para Rosario. Búsqueda inteligente de restaurantes, menús y experiencias culinarias en la ciudad.',
-    eco2Cta: 'Conocer más',
-    eco3Type: 'Plataforma SaaS',
-    eco3Desc: 'Crea chatbots en minutos para guiar usuarios, automatizar conversaciones y convertir visitas en leads de forma simple y efectiva.',
-    eco3Cta: 'Conocer más',
-    eco4Type: 'Plataforma SaaS',
-    eco4Desc: 'Sistema de turnos online para profesionales y negocios. Tus clientes reservan desde una página pública y vos gestionás todo desde un solo lugar.',
-    eco4Cta: 'Conocer más',
-    eco5Type: 'Plataforma SaaS',
-    eco5Desc: 'Plataforma para crear landings y sitios personales con foco en conversión. Templates editables, dominio propio, chatbot y reservas integrados.',
-    eco5Cta: 'Conocer más',
 
     // Process
     processTitle: 'Cómo trabajamos',
@@ -104,7 +84,6 @@ export const translations: Record<string, Record<string, string>> = {
     // Footer
     footerDesc: 'Software a medida, productos digitales e inteligencia artificial aplicada a negocios reales.',
     footerNav: 'Navegación',
-    footerProjects: 'Proyectos',
     footerRights: 'Todos los derechos reservados.',
   },
 
@@ -115,7 +94,6 @@ export const translations: Record<string, Record<string, string>> = {
 
     // Nav
     navServices: 'Services',
-    navProjects: 'Projects',
     navProcess: 'Process',
     navAbout: 'About',
     navContact: 'Contact',
@@ -124,7 +102,7 @@ export const translations: Record<string, Record<string, string>> = {
     heroBadge: 'Software studio — Rosario, Argentina',
     heroTitleFixed: 'We build',
     heroSubtitle: 'Design, development and artificial intelligence for products that need to actually ship. Custom software and technology applied to real businesses.',
-    heroCta1: 'See projects',
+    heroCta1: 'See services',
     heroCta2: 'Let\'s talk',
 
     // Services
@@ -136,25 +114,6 @@ export const translations: Record<string, Record<string, string>> = {
     svc2Desc: 'Complete digital products: frontend, backend and architecture.',
     svc3Title: 'AI integration',
     svc3Desc: 'Automation, AI agents and models applied to real problems.',
-
-    // Ecosystem
-    ecoTitle: 'Projects',
-    ecoSubtitle: 'We don\'t just offer services. We build our own products that work in production.',
-    eco1Type: 'SaaS Platform',
-    eco1Desc: 'Multi-agent workspace to coordinate AI models as a real team. Structured conversations, persistent memory and multi-LLM orchestration.',
-    eco1Cta: 'Learn more',
-    eco2Type: 'Digital product',
-    eco2Desc: 'Gastronomic platform for Rosario. Intelligent search for restaurants, menus and culinary experiences in the city.',
-    eco2Cta: 'Learn more',
-    eco3Type: 'SaaS Platform',
-    eco3Desc: 'Build chatbots in minutes to guide users, automate conversations and convert visitors into leads in a simple, effective way.',
-    eco3Cta: 'Learn more',
-    eco4Type: 'SaaS Platform',
-    eco4Desc: 'Online booking system for professionals and small businesses. Your customers self-book from a public page, you manage everything from one place.',
-    eco4Cta: 'Learn more',
-    eco5Type: 'SaaS Platform',
-    eco5Desc: 'Platform to build personal landing pages focused on conversion. Editable templates, custom domain, chatbot and bookings included.',
-    eco5Cta: 'Learn more',
 
     // Process
     processTitle: 'How we work',
@@ -213,7 +172,6 @@ export const translations: Record<string, Record<string, string>> = {
     // Footer
     footerDesc: 'Custom software, digital products and artificial intelligence applied to real businesses.',
     footerNav: 'Navigation',
-    footerProjects: 'Projects',
     footerRights: 'All rights reserved.',
   }
 };
