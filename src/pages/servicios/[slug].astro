@@ -1,0 +1,68 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { services, bySlug } from '../../config/services';
+import { graph, breadcrumbs, faqPage, serviceNode } from '../../lib/structuredData';
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+const { s } = Astro.props;
+const path = `/servicios/${s.slug}/`;
+const crumbs: [string, string][] = [['Inicio', '/'], ['Servicios', '/servicios/'], [s.name, path]];
+const related = s.related.map(bySlug);
+---
+<PageLayout title={s.metaTitle} description={s.metaDescription} crumbs={crumbs}
+  jsonLd={graph(serviceNode(s.name, s.metaDescription, path), breadcrumbs(crumbs.map(([n, h]) => [n, h])), faqPage(s.faqs))}>
+  <article class="container-safe py-10 sm:py-14">
+    <header class="max-w-3xl">
+      <span class="mega__icon mb-5" style="width:3.5rem;height:3.5rem"><Icon name={s.icon} class="w-8 h-8" /></span>
+      <h1 class="text-3xl sm:text-5xl font-semibold text-white tracking-tight">{s.h1}</h1>
+      <p class="mt-5 text-lg text-slate-300 leading-relaxed">{s.lead}</p>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a href="/#contacto" class="btn btn-primary btn-lg">Contanos tu proyecto</a>
+        <a href="/servicios/" class="btn btn-secondary btn-lg">Ver todos los servicios</a>
+      </div>
+    </header>
+
+    <div class="mt-14 max-w-3xl space-y-12">
+      {s.sections.map((sec) => (
+        <section>
+          <h2 class="text-2xl font-semibold text-white">{sec.h2}</h2>
+          {sec.p.map((t) => <p class="mt-4 text-slate-300 leading-relaxed">{t}</p>)}
+          {sec.bullets && (
+            <ul class="mt-4 space-y-2">
+              {sec.bullets.map((b) => (
+                <li class="flex gap-3 text-slate-300"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" aria-hidden="true"></span>{b}</li>
+              ))}
+            </ul>
+          )}
+        </section>
+      ))}
+
+      <section>
+        <h2 class="text-2xl font-semibold text-white">Preguntas frecuentes</h2>
+        <div class="mt-4 border-t border-white/10">
+          {s.faqs.map(([q, a]) => (
+            <details class="group border-b border-white/10">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-4 font-medium text-slate-100"><span>{q}</span><Icon name="chevron" class="w-4 h-4 shrink-0 text-slate-400 transition-transform group-open:rotate-180" /></summary>
+              <p class="pb-4 text-slate-300 leading-relaxed">{a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+    </div>
+
+    <aside class="mt-16">
+      <h2 class="text-xl font-semibold text-white">Otros servicios</h2>
+      <ul class="mt-4 grid gap-4 md:grid-cols-2">
+        {related.map((r) => (
+          <li><a href={`/servicios/${r.slug}/`} class="card card-hover flex items-start gap-4 no-underline">
+            <span class="mega__icon"><Icon name={r.icon} /></span>
+            <span><strong class="block text-white">{r.name}</strong><span class="mt-1 block text-sm text-slate-400">{r.lead}</span></span>
+          </a></li>
+        ))}
+      </ul>
+    </aside>
+  </article>
+</PageLayout>

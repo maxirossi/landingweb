@@ -6,12 +6,14 @@ import HeroSection from '../components/sections/HeroSection.astro';
 import ServicesSection from '../components/sections/ServicesSection.astro';
 import ProcessSection from '../components/sections/ProcessSection.astro';
 import ContactSection from '../components/sections/ContactSection.astro';
+import { homeJsonLd } from '../lib/structuredData';
 import ContactWidget from '../components/ContactWidget.astro';
 ---
 
 <Layout
   title="MateLabs — Software a medida, productos digitales e inteligencia artificial"
   description="Estudio de software en Rosario, Argentina. Desarrollo web, plataformas SaaS, integración de IA y automatización para negocios reales."
+  jsonLd={homeJsonLd()}
 >
   <Header />
 

@@ -4,17 +4,22 @@ import { translations } from '../i18n/translations';
 interface Props {
   title?: string;
   description?: string;
+  /** Páginas con texto propio en español: el selector de idioma no debe pisar título ni metadatos. */
+  staticMeta?: boolean;
+  jsonLd?: object | object[];
 }
 
 const {
   title = translations.es.metaTitle,
-  description = translations.es.metaDescription
+  description = translations.es.metaDescription,
+  staticMeta = false,
+  jsonLd,
 } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" data-static-meta={staticMeta ? "" : undefined}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -40,6 +45,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <meta name="twitter:description" content={description} data-i18n-meta="twitter:description" />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
@@ -64,7 +70,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         const dict = MESSAGES[lang];
         if (!dict) return;
 
-        document.documentElement.lang = lang;
+        if (!document.documentElement.hasAttribute('data-static-meta')) document.documentElement.lang = lang;
 
         // Text content
         document.querySelectorAll('[data-i18n]').forEach((node) => {
@@ -78,8 +84,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           if (key && dict[key]) node.setAttribute('placeholder', dict[key]);
         });
 
-        // Meta tags
-        document.title = dict.metaTitle || document.title;
+        // Meta tags (solo en la home: las páginas con texto propio conservan su título)
+        const staticMeta = document.documentElement.hasAttribute('data-static-meta');
+        if (!staticMeta) document.title = dict.metaTitle || document.title;
         const metaMap = {
           description: dict.metaDescription,
           'og:title': dict.metaTitle,
@@ -87,7 +94,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           'twitter:title': dict.metaTitle,
           'twitter:description': dict.metaDescription,
         };
-        Object.entries(metaMap).forEach(([k, v]) => {
+        if (!staticMeta) Object.entries(metaMap).forEach(([k, v]) => {
           const meta = document.querySelector(`[data-i18n-meta="${k}"]`);
           if (meta && v) meta.setAttribute('content', v);
         });

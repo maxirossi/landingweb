@@ -7,10 +7,16 @@ import pin from '@phosphor-icons/core/assets/regular/map-pin.svg?raw';
 import mail from '@phosphor-icons/core/assets/regular/envelope-simple.svg?raw';
 import arrow from '@phosphor-icons/core/assets/regular/arrow-up-right.svg?raw';
 
-type Name = 'menu' | 'close' | 'globe' | 'pin' | 'mail' | 'external';
+import codeD from '@phosphor-icons/core/assets/duotone/code-duotone.svg?raw';
+import stackD from '@phosphor-icons/core/assets/duotone/stack-duotone.svg?raw';
+import sparkleD from '@phosphor-icons/core/assets/duotone/sparkle-duotone.svg?raw';
+import chevron from '@phosphor-icons/core/assets/regular/caret-down.svg?raw';
+import arrowR from '@phosphor-icons/core/assets/regular/arrow-right.svg?raw';
+
+type Name = 'code' | 'stack' | 'sparkle' | 'chevron' | 'arrow' | 'menu' | 'close' | 'globe' | 'pin' | 'mail' | 'external';
 interface Props { name: Name; class?: string }
 const { name, class: cls } = Astro.props;
-const raw: Record<Name, string> = { menu: list, close: x, globe, pin, mail, external: arrow };
+const raw: Record<Name, string> = { code: codeD, stack: stackD, sparkle: sparkleD, chevron, arrow: arrowR, menu: list, close: x, globe, pin, mail, external: arrow };
 const inner = raw[name].replace(/^<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
 ---
 <svg class={cls} viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false" set:html={inner} />

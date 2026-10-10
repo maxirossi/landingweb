@@ -1,0 +1,45 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { graph, breadcrumbs, organization } from '../../lib/structuredData';
+const crumbs: [string, string][] = [['Inicio', '/'], ['Nosotros', '/nosotros/']];
+const pillars = [
+  ['Enfoque técnico', 'Cada decisión técnica tiene fundamento y criterio de producto detrás.'],
+  ['Entregas cortas', 'Trabajamos con foco, entregas incrementales y comunicación directa.'],
+  ['Criterio de producto', 'Pensamos en el usuario, el negocio y la escalabilidad desde el primer día.'],
+  ['IA con sentido', 'Integramos inteligencia artificial donde suma valor, no como moda.'],
+];
+---
+<PageLayout title="Nosotros: estudio de software en Rosario | MateLabs" description="MateLabs es un estudio de software de Rosario, Argentina: software a medida, plataformas web, inteligencia artificial y productos propios como Mateturnos." crumbs={crumbs}
+  jsonLd={graph({ ...organization, description: 'Estudio de software de Rosario, Argentina.' }, breadcrumbs(crumbs))}>
+  <div class="container-safe py-10 sm:py-14">
+    <header class="max-w-3xl">
+      <h1 class="text-3xl sm:text-5xl font-semibold text-white tracking-tight">Un estudio de software de Rosario</h1>
+      <p class="mt-5 text-lg text-slate-300 leading-relaxed">MateLabs diseña y construye software a medida, plataformas web y soluciones con inteligencia artificial para negocios reales. Combinamos mentalidad de producto, foco técnico y ejecución concreta.</p>
+    </header>
+
+    <div class="mt-12 max-w-3xl space-y-10">
+      <section>
+        <h2 class="text-2xl font-semibold text-white">Cómo pensamos el trabajo</h2>
+        <ul class="mt-5 grid gap-4 sm:grid-cols-2">
+          {pillars.map(([t, d]) => <li class="card"><strong class="block text-white">{t}</strong><span class="mt-1 block text-sm text-slate-400">{d}</span></li>)}
+        </ul>
+        <p class="mt-5 text-slate-300 leading-relaxed">Construimos para que la solución funcione hoy y se pueda mantener, escalar y evolucionar mañana. Podés ver los pasos en <a class="text-brand-light underline" href="/#proceso">cómo trabajamos</a>.</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-white">Productos propios</h2>
+        <p class="mt-4 text-slate-300 leading-relaxed"><a class="text-brand-light underline" href="https://mateturnos.site/" target="_blank" rel="noopener">Mateturnos</a> es nuestra plataforma para organizar la agenda y recibir reservas online. La versión web está disponible y la app para Android se encuentra en beta, con acceso por invitación y sin publicación en tiendas.</p>
+        <p class="mt-4 text-slate-300 leading-relaxed"><a class="text-brand-light underline" href="https://desarrolloappsrosario.com/" target="_blank" rel="noopener">Apps Rosario</a> es la propuesta de MateLabs para desarrollar aplicaciones e integrar sistemas para empresas y emprendedores.</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-white">Dónde estamos</h2>
+        <p class="mt-4 text-slate-300 leading-relaxed">Trabajamos desde Rosario, Santa Fe, Argentina.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/#contacto" class="btn btn-primary btn-lg">Contanos tu proyecto</a>
+          <a href="/servicios/" class="btn btn-secondary btn-lg">Ver servicios</a>
+        </div>
+      </section>
+    </div>
+  </div>
+</PageLayout>
