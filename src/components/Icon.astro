@@ -13,10 +13,13 @@ import sparkleD from '@phosphor-icons/core/assets/duotone/sparkle-duotone.svg?ra
 import chevron from '@phosphor-icons/core/assets/regular/caret-down.svg?raw';
 import arrowR from '@phosphor-icons/core/assets/regular/arrow-right.svg?raw';
 
-type Name = 'code' | 'stack' | 'sparkle' | 'chevron' | 'arrow' | 'menu' | 'close' | 'globe' | 'pin' | 'mail' | 'external';
+import calD from '@phosphor-icons/core/assets/duotone/calendar-check-duotone.svg?raw';
+import phoneD from '@phosphor-icons/core/assets/duotone/device-mobile-duotone.svg?raw';
+
+type Name = 'calendar' | 'phone' | 'code' | 'stack' | 'sparkle' | 'chevron' | 'arrow' | 'menu' | 'close' | 'globe' | 'pin' | 'mail' | 'external';
 interface Props { name: Name; class?: string }
 const { name, class: cls } = Astro.props;
-const raw: Record<Name, string> = { code: codeD, stack: stackD, sparkle: sparkleD, chevron, arrow: arrowR, menu: list, close: x, globe, pin, mail, external: arrow };
+const raw: Record<Name, string> = { calendar: calD, phone: phoneD, code: codeD, stack: stackD, sparkle: sparkleD, chevron, arrow: arrowR, menu: list, close: x, globe, pin, mail, external: arrow };
 const inner = raw[name].replace(/^<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
 ---
 <svg class={cls} viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false" set:html={inner} />

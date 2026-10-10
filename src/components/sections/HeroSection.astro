@@ -1,3 +1,13 @@
+---
+import Icon from '../Icon.astro';
+import { servicios } from '../../config/nav';
+// Órbita: servicios (páginas internas) y productos (enlaces externos).
+const items = [
+  ...servicios.map((i) => ({ label: i.label, href: i.href, icon: i.icon!, external: false, key: i.key })),
+  { label: 'Mateturnos', href: 'https://mateturnos.site/', icon: 'calendar' as const, external: true, key: 'mmProj1' },
+  { label: 'Apps Rosario', href: 'https://desarrolloappsrosario.com/', icon: 'phone' as const, external: true, key: 'mmProj2' },
+];
+---
 <section class="hero-section relative overflow-hidden">
   <!-- Background glows — positioned to wrap around the robot -->
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -57,19 +67,21 @@
         </div>
       </div>
 
-      <!-- Right: Robot mascot -->
+      <!-- Right: mascota con anillos y órbita de servicios y productos -->
       <div class="hero-visual">
-        <div class="robot-wrapper">
-          <img
-            src="/images/robot.png"
-            alt="MateLabs AI Robot Mascot"
-            width="420"
-            height="420"
-            class="robot-img"
-            loading="eager"
-          />
-          <!-- Glow behind robot -->
-          <div class="robot-glow" aria-hidden="true"></div>
+        <div class="orbit-stage">
+          <div class="orbit-glow" aria-hidden="true"></div>
+          <div class="orbit-dash" aria-hidden="true"></div>
+          <div class="orbit-ring" aria-hidden="true"></div>
+          <div class="orbit-ring orbit-ring--2" aria-hidden="true"></div>
+          <img src="/images/mascota.webp" alt="Mascota de MateLabs: un pulpo robot con un mate" width="512" height="512" class="orbit-mascot" loading="eager" fetchpriority="high" />
+          <nav class="orbit" aria-label="Servicios y productos de MateLabs">
+            {items.map((it, i) => (
+              <a class="orbit__item" href={it.href} style={`--a:${(360 / items.length) * i - 90}deg`} title={it.label} aria-label={it.label + (it.external ? ' (se abre en una pestaña nueva)' : '')} {...(it.external ? { target: '_blank', rel: 'noopener' } : {})}>
+                <span class="orbit__icon"><Icon name={it.icon} class="orbit__svg" /></span>
+              </a>
+            ))}
+          </nav>
         </div>
       </div>
     </div>
@@ -103,67 +115,66 @@
     position: relative;
   }
 
-  .robot-wrapper {
+  /* ── Órbita: mascota + anillos + íconos de servicios y productos ── */
+  .orbit-stage {
+    --size: min(420px, 86vw);
+    --r: calc(var(--size) * 0.46);
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: var(--size);
+    aspect-ratio: 1;
   }
-
-  .robot-img {
-    width: 85%;
-    max-width: 400px;
-    height: auto;
-    position: relative;
-    z-index: 2;
-    filter: drop-shadow(0 0 30px rgba(0,255,200,0.2)) drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+  .orbit-glow { position: absolute; inset: 8%; border-radius: 50%; background: radial-gradient(closest-side, rgba(46,230,230,0.3), rgba(20,184,166,0.06) 62%, transparent 74%); }
+  .orbit-dash { position: absolute; inset: 2%; border-radius: 50%; border: 1px dashed rgba(46,230,230,0.25); }
+  .orbit-ring {
+    position: absolute; inset: 16%; border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent 0 55%, rgba(46,230,230,0.15) 70%, #2ee6e6 92%, #e9ffff 100%);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+    filter: drop-shadow(0 0 8px #2ee6e6);
   }
-
-  .robot-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70%;
-    height: 70%;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(20,184,166,0.15) 0%, rgba(139,92,246,0.08) 40%, transparent 70%);
-    filter: blur(40px);
-    z-index: 1;
+  .orbit-ring--2 { inset: 11%; opacity: 0.45; }
+  .orbit-mascot {
+    position: absolute; inset: 21%; width: 58%; height: 58%; border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(46,230,230,0.35), 0 30px 60px rgba(0,0,0,0.6), 0 0 60px rgba(46,230,230,0.25);
+  }
+  .orbit { position: absolute; inset: 0; }
+  .orbit__item {
+    position: absolute; left: 50%; top: 50%; width: 3.5rem; height: 3.5rem; margin: -1.75rem;
+    display: grid; place-items: center; border-radius: 1rem; text-decoration: none; color: #2dd4bf;
+    background: rgba(8,14,28,0.9); border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 0 18px rgba(20,184,166,0.15);
+    transform: rotate(var(--a)) translate(var(--r)) rotate(calc(-1 * var(--a)));
+    transition: box-shadow 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .orbit__item:hover, .orbit__item:focus-visible { color: #5eead4; border-color: rgba(46,230,230,0.5); box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 0 26px rgba(46,230,230,0.4); }
+  .orbit__item:focus-visible { outline: 2px solid #14b8a6; outline-offset: 3px; }
+  .orbit__icon { display: grid; place-items: center; }
+  .orbit__icon :global(svg) { width: 1.75rem; height: 1.75rem; }
+  @media (max-width: 768px) {
+    .orbit-stage { --r: calc(var(--size) * 0.45); }
+    .orbit__item { width: 3rem; height: 3rem; margin: -1.5rem; }
+    .orbit__icon :global(svg) { width: 1.5rem; height: 1.5rem; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .orbit-glow { animation: orbPulse 3.6s ease-in-out infinite; }
+    .orbit-dash { animation: orbSpin 40s linear infinite; }
+    .orbit-ring { animation: orbSpin 1.6s linear infinite; }
+    .orbit-ring--2 { animation-duration: 2.8s; animation-direction: reverse; }
+    .orbit-mascot { animation: orbFloat 4s ease-in-out infinite; }
+    .orbit__item { animation: orbAround 60s linear infinite; }
+    .orbit:hover .orbit__item, .orbit:focus-within .orbit__item { animation-play-state: paused; }
+    @keyframes orbAround {
+      from { transform: rotate(var(--a)) translate(var(--r)) rotate(calc(-1 * var(--a))); }
+      to { transform: rotate(calc(var(--a) + 360deg)) translate(var(--r)) rotate(calc(-1 * var(--a) - 360deg)); }
+    }
+    @keyframes orbSpin { to { transform: rotate(360deg); } }
+    @keyframes orbPulse { 50% { opacity: 0.6; transform: scale(1.06); } }
+    @keyframes orbFloat { 50% { transform: translateY(-8px); } }
   }
 
   /* ── Animations (motion-gated) ── */
   @media (prefers-reduced-motion: no-preference) {
-    /* 1. Float + micro rotation */
-    .robot-img {
-      animation: robotFloat 6s ease-in-out infinite, robotGlow 4s ease-in-out infinite;
-    }
-
-    @keyframes robotFloat {
-      0%   { transform: translateY(0) rotate(0deg); }
-      50%  { transform: translateY(-12px) rotate(1deg); }
-      100% { transform: translateY(0) rotate(0deg); }
-    }
-
-    /* 2. Glow pulse on drop-shadow */
-    @keyframes robotGlow {
-      0%   { filter: drop-shadow(0 0 30px rgba(0,255,200,0.2)) drop-shadow(0 20px 40px rgba(0,0,0,0.3)); }
-      50%  { filter: drop-shadow(0 0 50px rgba(0,255,200,0.35)) drop-shadow(0 20px 40px rgba(0,0,0,0.3)); }
-      100% { filter: drop-shadow(0 0 30px rgba(0,255,200,0.2)) drop-shadow(0 20px 40px rgba(0,0,0,0.3)); }
-    }
-
-    /* 3. Background glow pulse */
-    .robot-glow {
-      animation: bgGlowPulse 4s ease-in-out infinite;
-    }
-
-    @keyframes bgGlowPulse {
-      0%   { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-      50%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.05); }
-      100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-    }
-
-    /* 4. Hero entrance — content fades up, robot fades in with scale */
+    /* Hero entrance — content fades up, robot fades in with scale */
     .hero-content {
       opacity: 0;
       animation: heroContentIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
@@ -203,11 +214,6 @@
       margin-bottom: 1rem;
     }
 
-    .robot-img {
-      width: 55%;
-      max-width: 260px;
-    }
-
     .hero-content {
       max-width: 100%;
       display: flex;
@@ -225,12 +231,6 @@
     }
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .robot-img {
-      width: 80%;
-      max-width: 320px;
-    }
-  }
 </style>
 
 <script>

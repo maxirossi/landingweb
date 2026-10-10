@@ -5,7 +5,7 @@ export const organization = {
   '@id': `${SITE}/#organization`,
   name: 'MateLabs',
   url: `${SITE}/`,
-  logo: `${SITE}/images/robot.png`,
+  logo: `${SITE}/images/mascota.webp`,
   sameAs: ['https://www.linkedin.com/company/matelabsar/'],
   address: { '@type': 'PostalAddress', addressLocality: 'Rosario', addressRegion: 'Santa Fe', addressCountry: 'AR' },
 };
