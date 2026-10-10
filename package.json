@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.0",
+    "@phosphor-icons/core": "^2.1.1",
     "astro": "^4.6.0",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",

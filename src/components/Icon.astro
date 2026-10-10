@@ -1,0 +1,16 @@
+---
+// Iconografía de interfaz: Phosphor Icons (SVG locales vía @phosphor-icons/core, render estático).
+import list from '@phosphor-icons/core/assets/regular/list.svg?raw';
+import x from '@phosphor-icons/core/assets/regular/x.svg?raw';
+import globe from '@phosphor-icons/core/assets/regular/globe.svg?raw';
+import pin from '@phosphor-icons/core/assets/regular/map-pin.svg?raw';
+import mail from '@phosphor-icons/core/assets/regular/envelope-simple.svg?raw';
+import arrow from '@phosphor-icons/core/assets/regular/arrow-up-right.svg?raw';
+
+type Name = 'menu' | 'close' | 'globe' | 'pin' | 'mail' | 'external';
+interface Props { name: Name; class?: string }
+const { name, class: cls } = Astro.props;
+const raw: Record<Name, string> = { menu: list, close: x, globe, pin, mail, external: arrow };
+const inner = raw[name].replace(/^<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
+---
+<svg class={cls} viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false" set:html={inner} />
