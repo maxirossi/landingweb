@@ -1,78 +1,145 @@
 ---
 import Logo from './Logo.astro';
-
-const navLinks = [
-  { label: 'Servicios', key: 'navServices', href: '#servicios' },
-  { label: 'Proceso', key: 'navProcess', href: '#proceso' },
-];
+import Icon from './Icon.astro';
+import { servicios, recursos, nosotros } from '../config/nav';
 ---
-
 <header id="navbar" class="fixed top-0 left-0 right-0 z-50 navbar-glass">
   <div class="container-safe flex items-center justify-between h-16 navbar-inner">
     <Logo />
 
-    <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-8">
-      {navLinks.map(link => (
-        <a href={link.href} class="nav-link" data-i18n={link.key}>
-          {link.label}
-        </a>
-      ))}
+    <!-- Desktop Nav con menús expandibles -->
+    <nav class="dnav hidden lg:flex items-center gap-1" aria-label="Principal">
+      <a class="dnav__link" href="/#portfolio" data-i18n="navPortfolio">Portfolio</a>
+      <div class="dnav__item">
+        <button type="button" class="dnav__trigger" data-mega="servicios" aria-expanded="false" aria-controls="mega-servicios"><span data-i18n="navServices">Servicios</span> <Icon name="chevron" /></button>
+        <a class="dnav__link dnav__nojs" href="/servicios/" data-i18n="navServices">Servicios</a>
+      </div>
+      <div class="dnav__item">
+        <button type="button" class="dnav__trigger" data-mega="recursos" aria-expanded="false" aria-controls="mega-recursos"><span data-i18n="navResources">Recursos</span> <Icon name="chevron" /></button>
+        <a class="dnav__link dnav__nojs" href="/#proceso" data-i18n="navResources">Recursos</a>
+      </div>
+      <a class="dnav__link" href={nosotros.href} data-i18n={nosotros.key}>{nosotros.label}</a>
     </nav>
 
     <div class="flex items-center gap-3">
-      <!-- LinkedIn -->
-      <a href="https://www.linkedin.com/company/matelabsar/" target="_blank" rel="noopener noreferrer" class="text-[#2d9cf4] hover:text-[#5ab4f7] transition-colors duration-200" aria-label="LinkedIn">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-        </svg>
-      </a>
-
       <!-- Language Switcher -->
-      <div class="hidden sm:flex items-center gap-1 rounded-lg border border-white/[0.06] p-1" style="background: rgba(255,255,255,0.04);">
-        <button class="h-7 w-8 grid place-items-center rounded text-base hover:bg-white/10 transition-colors duration-200 bg-white/10" data-lang-switch="es" aria-label="Castellano">🇦🇷</button>
-        <button class="h-7 w-8 grid place-items-center rounded text-base hover:bg-white/10 transition-colors duration-200" data-lang-switch="en" aria-label="English">🇺🇸</button>
+      <div class="hidden sm:flex items-center gap-1 rounded-lg border border-white/[0.06] p-1 text-slate-300" style="background: rgba(255,255,255,0.04);" role="group" aria-label="Idioma">
+        <Icon name="globe" class="w-4 h-4 mx-1 text-slate-400" />
+        <button class="h-8 min-w-9 px-1.5 grid place-items-center rounded text-xs font-semibold tracking-wide hover:bg-white/10 transition-colors duration-200 bg-white/10" data-lang-switch="es" lang="es" aria-label="Castellano">ES</button>
+        <button class="h-8 min-w-9 px-1.5 grid place-items-center rounded text-xs font-semibold tracking-wide hover:bg-white/10 transition-colors duration-200" data-lang-switch="en" lang="en" aria-label="English">EN</button>
       </div>
 
       <!-- CTA -->
-      <a href="#contacto" class="btn btn-primary btn-sm" data-i18n="navContact">
+      <a href="/#contacto" class="btn btn-primary btn-sm" data-i18n="navContact">
         Contactar
       </a>
 
       <!-- Mobile Menu Button -->
-      <button id="menu-toggle" class="md:hidden p-2 text-slate-400 hover:text-white transition-colors duration-200" aria-label="Abrir menú">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-        </svg>
+      <button id="menu-toggle" type="button" class="lg:hidden grid h-10 w-10 place-items-center rounded-lg text-slate-300 hover:text-white hover:bg-white/[0.06] transition-colors duration-200" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+        <Icon name="menu" class="w-6 h-6 menu-open" />
+        <Icon name="close" class="w-6 h-6 menu-close hidden" />
       </button>
     </div>
   </div>
 
+  <!-- Mega: Servicios -->
+  <div class="mega hidden-mega" id="mega-servicios" hidden>
+    <div class="container-safe mega__inner mega__cols-servicios">
+      <ul class="mega__list">
+        {servicios.map((i) => (
+          <li><a class="mega__opt" href={i.href}>
+            <span class="mega__icon"><Icon name={i.icon!} /></span>
+            <span><strong data-i18n={i.key}>{i.label}</strong><span class="d" data-i18n={i.descKey}>{i.desc}</span></span>
+          </a></li>
+        ))}
+      </ul>
+      <aside class="mega__aside">
+        <p class="mega__aside-title" data-i18n="mmHelpTitle">¿Todavía no tenés el proyecto definido?</p>
+        <p class="mega__aside-text" data-i18n="mmHelpText">Contanos la idea y vemos juntos cómo avanzar.</p>
+        <a class="btn btn-primary btn-sm mt-4" href="/#contacto" data-i18n="mmHelpCta">Contanos tu idea</a>
+        <a class="mega__more" href="/servicios/"><span data-i18n="mmAllSvc">Ver todos los servicios</span> <Icon name="arrow" class="w-4 h-4" /></a>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Mega: Recursos -->
+  <div class="mega hidden-mega" id="mega-recursos" hidden>
+    <div class="container-safe mega__inner mega__cols-2">
+      <ul class="mega__list mega__list--2">
+        {recursos.map((i) => (
+          <li><a class="mega__opt" href={i.href} {...(i.external ? { target: '_blank', rel: 'noopener' } : {})}>
+            <span><strong data-i18n={i.key}>{i.label}</strong><span class="d" data-i18n={i.descKey}>{i.desc}</span></span>
+          </a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
   <!-- Mobile Nav -->
-  <nav id="mobile-menu" class="hidden md:hidden border-t border-white/[0.06] pb-4" style="background: rgba(3,7,18,0.97);">
-    <div class="container-safe flex flex-col gap-1 pt-3">
-      {navLinks.map(link => (
-        <a href={link.href} class="mobile-nav-link block py-2.5 px-3 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors duration-200" data-i18n={link.key}>
-          {link.label}
-        </a>
-      ))}
+  <nav id="mobile-menu" class="hidden lg:hidden mnav" aria-label="Principal (móvil)">
+    <div class="container-safe pt-2">
+      <a class="top mobile-nav-link" href="/#portfolio" data-i18n="navPortfolio">Portfolio</a>
+      <details>
+        <summary><span data-i18n="navServices">Servicios</span> <Icon name="chevron" /></summary>
+        <div class="pb-3">{servicios.map((i) => <a class="m mobile-nav-link" href={i.href} data-i18n={i.key}>{i.label}</a>)}</div>
+      </details>
+      <details>
+        <summary><span data-i18n="navResources">Recursos</span> <Icon name="chevron" /></summary>
+        <div class="pb-3">{recursos.map((i) => <a class="m mobile-nav-link" href={i.href} {...(i.external ? { target: '_blank', rel: 'noopener' } : {})} data-i18n={i.key}>{i.label}</a>)}</div>
+      </details>
+      <a class="top mobile-nav-link" href={nosotros.href} data-i18n={nosotros.key}>{nosotros.label}</a>
       <!-- Mobile language switcher -->
-      <div class="flex items-center gap-2 mt-3 pt-3 px-3 border-t border-white/[0.06]">
-        <button class="h-7 w-8 grid place-items-center rounded text-base bg-white/10 hover:bg-white/15 transition-colors duration-200" data-lang-switch="es">🇦🇷</button>
-        <button class="h-7 w-8 grid place-items-center rounded text-base hover:bg-white/10 transition-colors duration-200" data-lang-switch="en">🇺🇸</button>
+      <div class="flex items-center gap-2 mt-3 py-3 border-t border-white/[0.06]">
+        <Icon name="globe" class="w-5 h-5 text-slate-400" />
+        <button class="h-10 min-w-11 px-2 grid place-items-center rounded text-sm font-semibold text-slate-200 bg-white/10 hover:bg-white/15 transition-colors duration-200" data-lang-switch="es" lang="es" aria-label="Castellano">ES</button>
+        <button class="h-10 min-w-11 px-2 grid place-items-center rounded text-sm font-semibold text-slate-200 hover:bg-white/10 transition-colors duration-200" data-lang-switch="en" lang="en" aria-label="English">EN</button>
       </div>
     </div>
   </nav>
 </header>
+<noscript><style>.dnav__trigger{display:none!important}.dnav__nojs{display:inline-flex!important}</style></noscript>
 
 <script>
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
   if (toggle && menu) {
-    toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
+    const setOpen = (open) => {
+      menu.classList.toggle('hidden', !open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      toggle.querySelector('.menu-open')?.classList.toggle('hidden', open);
+      toggle.querySelector('.menu-close')?.classList.toggle('hidden', !open);
+    };
+    toggle.addEventListener('click', () => setOpen(menu.classList.contains('hidden')));
     menu.querySelectorAll('.mobile-nav-link').forEach(link => {
-      link.addEventListener('click', () => menu.classList.add('hidden'));
+      link.addEventListener('click', () => setOpen(false));
     });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.classList.contains('hidden')) { setOpen(false); toggle.focus(); } });
+  }
+
+
+  // Menús expandibles (escritorio): un panel a la vez, Escape, clic fuera y foco que sale.
+  const header = document.getElementById('navbar');
+  if (header) {
+    const triggers = [...header.querySelectorAll('[data-mega]')];
+    const panelOf = (t) => document.getElementById(t.getAttribute('aria-controls'));
+    const closeMega = (except) => triggers.forEach((t) => {
+      if (t !== except) { t.setAttribute('aria-expanded', 'false'); panelOf(t).hidden = true; }
+    });
+    triggers.forEach((t) => t.addEventListener('click', () => {
+      const wasOpen = t.getAttribute('aria-expanded') === 'true';
+      closeMega();
+      if (!wasOpen) { t.setAttribute('aria-expanded', 'true'); panelOf(t).hidden = false; }
+    }));
+    header.querySelectorAll('.mega a').forEach((a) => a.addEventListener('click', () => closeMega()));
+    document.addEventListener('click', (e) => { if (!header.contains(e.target)) closeMega(); });
+    header.addEventListener('focusout', (e) => { if (e.relatedTarget && !header.contains(e.relatedTarget)) closeMega(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      const open = triggers.find((t) => t.getAttribute('aria-expanded') === 'true');
+      if (open) { closeMega(); open.focus(); }
+    });
+    window.matchMedia('(min-width: 1024px)').addEventListener('change', () => closeMega());
   }
 
   const navbar = document.getElementById('navbar');

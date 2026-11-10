@@ -1,0 +1,27 @@
+---
+import Layout from './Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props { title: string; description: string; jsonLd?: object; crumbs: [string, string][] }
+const { title, description, jsonLd, crumbs } = Astro.props;
+---
+<Layout title={title} description={description} staticMeta jsonLd={jsonLd}>
+  <Header />
+  <main class="pt-16">
+    <div class="container-safe pt-8">
+      <nav aria-label="Ruta de navegación" class="text-sm text-slate-400">
+        <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
+          {crumbs.map(([label, href], i) => (
+            <li class="flex items-center gap-2">
+              {i > 0 && <span aria-hidden="true" class="text-slate-600">/</span>}
+              {i < crumbs.length - 1 ? <a href={href} class="hover:text-white transition-colors">{label}</a> : <span aria-current="page" class="text-slate-300">{label}</span>}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    </div>
+    <slot />
+  </main>
+  <Footer />
+</Layout>

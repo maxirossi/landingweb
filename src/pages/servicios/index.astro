@@ -1,0 +1,31 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { services } from '../../config/services';
+import { graph, breadcrumbs } from '../../lib/structuredData';
+const crumbs: [string, string][] = [['Inicio', '/'], ['Servicios', '/servicios/']];
+---
+<PageLayout title="Servicios de software, plataformas e IA | MateLabs" description="Desarrollo de software a medida, plataformas web y SaaS e integración de inteligencia artificial. Estudio de software en Rosario, Argentina." crumbs={crumbs}
+  jsonLd={graph(breadcrumbs(crumbs))}>
+  <div class="container-safe py-10 sm:py-14">
+    <header class="max-w-3xl">
+      <h1 class="text-3xl sm:text-5xl font-semibold text-white tracking-tight">Servicios de software, plataformas e inteligencia artificial</h1>
+      <p class="mt-5 text-lg text-slate-300 leading-relaxed">En MateLabs diseñamos y construimos software que funciona en producción. Trabajamos en tres áreas que se pueden combinar según lo que necesite tu proyecto.</p>
+    </header>
+    <ul class="mt-10 grid gap-6 md:grid-cols-3">
+      {services.map((s) => (
+        <li><a href={`/servicios/${s.slug}/`} class="card card-hover block h-full no-underline">
+          <span class="mega__icon mb-4"><Icon name={s.icon} /></span>
+          <h2 class="text-lg font-semibold text-white">{s.name}</h2>
+          <p class="mt-2 text-sm text-slate-400 leading-relaxed">{s.lead}</p>
+          <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-light">Ver el servicio <Icon name="arrow" class="w-4 h-4" /></span>
+        </a></li>
+      ))}
+    </ul>
+    <section class="mt-14 max-w-3xl">
+      <h2 class="text-2xl font-semibold text-white">¿Para apps móviles?</h2>
+      <p class="mt-4 text-slate-300 leading-relaxed">El desarrollo de aplicaciones para Android, iOS y web, junto con la integración de sistemas y la consultoría técnica, se ofrece también desde <a class="text-brand-light underline" href="https://desarrolloappsrosario.com/" target="_blank" rel="noopener">Apps Rosario</a>, la propuesta de MateLabs para ese tipo de proyectos.</p>
+      <a href="/#contacto" class="btn btn-primary btn-lg mt-6">Contanos tu proyecto</a>
+    </section>
+  </div>
+</PageLayout>

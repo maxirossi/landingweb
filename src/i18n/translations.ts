@@ -1,5 +1,13 @@
+import { portfolioTranslations } from '../config/portfolio';
 export const translations: Record<string, Record<string, string>> = {
   es: {
+    ...portfolioTranslations('es'),
+    navPortfolio: 'Portfolio',
+    heroTitleA: 'Diseñamos y construimos', heroTitleB: 'productos digitales.',
+    heroBrands: 'Productos de MateLabs: eyMate · MateTurnos · QuericoRosario · OctoMateLabs.',
+    pfEyebrow: 'PORTFOLIO', pfTitle: 'Productos creados por MateLabs',
+    pfSubtitle: 'Sitios web, turnos online, una app móvil, mapas e inteligencia artificial. Explorá lo que construimos y conocé cada producto.',
+    pfNewTab: '(se abre en una pestaña nueva)',
     // Meta
     metaTitle: 'MateLabs — Software a medida, productos digitales e inteligencia artificial',
     metaDescription: 'Estudio de software en Rosario, Argentina. Desarrollo web, plataformas SaaS, integración de IA y automatización para negocios reales.',
@@ -8,14 +16,26 @@ export const translations: Record<string, Record<string, string>> = {
     navServices: 'Servicios',
     navProcess: 'Proceso',
     navAbout: 'Nosotros',
+    navProjects: 'Proyectos',
+    navResources: 'Recursos',
+    svcMore: 'Ver el servicio',
+    mmSvc1: 'Desarrollo de software a medida', mmSvc1d: 'Sistemas, APIs y plataformas diseñadas para escalar.',
+    mmSvc2: 'Plataformas web y SaaS', mmSvc2d: 'Productos digitales completos, de la idea a producción.',
+    mmSvc3: 'Integración de inteligencia artificial', mmSvc3d: 'Automatización y agentes de IA aplicados a tu operación.',
+    mmProj1: 'Mateturnos', mmProj1d: 'Producto propio: agenda de turnos y reservas online.',
+    mmProj2: 'Apps Rosario', mmProj2d: 'Desarrollo de aplicaciones e integración de sistemas.',
+    mmRes1: 'Cómo trabajamos', mmRes1d: 'Entender, diseñar, construir e iterar.',
+    mmRes2: 'Guías sobre desarrollo de apps', mmRes2d: 'Costos, plataformas y alcance, en Apps Rosario.',
+    mmRes3: 'Todos los servicios', mmRes3d: 'Qué hacemos y cómo se combinan.',
+    mmHelpTitle: '¿Todavía no tenés el proyecto definido?', mmHelpText: 'Contanos la idea y vemos juntos cómo avanzar.', mmHelpCta: 'Contanos tu idea', mmAllSvc: 'Ver todos los servicios',
+    footerServices: 'Servicios', footerProjects: 'Portfolio', footerCompany: 'Empresa',
     navContact: 'Contactar',
 
     // Hero
-    heroBadge: 'Software studio — Rosario, Argentina',
-    heroTitleFixed: 'Construimos',
-    heroSubtitle: 'Diseño, desarrollo e inteligencia artificial para productos que necesitan ejecutarse de verdad. Software a medida y tecnología aplicada a negocios reales.',
-    heroCta1: 'Ver servicios',
-    heroCta2: 'Hablemos',
+    heroBadge: 'Estudio de software · Rosario, Argentina',
+    heroSubtitle: 'Desarrollamos software a medida, plataformas web, aplicaciones móviles y soluciones con IA. Conocé nuestros productos y contanos qué querés construir.',
+    heroCta1: 'Ver portfolio',
+    heroCta2: 'Hablemos de tu proyecto',
 
     // Services
     servicesTitle: 'Qué hacemos',
@@ -88,6 +108,13 @@ export const translations: Record<string, Record<string, string>> = {
   },
 
   en: {
+    ...portfolioTranslations('en'),
+    navPortfolio: 'Portfolio',
+    heroTitleA: 'We design and build', heroTitleB: 'digital products.',
+    heroBrands: 'Products by MateLabs: eyMate · MateTurnos · QuericoRosario · OctoMateLabs.',
+    pfEyebrow: 'PORTFOLIO', pfTitle: 'Products built by MateLabs',
+    pfSubtitle: 'Websites, online bookings, a mobile app, maps and artificial intelligence. Explore our work and discover each product.',
+    pfNewTab: '(opens in a new tab)',
     // Meta
     metaTitle: 'MateLabs — Custom software, digital products & artificial intelligence',
     metaDescription: 'Software studio based in Rosario, Argentina. Web development, SaaS platforms, AI integration and automation for real businesses.',
@@ -96,14 +123,26 @@ export const translations: Record<string, Record<string, string>> = {
     navServices: 'Services',
     navProcess: 'Process',
     navAbout: 'About',
+    navProjects: 'Projects',
+    navResources: 'Resources',
+    svcMore: 'View service',
+    mmSvc1: 'Custom software development', mmSvc1d: 'Systems, APIs and platforms designed to scale.',
+    mmSvc2: 'Web platforms and SaaS', mmSvc2d: 'Complete digital products, from idea to production.',
+    mmSvc3: 'Artificial intelligence integration', mmSvc3d: 'Automation and AI agents applied to your operation.',
+    mmProj1: 'Mateturnos', mmProj1d: 'Our own product: appointment scheduling and online booking.',
+    mmProj2: 'Apps Rosario', mmProj2d: 'App development and systems integration.',
+    mmRes1: 'How we work', mmRes1d: 'Understand, design, build and iterate.',
+    mmRes2: 'App development guides', mmRes2d: 'Costs, platforms and scope, on Apps Rosario (Spanish).',
+    mmRes3: 'All services', mmRes3d: 'What we do and how it fits together.',
+    mmHelpTitle: 'Don\'t have the project defined yet?', mmHelpText: 'Tell us your idea and we\'ll figure out how to move forward.', mmHelpCta: 'Tell us your idea', mmAllSvc: 'See all services',
+    footerServices: 'Services', footerProjects: 'Portfolio', footerCompany: 'Company',
     navContact: 'Contact',
 
     // Hero
-    heroBadge: 'Software studio — Rosario, Argentina',
-    heroTitleFixed: 'We build',
-    heroSubtitle: 'Design, development and artificial intelligence for products that need to actually ship. Custom software and technology applied to real businesses.',
-    heroCta1: 'See services',
-    heroCta2: 'Let\'s talk',
+    heroBadge: 'Software studio · Rosario, Argentina',
+    heroSubtitle: 'We develop custom software, web platforms, mobile apps and AI solutions. Explore our products and tell us what you want to build.',
+    heroCta1: 'Explore our portfolio',
+    heroCta2: 'Let\'s talk about your project',
 
     // Services
     servicesTitle: 'What we do',
