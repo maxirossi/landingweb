@@ -2,7 +2,8 @@
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
 import BrandIcon from './BrandIcon.astro';
-import { servicios, proyectos } from '../config/nav';
+import { servicios } from '../config/nav';
+import { portfolio } from '../config/portfolio';
 
 const currentYear = new Date().getFullYear();
 
@@ -28,11 +29,12 @@ const currentYear = new Date().getFullYear();
       <nav aria-label="Servicios"><h4 class="text-sm font-semibold text-slate-200 mb-3" data-i18n="footerServices">Servicios</h4>
         <ul class="space-y-2">{servicios.map((i) => <li><a href={i.href} class="text-sm text-slate-400 hover:text-white transition-colors" data-i18n={i.key}>{i.label}</a></li>)}</ul>
       </nav>
-      <nav aria-label="Proyectos y empresa"><h4 class="text-sm font-semibold text-slate-200 mb-3" data-i18n="footerProjects">Proyectos</h4>
-        <ul class="space-y-2">{proyectos.map((i) => <li><a href={i.href} target="_blank" rel="noopener" class="text-sm text-slate-400 hover:text-white transition-colors" data-i18n={i.key}>{i.label}</a></li>)}</ul>
+      <nav aria-label="Proyectos y empresa"><h4 class="text-sm font-semibold text-slate-200 mb-3"><a href="/#portfolio" class="hover:text-white transition-colors" data-i18n="footerProjects">Portfolio</a></h4>
+        <ul class="space-y-2">{portfolio.map((p) => <li><a href={p.href} target="_blank" rel="noopener noreferrer" class="text-sm text-slate-400 hover:text-white transition-colors">{p.name}</a></li>)}</ul>
         <h4 class="text-sm font-semibold text-slate-200 mt-6 mb-3" data-i18n="footerCompany">Empresa</h4>
         <ul class="space-y-2">
           <li><a href="/nosotros/" class="text-sm text-slate-400 hover:text-white transition-colors" data-i18n="navAbout">Nosotros</a></li>
+          <li><a href="https://desarrolloappsrosario.com/" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-400 hover:text-white transition-colors">Apps Rosario</a></li>
           <li><a href="/#proceso" class="text-sm text-slate-400 hover:text-white transition-colors" data-i18n="navProcess">Proceso</a></li>
           <li><a href="/#contacto" class="text-sm text-slate-400 hover:text-white transition-colors" data-i18n="navContact">Contactar</a></li>
         </ul>

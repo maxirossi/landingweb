@@ -2,7 +2,7 @@
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
 import BrandIcon from './BrandIcon.astro';
-import { servicios, proyectos, recursos, nosotros } from '../config/nav';
+import { servicios, recursos, nosotros } from '../config/nav';
 ---
 <header id="navbar" class="fixed top-0 left-0 right-0 z-50 navbar-glass">
   <div class="container-safe flex items-center justify-between h-16 navbar-inner">
@@ -10,13 +10,10 @@ import { servicios, proyectos, recursos, nosotros } from '../config/nav';
 
     <!-- Desktop Nav con menús expandibles -->
     <nav class="dnav hidden lg:flex items-center gap-1" aria-label="Principal">
+      <a class="dnav__link" href="/#portfolio" data-i18n="navPortfolio">Portfolio</a>
       <div class="dnav__item">
         <button type="button" class="dnav__trigger" data-mega="servicios" aria-expanded="false" aria-controls="mega-servicios"><span data-i18n="navServices">Servicios</span> <Icon name="chevron" /></button>
         <a class="dnav__link dnav__nojs" href="/servicios/" data-i18n="navServices">Servicios</a>
-      </div>
-      <div class="dnav__item">
-        <button type="button" class="dnav__trigger" data-mega="proyectos" aria-expanded="false" aria-controls="mega-proyectos"><span data-i18n="navProjects">Proyectos</span> <Icon name="chevron" /></button>
-        <a class="dnav__link dnav__nojs" href="https://mateturnos.site/" data-i18n="navProjects">Proyectos</a>
       </div>
       <div class="dnav__item">
         <button type="button" class="dnav__trigger" data-mega="recursos" aria-expanded="false" aria-controls="mega-recursos"><span data-i18n="navResources">Recursos</span> <Icon name="chevron" /></button>
@@ -73,20 +70,6 @@ import { servicios, proyectos, recursos, nosotros } from '../config/nav';
     </div>
   </div>
 
-  <!-- Mega: Proyectos -->
-  <div class="mega hidden-mega" id="mega-proyectos" hidden>
-    <div class="container-safe mega__inner mega__cols-2">
-      <ul class="mega__list mega__list--2">
-        {proyectos.map((i) => (
-          <li><a class="mega__opt" href={i.href} target="_blank" rel="noopener">
-            <span class="mega__icon"><Icon name="external" /></span>
-            <span><strong data-i18n={i.key}>{i.label}</strong><span class="d" data-i18n={i.descKey}>{i.desc}</span></span>
-          </a></li>
-        ))}
-      </ul>
-    </div>
-  </div>
-
   <!-- Mega: Recursos -->
   <div class="mega hidden-mega" id="mega-recursos" hidden>
     <div class="container-safe mega__inner mega__cols-2">
@@ -103,13 +86,10 @@ import { servicios, proyectos, recursos, nosotros } from '../config/nav';
   <!-- Mobile Nav -->
   <nav id="mobile-menu" class="hidden lg:hidden mnav" aria-label="Principal (móvil)">
     <div class="container-safe pt-2">
+      <a class="top mobile-nav-link" href="/#portfolio" data-i18n="navPortfolio">Portfolio</a>
       <details>
         <summary><span data-i18n="navServices">Servicios</span> <Icon name="chevron" /></summary>
         <div class="pb-3">{servicios.map((i) => <a class="m mobile-nav-link" href={i.href} data-i18n={i.key}>{i.label}</a>)}</div>
-      </details>
-      <details>
-        <summary><span data-i18n="navProjects">Proyectos</span> <Icon name="chevron" /></summary>
-        <div class="pb-3">{proyectos.map((i) => <a class="m mobile-nav-link" href={i.href} target="_blank" rel="noopener" data-i18n={i.key}>{i.label}</a>)}</div>
       </details>
       <details>
         <summary><span data-i18n="navResources">Recursos</span> <Icon name="chevron" /></summary>
