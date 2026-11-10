@@ -69,12 +69,31 @@ const span = ['lg:col-span-6', 'lg:col-span-6', 'lg:col-span-4', 'lg:col-span-4'
   }
   .pf-card:hover, .pf-card:focus-within { border-color: color-mix(in srgb, var(--accent) 60%, transparent); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
   @media (prefers-reduced-motion: no-preference) { .pf-card:hover { transform: translateY(-3px); } }
-  .pf-media { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: #0b1220; border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .pf-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
-  .pf-media--phone { display: grid; place-items: center; padding: 1rem 0 0; background: radial-gradient(circle at 50% 40%, rgba(37,99,235,0.25), #0b1220 70%); }
-  .pf-media--phone .pf-img {
-    width: auto; height: 100%; aspect-ratio: 432 / 960; max-width: 100%;
-    object-fit: contain; border-radius: 1.4rem 1.4rem 0 0; border: 6px solid #1e293b; border-bottom: 0;
+  /* Lienzo común: la altura se fija por aspect-ratio y la imagen se acota en ambos ejes. */
+  #portfolio .pf-media {
+    --pf-inset: clamp(16px, 1.8vw, 24px);
+    --pf-glow: rgb(45 212 191 / 13%);
+    position: relative; display: block; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; isolation: isolate;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: radial-gradient(ellipse at 50% 45%, var(--pf-glow), transparent 72%), #0b1422;
+  }
+  #portfolio .pf-media .pf-img {
+    position: absolute; inset: var(--pf-inset); display: block;
+    width: calc(100% - 2 * var(--pf-inset)); height: calc(100% - 2 * var(--pf-inset));
+    max-width: none; max-height: none; object-fit: contain; object-position: center;
+    border-radius: .6rem; filter: drop-shadow(0 12px 20px rgb(0 0 0 / 28%));
+  }
+  /* Captura plana de la app dentro de un marco CSS de teléfono, completa y centrada. */
+  #portfolio .pf-media--phone .pf-img {
+    inset: var(--pf-inset) auto var(--pf-inset) 50%; width: auto; aspect-ratio: 432 / 960; object-fit: cover;
+    transform: translateX(-50%); border: 4px solid #1e293b; border-radius: 1.1rem;
+  }
+  #portfolio #eymate .pf-media { --pf-glow: rgb(251 113 133 / 13%); }
+  #portfolio #mateturnos-web .pf-media, #portfolio #mateturnos-app .pf-media { --pf-glow: rgb(59 130 246 / 15%); }
+  #portfolio #quericorosario .pf-media { --pf-glow: rgb(16 185 129 / 16%); }
+  #portfolio #octomatelabs .pf-media { --pf-glow: rgb(139 92 246 / 16%); }
+  @media (min-width: 1024px) {
+    #portfolio #eymate .pf-media, #portfolio #mateturnos-web .pf-media { aspect-ratio: 16 / 10; }
   }
   .pf-body { display: flex; flex-direction: column; flex: 1; padding: 1.4rem 1.5rem 1.5rem; }
   .pf-tag { font-size: .75rem; font-weight: 600; padding: .2rem .6rem; border-radius: 999px; color: #e2e8f0;

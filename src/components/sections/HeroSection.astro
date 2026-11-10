@@ -1,5 +1,12 @@
 ---
 import Icon from '../Icon.astro';
+import { servicios } from '../../config/nav';
+// Órbita: servicios (páginas internas) y productos (enlaces externos).
+const items = [
+  ...servicios.map((i) => ({ label: i.label, href: i.href, icon: i.icon!, external: false, key: i.key })),
+  { label: 'Mateturnos', href: 'https://mateturnos.site/', icon: 'calendar' as const, external: true, key: 'mmProj1' },
+  { label: 'Apps Rosario', href: 'https://desarrolloappsrosario.com/', icon: 'phone' as const, external: true, key: 'mmProj2' },
+];
 ---
 <section class="hero-section relative overflow-hidden">
   <!-- Background glows — positioned to wrap around the robot -->
@@ -52,16 +59,21 @@ import Icon from '../Icon.astro';
         <p class="mt-6 text-sm text-slate-500" data-i18n="heroBrands">Productos de MateLabs: eyMate · MateTurnos · QuericoRosario · OctoMateLabs.</p>
       </div>
 
-      <!-- Right: pantallas reales de productos + mascota como firma -->
+      <!-- Right: mascota con anillos y órbita de servicios y productos -->
       <div class="hero-visual">
-        <div class="shots">
-          <a href="https://eymate.site/" target="_blank" rel="noopener noreferrer" class="shot shot--web" aria-label="eyMate (se abre en una pestaña nueva)">
-            <img src="/images/portfolio/eymate.webp" alt="Sitios creados con eyMate, en computadora y celular" width="960" height="650" fetchpriority="high" />
-          </a>
-          <a href="https://play.google.com/store/apps/details?id=site.mateturnos.app" target="_blank" rel="noopener noreferrer" class="shot shot--phone" aria-label="MateTurnos App en Google Play (se abre en una pestaña nueva)">
-            <img src="/images/portfolio/mateturnos-app.webp" alt="App MateTurnos para Android" width="432" height="960" />
-          </a>
-          <img src="/images/mascota.webp" alt="Mascota de MateLabs: un pulpo robot con un mate" width="512" height="512" class="shots__mascot" loading="eager" />
+        <div class="orbit-stage">
+          <div class="orbit-glow" aria-hidden="true"></div>
+          <div class="orbit-dash" aria-hidden="true"></div>
+          <div class="orbit-ring" aria-hidden="true"></div>
+          <div class="orbit-ring orbit-ring--2" aria-hidden="true"></div>
+          <img src="/images/mascota.webp" alt="Mascota de MateLabs: un pulpo robot con un mate" width="512" height="512" class="orbit-mascot" loading="eager" fetchpriority="high" />
+          <nav class="orbit" aria-label="Servicios y productos de MateLabs">
+            {items.map((it, i) => (
+              <a class="orbit__item" href={it.href} style={`--a:${(360 / items.length) * i - 90}deg`} title={it.label} aria-label={it.label + (it.external ? ' (se abre en una pestaña nueva)' : '')} {...(it.external ? { target: '_blank', rel: 'noopener' } : {})}>
+                <span class="orbit__icon"><Icon name={it.icon} class="orbit__svg" /></span>
+              </a>
+            ))}
+          </nav>
         </div>
       </div>
     </div>
@@ -73,17 +85,62 @@ import Icon from '../Icon.astro';
   .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center; gap: 2rem; }
   .hero-content { max-width: 580px; }
   .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
-  .shots { position: relative; width: min(520px, 100%); aspect-ratio: 1.15; }
-  .shot { position: absolute; display: block; overflow: hidden; background: #0b1220; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 40px rgba(20,184,166,0.12); transition: border-color .2s; }
-  .shot:hover, .shot:focus-visible { border-color: rgba(46,230,230,0.6); }
-  .shot:focus-visible { outline: 2px solid #14b8a6; outline-offset: 3px; }
-  .shot img { width: 100%; height: 100%; display: block; }
-  .shot--web { left: 0; top: 4%; width: 86%; aspect-ratio: 960 / 650; border-radius: 1.1rem; }
-  .shot--web img { object-fit: cover; }
-  .shot--phone { right: 0; bottom: 0; width: 34%; aspect-ratio: 432 / 960; border-radius: 1.6rem; border: 5px solid #1e293b; }
-  .shot--phone img { object-fit: cover; }
-  .shots__mascot { position: absolute; left: -2%; bottom: -2%; width: 24%; height: auto; aspect-ratio: 1; border-radius: 50%; box-shadow: 0 0 0 2px rgba(46,230,230,0.4), 0 12px 30px rgba(0,0,0,0.6), 0 0 30px rgba(46,230,230,0.25); pointer-events: none; }
-  @media (prefers-reduced-motion: no-preference) { .shots__mascot { animation: mascotFloat 4s ease-in-out infinite; } @keyframes mascotFloat { 50% { transform: translateY(-6px); } } }
+  /* ── Órbita: mascota + anillos + íconos de servicios y productos ── */
+  .orbit-stage {
+    --size: min(420px, 86vw);
+    --r: calc(var(--size) * 0.46);
+    position: relative;
+    width: var(--size);
+    aspect-ratio: 1;
+  }
+  .orbit-glow { position: absolute; inset: 8%; border-radius: 50%; background: radial-gradient(closest-side, rgba(46,230,230,0.3), rgba(20,184,166,0.06) 62%, transparent 74%); }
+  .orbit-dash { position: absolute; inset: 2%; border-radius: 50%; border: 1px dashed rgba(46,230,230,0.25); }
+  .orbit-ring {
+    position: absolute; inset: 16%; border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent 0 55%, rgba(46,230,230,0.15) 70%, #2ee6e6 92%, #e9ffff 100%);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+    filter: drop-shadow(0 0 8px #2ee6e6);
+  }
+  .orbit-ring--2 { inset: 11%; opacity: 0.45; }
+  .orbit-mascot {
+    position: absolute; inset: 21%; width: 58%; height: 58%; border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(46,230,230,0.35), 0 30px 60px rgba(0,0,0,0.6), 0 0 60px rgba(46,230,230,0.25);
+  }
+  .orbit { position: absolute; inset: 0; }
+  .orbit__item {
+    position: absolute; left: 50%; top: 50%; width: 3.5rem; height: 3.5rem; margin: -1.75rem;
+    display: grid; place-items: center; border-radius: 1rem; text-decoration: none; color: #2dd4bf;
+    background: rgba(8,14,28,0.9); border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 0 18px rgba(20,184,166,0.15);
+    transform: rotate(var(--a)) translate(var(--r)) rotate(calc(-1 * var(--a)));
+    transition: box-shadow 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .orbit__item:hover, .orbit__item:focus-visible { color: #5eead4; border-color: rgba(46,230,230,0.5); box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 0 26px rgba(46,230,230,0.4); }
+  .orbit__item:focus-visible { outline: 2px solid #14b8a6; outline-offset: 3px; }
+  .orbit__icon { display: grid; place-items: center; }
+  .orbit__icon :global(svg) { width: 1.75rem; height: 1.75rem; }
+  @media (max-width: 768px) {
+    .orbit-stage { --r: calc(var(--size) * 0.45); }
+    .orbit__item { width: 3rem; height: 3rem; margin: -1.5rem; }
+    .orbit__icon :global(svg) { width: 1.5rem; height: 1.5rem; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .orbit-glow { animation: orbPulse 3.6s ease-in-out infinite; }
+    .orbit-dash { animation: orbSpin 40s linear infinite; }
+    .orbit-ring { animation: orbSpin 1.6s linear infinite; }
+    .orbit-ring--2 { animation-duration: 2.8s; animation-direction: reverse; }
+    .orbit-mascot { animation: orbFloat 4s ease-in-out infinite; }
+    .orbit__item { animation: orbAround 60s linear infinite; }
+    .orbit:hover .orbit__item, .orbit:focus-within .orbit__item { animation-play-state: paused; }
+    @keyframes orbAround {
+      from { transform: rotate(var(--a)) translate(var(--r)) rotate(calc(-1 * var(--a))); }
+      to { transform: rotate(calc(var(--a) + 360deg)) translate(var(--r)) rotate(calc(-1 * var(--a) - 360deg)); }
+    }
+    @keyframes orbSpin { to { transform: rotate(360deg); } }
+    @keyframes orbPulse { 50% { opacity: 0.6; transform: scale(1.06); } }
+    @keyframes orbFloat { 50% { transform: translateY(-8px); } }
+  }
 
   /* ── Animations (motion-gated) ── */
   @media (prefers-reduced-motion: no-preference) {
@@ -118,7 +175,10 @@ import Icon from '../Icon.astro';
       text-align: center;
     }
 
-    .hero-visual { margin-top: 1.5rem; }
+    .hero-visual {
+      order: -1;
+      margin-bottom: 1rem;
+    }
 
     .hero-content {
       max-width: 100%;
