@@ -18,7 +18,7 @@ export interface PortfolioItem {
 
 export const portfolio: PortfolioItem[] = [
   {
-    id: 'eymate', name: 'eyMate', href: 'https://eymate.site/', img: '/images/portfolio/eymate.webp', imgW: 960, imgH: 650, accent: '#f04e23',
+    id: 'eymate', name: 'eyMate', href: 'https://eymate.site/', img: '/images/portfolio/eymate.webp', imgW: 1552, imgH: 780, accent: '#f04e23',
     es: { tag: 'Creador de sitios web', desc: 'Creá y publicá el sitio de tu negocio con ayuda de IA. Personalizá textos, imágenes y secciones desde un editor visual.', features: ['Creación con IA', 'Editor visual', 'Dominio propio'], cta: 'Conocer eyMate', alt: 'Ejemplos de sitios creados con eyMate, en computadora y celular' },
     en: { tag: 'Website builder', desc: 'Create and publish your business website with AI assistance. Customize text, images and sections in a visual editor.', features: ['AI-assisted creation', 'Visual editor', 'Custom domain'], cta: 'Explore eyMate', alt: 'Example websites created with eyMate, on desktop and mobile' },
   },
