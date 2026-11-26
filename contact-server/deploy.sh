@@ -48,6 +48,6 @@ sudo nginx -t && sudo systemctl reload nginx
 echo "OK: matelabs.site/api -> :8011"
 REMOTE
 
-echo "--- prueba desde afuera (manda un mail real a hola@matelabs.com.ar) ---"
+echo "--- prueba desde afuera (manda un mail real a contactomatelabs@gmail.com) ---"
 curl -s -XPOST https://matelabs.site/api/contact -H 'Content-Type: application/json' \
   -d '{"name":"Deploy test","email":"test@matelabs.site","message":"Prueba del deploy","topic":"","source":"deploy"}'; echo

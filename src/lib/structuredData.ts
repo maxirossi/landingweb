@@ -6,7 +6,10 @@ export const organization = {
   name: 'MateLabs',
   url: `${SITE}/`,
   logo: `${SITE}/images/mascota.webp`,
-  sameAs: ['https://www.linkedin.com/company/matelabsar/'],
+  email: 'contactomatelabs@gmail.com',
+  telephone: '+5493417443288',
+  contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', email: 'contactomatelabs@gmail.com', telephone: '+5493417443288', availableLanguage: ['es', 'en'] },
+  sameAs: ['https://www.linkedin.com/company/matelabsar/', 'https://www.instagram.com/matelabs.ok/'],
   address: { '@type': 'PostalAddress', addressLocality: 'Rosario', addressRegion: 'Santa Fe', addressCountry: 'AR' },
 };
 
