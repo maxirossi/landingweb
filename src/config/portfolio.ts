@@ -42,6 +42,11 @@ export const portfolio: PortfolioItem[] = [
     es: { tag: 'Inteligencia artificial · Multimodelo', desc: 'Probá distintos modelos de IA desde una misma cuenta y pagá en pesos argentinos. Conversá, conservá el historial y usá agentes especializados.', features: ['Distintos modelos', 'Historial y exportación', 'Pago en pesos argentinos'], cta: 'Conocer OctoMateLabs', alt: 'Página de inicio de OctoMateLabs: «Probá distintos modelos de IA. Pagá en pesos argentinos.» y una conversación de ejemplo con selector de modelos' },
     en: { tag: 'Artificial intelligence · Multiple models', desc: 'Try different AI models from one account and pay in Argentine pesos. Chat, keep your history and use specialized agents.', features: ['Multiple models', 'History and exports', 'Pay in Argentine pesos'], cta: 'Explore OctoMateLabs', alt: 'OctoMateLabs home page: «Probá distintos modelos de IA. Pagá en pesos argentinos.» and a sample conversation with a model selector' },
   },
+  {
+    id: 'persianasrosario', name: 'Persianas Rosario', href: 'https://persianasrosario.com/', img: '/images/portfolio/persianasrosario.webp', imgW: 1600, imgH: 1000, accent: '#0ea5e9',
+    es: { tag: 'Sitio web para cliente · Servicios', desc: 'Sitio de una empresa de reparación e instalación de persianas en Rosario. Muestra sus servicios y trabajos, y lleva a pedir presupuesto o una urgencia por WhatsApp.', features: ['Pedido de presupuesto', 'Urgencias 24 hs', 'Páginas por servicio'], cta: 'Visitar Persianas Rosario', alt: 'Página de inicio de Persianas Rosario: «Reparación e instalación de persianas en Rosario y alrededores», con botones para pedir presupuesto o una urgencia' },
+    en: { tag: 'Client website · Services', desc: 'Website for a blind repair and installation company in Rosario. It presents their services and past work, and leads visitors to request a quote or emergency service via WhatsApp.', features: ['Quote requests', '24/7 emergencies', 'Pages per service'], cta: 'Visit Persianas Rosario', alt: 'Persianas Rosario home page: «Reparación e instalación de persianas en Rosario y alrededores», with buttons to request a quote or emergency service' },
+  },
 ];
 
 // Claves de traducción generadas para el sistema i18n existente (data-i18n).

@@ -5,8 +5,8 @@ export const translations: Record<string, Record<string, string>> = {
     navPortfolio: 'Portfolio',
     heroTitleA: 'Diseñamos y construimos', heroTitleB: 'productos digitales.',
     heroBrands: 'Productos de MateLabs: eyMate · MateTurnos · QuericoRosario · OctoMateLabs.',
-    pfEyebrow: 'PORTFOLIO', pfTitle: 'Productos creados por MateLabs',
-    pfSubtitle: 'Sitios web, turnos online, una app móvil, mapas e inteligencia artificial. Explorá lo que construimos y conocé cada producto.',
+    pfEyebrow: 'PORTFOLIO', pfTitle: 'Proyectos creados por MateLabs',
+    pfSubtitle: 'Sitios web, turnos online, una app móvil, mapas, inteligencia artificial y sitios para clientes. Explorá lo que construimos y conocé cada proyecto.',
     pfNewTab: '(se abre en una pestaña nueva)',
     // Meta
     metaTitle: 'MateLabs — Software a medida, productos digitales e inteligencia artificial',
@@ -112,8 +112,8 @@ export const translations: Record<string, Record<string, string>> = {
     navPortfolio: 'Portfolio',
     heroTitleA: 'We design and build', heroTitleB: 'digital products.',
     heroBrands: 'Products by MateLabs: eyMate · MateTurnos · QuericoRosario · OctoMateLabs.',
-    pfEyebrow: 'PORTFOLIO', pfTitle: 'Products built by MateLabs',
-    pfSubtitle: 'Websites, online bookings, a mobile app, maps and artificial intelligence. Explore our work and discover each product.',
+    pfEyebrow: 'PORTFOLIO', pfTitle: 'Projects built by MateLabs',
+    pfSubtitle: 'Websites, online bookings, a mobile app, maps, artificial intelligence and client websites. Explore our work and discover each project.',
     pfNewTab: '(opens in a new tab)',
     // Meta
     metaTitle: 'MateLabs — Custom software, digital products & artificial intelligence',
