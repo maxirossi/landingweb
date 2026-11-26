@@ -1,8 +1,6 @@
 ---
 import Icon from '../Icon.astro';
 import { portfolio } from '../../config/portfolio';
-// Fila 1: 2 tarjetas de 6 columnas; fila 2: 3 tarjetas de 4 columnas.
-const span = ['lg:col-span-6', 'lg:col-span-6', 'lg:col-span-4', 'lg:col-span-4', 'lg:col-span-4'];
 ---
 
 <section id="portfolio" class="section portfolio-section">
@@ -10,15 +8,15 @@ const span = ['lg:col-span-6', 'lg:col-span-6', 'lg:col-span-4', 'lg:col-span-4'
     <div data-reveal class="text-center max-w-2xl mx-auto mb-10">
       <div class="section-line w-16 mx-auto mb-6 rounded-full"></div>
       <p class="text-xs font-semibold tracking-[0.2em] text-brand-light mb-3" data-i18n="pfEyebrow">PORTFOLIO</p>
-      <h2 class="text-3xl sm:text-4xl font-semibold text-white" data-i18n="pfTitle">Productos creados por MateLabs</h2>
-      <p class="mt-4 text-slate-400" data-i18n="pfSubtitle">Sitios web, turnos online, una app móvil, mapas e inteligencia artificial. Explorá lo que construimos y conocé cada producto.</p>
+      <h2 class="text-3xl sm:text-4xl font-semibold text-white" data-i18n="pfTitle">Proyectos creados por MateLabs</h2>
+      <p class="mt-4 text-slate-400" data-i18n="pfSubtitle">Sitios web, turnos online, una app móvil, mapas, inteligencia artificial y sitios para clientes. Explorá lo que construimos y conocé cada proyecto.</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
       {portfolio.map((p, i) => {
         const n = i + 1;
         return (
-          <article id={p.id} data-reveal class:list={['pf-card', span[i], i === 4 && 'md:col-span-2']} style={`--accent:${p.accent}; transition-delay:${(i % 3) * 80}ms;`}>
+          <article id={p.id} data-reveal class:list={['pf-card', 'lg:col-span-4', portfolio.length % 2 === 1 && i === portfolio.length - 1 && 'md:col-span-2']} style={`--accent:${p.accent}; transition-delay:${(i % 3) * 80}ms;`}>
             <a href={p.href} target="_blank" rel="noopener noreferrer" class:list={['pf-media', p.phone && 'pf-media--phone']} tabindex="-1">
               <img src={p.img} alt={p.es.alt} width={p.imgW} height={p.imgH} loading="lazy" decoding="async" class="pf-img" />
             </a>
@@ -92,9 +90,7 @@ const span = ['lg:col-span-6', 'lg:col-span-6', 'lg:col-span-4', 'lg:col-span-4'
   #portfolio #mateturnos-web .pf-media, #portfolio #mateturnos-app .pf-media { --pf-glow: rgb(59 130 246 / 15%); }
   #portfolio #quericorosario .pf-media { --pf-glow: rgb(16 185 129 / 16%); }
   #portfolio #octomatelabs .pf-media { --pf-glow: rgb(139 92 246 / 16%); }
-  @media (min-width: 1024px) {
-    #portfolio #eymate .pf-media, #portfolio #mateturnos-web .pf-media { aspect-ratio: 16 / 10; }
-  }
+  #portfolio #persianasrosario .pf-media { --pf-glow: rgb(14 165 233 / 15%); }
   .pf-body { display: flex; flex-direction: column; flex: 1; padding: 1.4rem 1.5rem 1.5rem; }
   .pf-tag { font-size: .75rem; font-weight: 600; padding: .2rem .6rem; border-radius: 999px; color: #e2e8f0;
     background: color-mix(in srgb, var(--accent) 22%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); }
