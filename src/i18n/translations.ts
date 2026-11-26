@@ -1,7 +1,12 @@
 import { portfolioTranslations } from '../config/portfolio';
+import { homeTranslations } from '../config/home';
 export const translations: Record<string, Record<string, string>> = {
   es: {
     ...portfolioTranslations('es'),
+    ...homeTranslations('es'),
+    heroCtaWa: 'Presupuesto por WhatsApp', pfEyebrowLive: 'EN PRODUCCIÓN · ENTRÁ Y PROBALOS',
+    ndEyebrow: 'EMPEZÁ POR ACÁ', ndTitle: '¿Qué necesitás resolver?', ndSubtitle: 'Elegí la opción que más se parece a tu caso y te llevamos al producto o servicio indicado.',
+    fqTitle: 'Preguntas frecuentes', ctaTitle: '¿Lo charlamos?', ctaText: 'Contanos qué querés construir. Te respondemos por WhatsApp con los próximos pasos.', ctaWa: 'Escribir por WhatsApp', ctaForm: 'Usar el formulario',
     navPortfolio: 'Portfolio',
     heroTitleA: 'Diseñamos y construimos', heroTitleB: 'productos digitales.',
     heroBrands: 'Productos de MateLabs: eyMate · MateTurnos · QuericoRosario · OctoMateLabs.',
@@ -111,6 +116,10 @@ export const translations: Record<string, Record<string, string>> = {
 
   en: {
     ...portfolioTranslations('en'),
+    ...homeTranslations('en'),
+    heroCtaWa: 'Get a quote on WhatsApp', pfEyebrowLive: 'LIVE IN PRODUCTION · TRY THEM',
+    ndEyebrow: 'START HERE', ndTitle: 'What do you need to solve?', ndSubtitle: 'Pick the option closest to your case and we will point you to the right product or service.',
+    fqTitle: 'Frequently asked questions', ctaTitle: "Let's talk?", ctaText: 'Tell us what you want to build. We reply on WhatsApp with next steps.', ctaWa: 'Message on WhatsApp', ctaForm: 'Use the form',
     navPortfolio: 'Portfolio',
     heroTitleA: 'We design and build', heroTitleB: 'digital products.',
     heroBrands: 'Products by MateLabs: eyMate · MateTurnos · QuericoRosario · OctoMateLabs.',
