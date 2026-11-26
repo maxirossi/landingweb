@@ -8,7 +8,7 @@ const PORT = Number(process.env.PORT || 8011);
 const MM_URL = process.env.MATEMESSAGING_URL || 'http://127.0.0.1:8060';
 const MM_KEY = process.env.MATEMESSAGING_API_KEY || '';
 const FROM = process.env.MATEMESSAGING_EMAIL_FROM || 'MateLabs Landing <noreply@matelabs.site>';
-const TO = process.env.CONTACT_EMAIL || 'hola@matelabs.com.ar';
+const TO = process.env.CONTACT_EMAIL || 'contactomatelabs@gmail.com';
 
 const RATE_LIMIT = 5;
 const RATE_WINDOW_MS = 15 * 60 * 1000;

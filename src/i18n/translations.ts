@@ -86,6 +86,8 @@ export const translations: Record<string, Record<string, string>> = {
     contactMessagePlaceholder: 'Contanos sobre tu proyecto o idea...',
     contactSend: 'Enviar mensaje',
     contactAlt: 'También podés escribirnos directamente a',
+    contactWaAlt: 'o por WhatsApp al',
+    widgetWa: 'Escribinos por WhatsApp',
 
     // Contact Widget
     widgetTitle: '¿Te ayudamos?',
@@ -193,6 +195,8 @@ export const translations: Record<string, Record<string, string>> = {
     contactMessagePlaceholder: 'Tell us about your project or idea...',
     contactSend: 'Send message',
     contactAlt: 'You can also write directly to',
+    contactWaAlt: 'or on WhatsApp at',
+    widgetWa: 'Message us on WhatsApp',
 
     // Contact Widget
     widgetTitle: 'Need help?',
