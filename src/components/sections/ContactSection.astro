@@ -21,7 +21,7 @@ const topics = [
       </ul>
     </div>
 
-    <form id="contact-form" class="ct-form" novalidate>
+    <form id="contact-form" class="ct-form" data-contact-form="formulario" novalidate>
       <label for="contact-name"><span data-i18n="contactName">Nombre</span>
         <input type="text" id="contact-name" name="name" required autocomplete="name" placeholder="Tu nombre" data-i18n-placeholder="contactNamePlaceholder" />
       </label>
@@ -37,7 +37,7 @@ const topics = [
         <textarea id="contact-message" name="message" required rows="4" placeholder="¿Qué necesitás resolver?" data-i18n-placeholder="contactMessagePlaceholder"></textarea>
       </label>
       <button type="submit" id="contact-submit" class="btn btn-dark btn-lg"><span data-i18n="contactSend">Enviar mensaje</span> <span aria-hidden="true">↗</span></button>
-      <p id="contact-status" class="hidden" role="status" aria-live="polite"></p>
+      <p id="contact-status" data-ct-status class="hidden" role="status" aria-live="polite"></p>
       <p class="ct-note" data-i18n="contactPrivacy">Usamos tus datos solo para responder tu consulta.</p>
     </form>
   </div>
@@ -60,82 +60,10 @@ const topics = [
   .ct-form .btn { justify-self: start; }
   .ct-form .btn[disabled] { opacity: .7; cursor: progress; transform: none; }
   .ct-note { font-size: 12px; color: #536969; }
-  .ct-status { padding: 10px 12px; border-radius: 6px; font-size: 14px; font-weight: 600; }
-  .ct-status.is-ok { background: #d3ede3; color: #14532d; }
-  .ct-status.is-warn { background: #fdf1d6; color: #7a4b00; }
-  .ct-status.is-error { background: #fde3e1; color: #8f1d14; }
   @media (max-width: 850px) { .ct-grid { grid-template-columns: 1fr; } }
 </style>
 
 <script>
-  const form = document.getElementById('contact-form');
-  const status = document.getElementById('contact-status');
-  const submitBtn = document.getElementById('contact-submit');
-
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      status.classList.add('hidden');
-      const en = document.documentElement.lang === 'en';
-      const fields = ['name', 'email', 'message'].map((n) => form.querySelector(`[name="${n}"]`));
-      let firstBad = null;
-      fields.forEach((f) => {
-        const v = f.value.trim();
-        const bad = !v || (f.name === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
-        f.setAttribute('aria-invalid', String(bad));
-        if (bad && !firstBad) firstBad = f;
-      });
-      if (firstBad) {
-        status.textContent = en ? 'Please complete your name, a valid email and your message.' : 'Completá tu nombre, un email válido y tu mensaje.';
-        status.className = 'ct-status is-error';
-        firstBad.setAttribute('aria-describedby', 'contact-status');
-        firstBad.focus();
-        return;
-      }
-      submitBtn.disabled = true;
-      const origHTML = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<span class="animate-pulse">...</span>';
-
-      const body = {
-        name: form.querySelector('[name="name"]').value,
-        email: form.querySelector('[name="email"]').value,
-        message: form.querySelector('[name="message"]').value,
-        topic: form.querySelector('[name="topic"]').value,
-        source: 'formulario',
-      };
-
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        });
-
-        if (res.ok) {
-          status.textContent = document.documentElement.lang === 'en'
-            ? 'Message sent successfully!'
-            : 'Mensaje enviado correctamente!';
-          status.className = 'ct-status is-ok';
-          form.reset();
-          fields.forEach((f) => f.removeAttribute('aria-invalid'));
-        } else if (res.status === 429) {
-          status.textContent = document.documentElement.lang === 'en'
-            ? 'Too many attempts. Try again in a few minutes.'
-            : 'Demasiados intentos. Intentá de nuevo en unos minutos.';
-          status.className = 'ct-status is-warn';
-        } else {
-          throw new Error();
-        }
-      } catch {
-        status.textContent = document.documentElement.lang === 'en'
-          ? 'Something went wrong. Try again or email us directly.'
-          : 'Algo salió mal. Intentá de nuevo o escribinos directamente.';
-        status.className = 'ct-status is-error';
-      }
-
-      status.classList.remove('hidden');
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = origHTML;
-    });
-  }
+  import { initContactForms } from '../../scripts/contactForm';
+  initContactForms();
 </script>

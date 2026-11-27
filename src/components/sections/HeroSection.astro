@@ -1,8 +1,24 @@
 ---
+// Hero a pantalla completa inspirado en metalab.com: fondo animado (canvas liviano,
+// sin video ni librerías) que pasa a la captura real de cada producto al apuntar
+// sus «pastillas», y tarjeta de contacto a la derecha.
 import { capabilities } from '../../config/home';
+import { portfolio } from '../../config/portfolio';
+import { WHATSAPP_URL, WHATSAPP_DISPLAY } from '../../config/contact';
+import Icon from '../Icon.astro';
+const shots = portfolio.map((p) => ({ id: p.id, name: p.name, img: p.img.replace('.webp', '-800.webp'), imgFull: p.img }));
+const waHref = `${WHATSAPP_URL}?text=${encodeURIComponent('Hola MateLabs, quiero consultar por un proyecto.')}`;
 ---
 <section class="hero" aria-labelledby="hero-title">
-  <div class="container-safe hero__grid">
+  <div class="hero__bg" aria-hidden="true">
+    <canvas class="hero__canvas" data-hero-canvas></canvas>
+    {shots.map((s) => (
+      <img class="hero__shot" data-shot={s.id} data-src={s.img} data-srcset={`${s.img} 800w, ${s.imgFull} 1600w`} sizes="100vw" alt="" width="1600" height="1000" decoding="async" />
+    ))}
+    <div class="hero__veil"></div>
+  </div>
+
+  <div class="hero__grid">
     <div class="hero__copy">
       <p class="eyebrow" data-i18n="heroBadge">Estudio de tecnología · Rosario, AR</p>
       <h1 id="hero-title" class="hero__title">
@@ -10,17 +26,41 @@ import { capabilities } from '../../config/home';
         <em data-i18n="heroTitleB">tecnología.</em>
       </h1>
       <p class="hero__lead" data-i18n="heroSubtitle">Creamos software a medida, productos digitales propios y soluciones con inteligencia artificial para negocios que quieren avanzar.</p>
-      <div class="hero__actions">
-        <a href="#contacto" class="btn btn-primary btn-lg"><span data-i18n="heroCta1">Empezar un proyecto</span> <span aria-hidden="true">↗</span></a>
-        <a href="#portfolio" class="btn btn-secondary btn-lg"><span data-i18n="heroCta2">Explorar productos</span> <span aria-hidden="true">↓</span></a>
-      </div>
+
+      <p class="hero__pills-label" id="hero-pills-label" data-i18n="heroPillsLabel">Lo que construimos</p>
+      <ul class="hero__pills" aria-labelledby="hero-pills-label">
+        {shots.map((s) => <li><a href={`#${s.id}`} data-pill={s.id}>{s.name}</a></li>)}
+        <li><a href="#portfolio" class="is-all"><span data-i18n="heroCta2">Explorar productos</span> <span aria-hidden="true">↓</span></a></li>
+      </ul>
     </div>
 
-    <div class="hero__art">
-      <span class="hero__index" aria-hidden="true">ML / 01</span>
-      <img src="/images/mascota.webp" alt="Pulpo robot de MateLabs, la mascota oficial, con un mate" width="512" height="512" loading="eager" fetchpriority="high" decoding="async" class="hero__mascot" />
-      <span class="hero__label" aria-hidden="true">MATELABS / PRODUCT ENGINEERING</span>
-    </div>
+    <aside class="hero-ct" aria-labelledby="hero-ct-title">
+      <div class="hero-ct__head">
+        <img src="/images/mascota.webp" alt="Pulpo robot de MateLabs, la mascota oficial, con un mate" width="512" height="512" loading="eager" decoding="async" class="hero-ct__mascot" />
+        <div>
+          <h2 id="hero-ct-title" class="hero-ct__title" data-i18n="heroCtTitle">Empezá tu proyecto</h2>
+          <p class="hero-ct__sub" data-i18n="heroCtSub">Contanos la idea y te respondemos con los próximos pasos.</p>
+        </div>
+      </div>
+
+      <form id="hero-form" class="hero-ct__form" data-contact-form="hero" novalidate>
+        <label for="hero-name"><span data-i18n="contactName">Nombre</span>
+          <input type="text" id="hero-name" name="name" required autocomplete="name" placeholder="Tu nombre" data-i18n-placeholder="contactNamePlaceholder" />
+        </label>
+        <label for="hero-email"><span data-i18n="contactEmail">Email</span>
+          <input type="email" id="hero-email" name="email" required autocomplete="email" placeholder="tu@email.com" data-i18n-placeholder="contactEmailPlaceholder" />
+        </label>
+        <label for="hero-message"><span data-i18n="contactMessage">Contanos tu idea</span>
+          <textarea id="hero-message" name="message" required rows="3" placeholder="¿Qué necesitás resolver?" data-i18n-placeholder="contactMessagePlaceholder"></textarea>
+        </label>
+        <button type="submit" id="hero-submit" class="btn btn-primary btn-lg"><span data-i18n="contactSend">Enviar mensaje</span> <span aria-hidden="true">↗</span></button>
+        <p id="hero-status" data-ct-status class="hidden" role="status" aria-live="polite"></p>
+      </form>
+
+      <p class="hero-ct__or"><span data-i18n="heroCtOr">o directo</span></p>
+      <a href={waHref} target="_blank" rel="noopener noreferrer" class="btn btn-wa btn-lg hero-ct__wa"><Icon name="whatsapp" class="w-5 h-5" /><span data-i18n="ctaWa">Escribir por WhatsApp</span></a>
+      <p class="hero-ct__phone">{WHATSAPP_DISPLAY}</p>
+    </aside>
   </div>
 </section>
 
@@ -31,35 +71,142 @@ import { capabilities } from '../../config/home';
 </div>
 
 <style>
-  .hero { padding: calc(4.5rem + clamp(48px, 7vw, 92px)) 0 clamp(40px, 6vw, 76px); border-bottom: 1px solid var(--line); overflow: hidden; }
-  .hero__grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: clamp(28px, 4vw, 56px); align-items: center; }
-  .hero__title { margin: 1.4rem 0; max-width: 780px; font-size: clamp(44px, 6.4vw, 91px); line-height: 1.015; letter-spacing: -.065em; font-weight: 670; color: var(--text); }
-  .hero__title em { font-style: normal; color: var(--accent); }
-  .hero__lead { max-width: 560px; font-size: clamp(16px, 1.4vw, 18px); line-height: 1.7; color: var(--muted); }
-  .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 2rem; }
+  .hero { position: relative; isolation: isolate; min-height: min(100svh, 980px); display: flex; align-items: center;
+    padding: calc(4.5rem + clamp(32px, 5vw, 64px)) 0 clamp(40px, 5vw, 64px); border-bottom: 1px solid var(--line); overflow: hidden; background: var(--bg); }
+  .hero__bg { position: absolute; inset: 0; z-index: -1; }
+  .hero__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .hero__shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center;
+    opacity: 0; transform: scale(1.04); transition: opacity .45s ease, transform 1.2s ease; filter: saturate(.8) blur(1.5px); }
+  .hero__shot.is-on { opacity: .34; transform: scale(1); }
+  .hero__veil { position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(90deg, #0b1016f0 0%, #0b1016b0 46%, #0b101680 68%, #0b1016c7 100%), linear-gradient(0deg, #0b1016 0, transparent 22%); }
 
-  .hero__art { position: relative; aspect-ratio: 7 / 6; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
-    background: radial-gradient(ellipse at center, #1d5358 0, #101d26 45%, #0b1016 77%); }
-  .hero__art::before { content: ''; position: absolute; inset: 0; pointer-events: none;
-    background-image: linear-gradient(#8cb3b40b 1px, transparent 1px), linear-gradient(90deg, #8cb3b40b 1px, transparent 1px);
-    background-size: 30px 30px; -webkit-mask-image: linear-gradient(black, transparent 94%); mask-image: linear-gradient(black, transparent 94%); }
-  .hero__mascot { position: absolute; left: 50%; top: 47%; width: 62%; height: auto; transform: translate(-50%, -50%); filter: drop-shadow(0 22px 22px #0006); }
-  .hero__index, .hero__label { position: absolute; font-size: 11px; letter-spacing: .12em; color: #8faab1; }
-  .hero__index { top: 17px; right: 19px; }
-  .hero__label { bottom: 20px; left: 22px; color: #b7c9ce; }
+  .hero__grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: clamp(28px, 5vw, 80px); align-items: center; width: min(1180px, 100% - 56px); margin-inline: auto; }
+  .hero__title { margin: 1.3rem 0; max-width: 760px; font-size: clamp(44px, 6.4vw, 94px); line-height: 1; letter-spacing: -.065em; font-weight: 670; color: var(--text); text-wrap: balance; }
+  .hero__title em { font-style: normal; color: var(--accent); }
+  .hero__lead { max-width: 540px; font-size: clamp(16px, 1.4vw, 18px); line-height: 1.7; color: #c3ccd4; }
+
+  .hero__pills-label { margin: 2.2rem 0 .8rem; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .hero__pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  .hero__pills a { display: inline-flex; align-items: center; gap: 6px; min-height: 42px; padding: 0 16px; border-radius: 999px;
+    background: #ffffff14; border: 1px solid #ffffff24; color: var(--text); font-size: 14px; font-weight: 550;
+    transition: background-color .2s, border-color .2s, color .2s; }
+  .hero__pills a:hover, .hero__pills a:focus-visible, .hero__pills a.is-on { background: var(--accent); border-color: var(--accent); color: #0b1016; }
+  .hero__pills a.is-all { background: transparent; border-color: #ffffff38; }
+  .hero__pills a.is-all:hover, .hero__pills a.is-all:focus-visible { background: #ffffff1a; color: var(--text); border-color: #ffffff5c; }
+
+  .hero-ct { padding: 22px; border: 1px solid #ffffff1f; border-radius: 14px; background: #0f171feb; box-shadow: 0 24px 60px #0008; }
+  .hero-ct__head { display: flex; gap: 14px; align-items: center; margin-bottom: 18px; }
+  .hero-ct__mascot { width: 64px; height: 64px; flex: none; border-radius: 12px; background: radial-gradient(circle at 50% 40%, #1d5358, #101d26 75%); padding: 4px; }
+  .hero-ct__title { font-size: 20px; font-weight: 680; letter-spacing: -.02em; color: var(--text); }
+  .hero-ct__sub { margin-top: 3px; font-size: 13.5px; line-height: 1.5; color: var(--muted); }
+  .hero-ct__form { display: grid; gap: 11px; }
+  .hero-ct__form label { display: grid; gap: 5px; font-size: 12.5px; font-weight: 600; color: #d5dde3; }
+  .hero-ct__form input, .hero-ct__form textarea { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #3f4d5b; border-radius: 7px;
+    background: #0b1016; color: var(--text); font: inherit; font-size: 15px; font-weight: 400; }
+  .hero-ct__form textarea { min-height: 84px; resize: vertical; }
+  .hero-ct__form ::placeholder { color: #8593a0; }
+  .hero-ct__form :is(input, textarea):focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+  .hero-ct__form [aria-invalid="true"] { border-color: #f97066; }
+  .hero-ct__form .btn { width: 100%; }
+  .hero-ct__form .btn[disabled] { opacity: .7; cursor: progress; }
+  .hero-ct__or { display: flex; align-items: center; gap: 10px; margin: 14px 0 12px; font-size: 12px; color: var(--muted); }
+  .hero-ct__or::before, .hero-ct__or::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+  .hero-ct__wa { width: 100%; }
+  .hero-ct__phone { margin-top: 8px; text-align: center; font-size: 12.5px; color: var(--muted); }
 
   .caps { border-bottom: 1px solid var(--line); }
   .caps__list { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 18px; padding-block: 21px; list-style: none; margin-block: 0; font-size: 13px; color: var(--muted); }
   .caps__list li::before { content: '+'; margin-right: 10px; color: var(--accent); }
   .caps__list .is-strong { color: var(--text); font-weight: 600; }
 
-  @media (max-width: 850px) {
+  @media (max-width: 980px) {
+    .hero { min-height: 0; }
     .hero__grid { grid-template-columns: 1fr; }
-    .hero__art { aspect-ratio: auto; height: clamp(280px, 70vw, 360px); }
-    .hero__mascot { width: auto; height: 82%; }
+    .hero-ct { max-width: 560px; }
+    .hero__veil { background: linear-gradient(180deg, #0b1016d0 0%, #0b1016a8 45%, #0b1016 100%); }
   }
   @media (max-width: 560px) {
+    .hero__grid { width: min(1180px, 100% - 32px); }
+    .hero-ct { padding: 18px; }
     .caps__list { display: grid; grid-template-columns: 1fr 1fr; }
-    .hero__actions .btn { flex: 1 1 auto; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__shot { transition: opacity .2s; transform: none; }
   }
 </style>
+
+<script>
+  // Fondo: dos cintas de líneas turquesa que ondulan despacio (canvas 2D, sin librerías).
+  // Se pausa fuera de pantalla o con la pestaña oculta; con reduced-motion queda quieto.
+  const canvas = document.querySelector<HTMLCanvasElement>('[data-hero-canvas]');
+  const hero = canvas?.closest<HTMLElement>('.hero');
+  if (canvas && hero) {
+    const ctx = canvas.getContext('2d')!;
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const t0 = performance.now();
+    let w = 0, h = 0, raf = 0, visible = true;
+    const ribbons = [
+      { y: .30, amp: .16, f: 1.3, sp: .10, rgb: '121,228,214', n: 34, spread: .26 },
+      { y: .72, amp: .12, f: 1.9, sp: -.07, rgb: '62,190,178', n: 28, spread: .2 },
+    ];
+    const draw = (t: number) => {
+      ctx.clearRect(0, 0, w, h);
+      const glow = ctx.createRadialGradient(w * .74, h * .4, 0, w * .74, h * .4, Math.max(w, h) * .6);
+      glow.addColorStop(0, '#1a525a'); glow.addColorStop(1, '#0b101600');
+      ctx.fillStyle = glow; ctx.fillRect(0, 0, w, h);
+      ctx.lineWidth = 1.1;
+      for (const r of ribbons) {
+        for (let i = 0; i < r.n; i++) {
+          const k = i / (r.n - 1);
+          ctx.beginPath();
+          for (let x = -20; x <= w + 20; x += 18) {
+            const u = x / w;
+            const y = h * (r.y + (k - .5) * r.spread * Math.sin(u * 2.2 + t * .35 + k))
+              + Math.sin(u * Math.PI * r.f + t * r.sp * 6 + k * .9) * h * r.amp
+              + Math.cos(u * 5 - t * .2 + k * 2) * h * .02;
+            if (x < 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+          }
+          ctx.strokeStyle = `rgba(${r.rgb},${(0.08 + 0.42 * Math.sin(k * Math.PI)).toFixed(3)})`;
+          ctx.stroke();
+        }
+      }
+    };
+    const resize = () => {
+      const dpr = Math.min(devicePixelRatio || 1, 1.5);
+      w = hero.clientWidth; h = hero.clientHeight;
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      draw(still ? 4 : (performance.now() - t0) / 1000);
+    };
+    const loop = (now: number) => { draw((now - t0) / 1000); raf = requestAnimationFrame(loop); };
+    const start = () => { if (!still && visible && !document.hidden && !raf) raf = requestAnimationFrame(loop); };
+    const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) start(); else stop(); }).observe(hero);
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+    new ResizeObserver(resize).observe(hero);
+    resize();
+    start();
+
+    // Pastillas de productos: al apuntar o enfocar, el fondo muestra la captura real.
+    // Las capturas se descargan recién la primera vez que hacen falta.
+    const shots = hero.querySelectorAll<HTMLImageElement>('[data-shot]');
+    const pills = hero.querySelectorAll<HTMLAnchorElement>('[data-pill]');
+    const show = (id: string | null) => {
+      shots.forEach((s) => {
+        const on = s.dataset.shot === id;
+        if (on && !s.getAttribute('src')) { s.srcset = s.dataset.srcset!; s.src = s.dataset.src!; }
+        s.classList.toggle('is-on', on);
+      });
+      pills.forEach((p) => p.classList.toggle('is-on', p.dataset.pill === id));
+    };
+    pills.forEach((p) => {
+      const on = () => show(p.dataset.pill!);
+      const off = () => show(null);
+      p.addEventListener('pointerenter', on);
+      p.addEventListener('focus', on);
+      p.addEventListener('pointerleave', off);
+      p.addEventListener('blur', off);
+    });
+  }
+</script>

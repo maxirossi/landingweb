@@ -214,3 +214,9 @@
     animation: none !important;
   }
 }
+
+/* Estados del formulario de contacto (hero y #contacto) */
+.ct-status { padding: 10px 12px; border-radius: 6px; font-size: 14px; font-weight: 600; }
+.ct-status.is-ok { background: #d3ede3; color: #14532d; }
+.ct-status.is-warn { background: #fdf1d6; color: #7a4b00; }
+.ct-status.is-error { background: #fde3e1; color: #8f1d14; }

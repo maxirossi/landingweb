@@ -128,6 +128,48 @@ test.describe('formulario de contacto (API simulada)', () => {
   });
 });
 
+test.describe('hero con contacto a la derecha', () => {
+  test('el formulario del hero valida y envía con origen «hero»', async ({ page }) => {
+    let body: any = null;
+    await page.route('**/api/contact', async (r) => { body = r.request().postDataJSON(); await r.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }); });
+    await page.goto('/');
+    await page.locator('#hero-submit').click();
+    await expect(page.locator('#hero-status')).toContainText('Completá tu nombre');
+    await expect(page.locator('#hero-name')).toBeFocused();
+    expect(body).toBeNull();
+    await page.fill('#hero-name', 'Hero E2E');
+    await page.fill('#hero-email', 'hero@example.com');
+    await page.fill('#hero-message', 'Desde el hero');
+    await page.locator('#hero-submit').click();
+    await expect(page.locator('#hero-status')).toContainText('Mensaje enviado');
+    expect(body).toMatchObject({ name: 'Hero E2E', email: 'hero@example.com', message: 'Desde el hero', source: 'hero' });
+    await expect(page.locator('#contact-status')).toBeHidden();
+  });
+
+  test('la tarjeta queda a la derecha en escritorio y el WhatsApp es el real', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('.hero-ct .btn-wa')).toHaveAttribute('href', /^https:\/\/wa\.me\/5493417443288/);
+    if (!isMobile(page)) {
+      const h1 = await page.locator('#hero-title').boundingBox();
+      const card = await page.locator('.hero-ct').boundingBox();
+      expect(card!.x).toBeGreaterThan(h1!.x + h1!.width / 2);
+      expect(card!.y + card!.height).toBeLessThanOrEqual((page.viewportSize()?.height ?? 900) + 1);
+    }
+  });
+
+  test('al apuntar una pastilla aparece la captura del producto de fondo', async ({ page }) => {
+    test.skip(isMobile(page), 'hover de escritorio');
+    await page.goto('/');
+    const shot = page.locator('[data-shot="eymate"]');
+    await expect(shot).not.toHaveAttribute('src', /.+/);
+    await page.hover('[data-pill="eymate"]');
+    await expect(shot).toHaveClass(/is-on/);
+    await expect(shot).toHaveAttribute('src', /eymate-800\.webp/);
+    await page.mouse.move(5, 500);
+    await expect(shot).not.toHaveClass(/is-on/);
+  });
+});
+
 test('el enlace para saltar al contenido lleva a main', async ({ page }) => {
   test.skip(isMobile(page), 'teclado de escritorio');
   await page.goto('/');
