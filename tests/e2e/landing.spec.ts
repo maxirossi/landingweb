@@ -118,15 +118,16 @@ test('menús del header (escritorio): se despliegan al pasar el mouse en todas l
   await expect(page.locator('#mega-servicios')).toBeHidden();
 });
 
-test('portfolio: las capturas de los sitios se ven enteras, sin cortes', async ({ page }) => {
+test('portfolio y caso: capturas al ras, enteras y sin marco', async ({ page }) => {
   await page.goto('/');
-  const gaps = await page.$$eval('.pf', (cards) => cards.map((c) => {
-    const m = c.querySelector('.pf__media')!.getBoundingClientRect();
-    const f = c.querySelector('.pf__frame')!.getBoundingClientRect();
-    return Math.min(f.top - m.top, m.bottom - f.bottom, f.left - m.left, m.right - f.right);
+  const res = await page.$$eval('.pf__media, .cs__media', (els) => els.map((m) => {
+    const img = m.querySelector('img')!;
+    const r = m.getBoundingClientRect(), i = img.getBoundingClientRect();
+    return { frame: !!m.querySelector('.pf__frame, .cs__frame, .pf__bar, .cs__bar'), flush: Math.abs(i.width - r.width) <= 2 && Math.abs(i.left - r.left) <= 1,
+      whole: Math.abs(i.height - i.width * 1000 / 1600) <= 2 && i.bottom <= r.bottom + 1 && i.top >= r.top - 1 };
   }));
-  expect(gaps).toHaveLength(4);
-  for (const g of gaps) expect(g).toBeGreaterThanOrEqual(8);
+  expect(res).toHaveLength(5);
+  for (const x of res) expect(x).toEqual({ frame: false, flush: true, whole: true });
 });
 
 test.describe('formulario de contacto (API simulada)', () => {

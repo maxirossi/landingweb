@@ -24,7 +24,7 @@ export interface PortfolioItem {
 
 export const portfolio: PortfolioItem[] = [
   {
-    id: 'eymate', name: 'eyMate', href: 'https://eymate.site/', host: 'eymate.site', img: '/images/portfolio/eymate.webp', imgW: 1552, imgH: 780, tone: 'sage',
+    id: 'eymate', name: 'eyMate', href: 'https://eymate.site/', host: 'eymate.site', img: '/images/portfolio/eymate.webp', imgW: 1600, imgH: 1000, tone: 'sage',
     cat: t('Creación web', 'Website builder'),
     desc: t('Creá el sitio de tu negocio con un editor visual y herramientas de inteligencia artificial, y publicalo con tu dominio.', 'Build your business website with a visual editor and AI tools, and publish it on your own domain.'),
     cta: t('Conocer eyMate', 'Explore eyMate'),
@@ -39,14 +39,14 @@ export const portfolio: PortfolioItem[] = [
     app: { href: 'https://play.google.com/store/apps/details?id=site.mateturnos.app', cta: t('App para Android en Google Play', 'Android app on Google Play') },
   },
   {
-    id: 'quericorosario', name: 'QuericoRosario', href: 'https://quericorosario.com/', host: 'quericorosario.com', img: '/images/portfolio/quericorosario.webp', imgW: 1600, imgH: 1011, tone: 'sand',
+    id: 'quericorosario', name: 'QuericoRosario', href: 'https://quericorosario.com/', host: 'quericorosario.com', img: '/images/portfolio/quericorosario.webp', imgW: 1600, imgH: 1000, tone: 'sand',
     cat: t('Guía gastronómica · Mapa', 'Dining guide · Map'),
     desc: t('Descubrí bares, cafés y restaurantes de Rosario en un mapa interactivo, con fotos, cartas y contacto directo.', 'Discover bars, cafés and restaurants in Rosario on an interactive map, with photos, menus and direct contact.'),
     cta: t('Explorar QuericoRosario', 'Explore QuericoRosario'),
     alt: t('Página de inicio de QuericoRosario: «¿Dónde comemos hoy?», con buscador y mapa de Rosario', 'QuericoRosario home page: «¿Dónde comemos hoy?», with search and a map of Rosario'),
   },
   {
-    id: 'octomatelabs', name: 'OctoMateLabs', href: 'https://octomatelabs.site/', host: 'octomatelabs.site', img: '/images/portfolio/octomatelabs.webp', imgW: 1600, imgH: 1011, tone: 'night',
+    id: 'octomatelabs', name: 'OctoMateLabs', href: 'https://octomatelabs.site/', host: 'octomatelabs.site', img: '/images/portfolio/octomatelabs.webp', imgW: 1600, imgH: 1000, tone: 'night',
     cat: t('Plataforma de inteligencia artificial', 'AI platform'),
     desc: t('Distintos modelos de IA, conversaciones y agentes especializados desde una misma cuenta, con pago en pesos.', 'Multiple AI models, conversations and specialized agents from one account, payable in Argentine pesos.'),
     cta: t('Conocer OctoMateLabs', 'Explore OctoMateLabs'),

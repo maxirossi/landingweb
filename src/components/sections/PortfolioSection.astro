@@ -17,11 +17,8 @@ import { portfolio } from '../../config/portfolio';
         return (
           <article id={p.id} class="pf">
             {p.id === 'mateturnos' && <><span id="mateturnos-web" class="pf-anchor"></span><span id="mateturnos-app" class="pf-anchor"></span></>}
-            <a href={p.href} target="_blank" rel="noopener noreferrer" class={`pf__media pf__media--${p.tone}`} tabindex="-1" aria-hidden="true">
-              <span class="pf__frame">
-                <span class="pf__bar"><span class="pf__dots"></span>{p.host}</span>
-                <img src={p.img} srcset={`${p.img.replace('.webp', '-800.webp')} 800w, ${p.img} ${p.imgW}w`} sizes="(max-width: 760px) 92vw, 500px" alt="" width={p.imgW} height={p.imgH} loading="lazy" decoding="async" class="pf__img" />
-              </span>
+            <a href={p.href} target="_blank" rel="noopener noreferrer" class="pf__media" tabindex="-1" aria-hidden="true">
+              <img src={p.img} srcset={`${p.img.replace('.webp', '-800.webp')} 800w, ${p.img} ${p.imgW}w`} sizes="(max-width: 760px) 92vw, 580px" alt="" width={p.imgW} height={p.imgH} loading="lazy" decoding="async" class="pf__img" />
             </a>
             <div class="pf__info">
               <span class="pf__cat" data-i18n={`pf${n}Cat`}>{p.cat.es}</span>
@@ -44,14 +41,7 @@ import { portfolio } from '../../config/portfolio';
   .pf { position: relative; display: flex; flex-direction: column; overflow: hidden; border: 1px solid #d5dcd9; border-radius: 12px; background: #fff; transition: transform .2s, box-shadow .2s; }
   .pf:hover { transform: translateY(-3px); box-shadow: 0 14px 25px #182c2214; }
   .pf-anchor { position: absolute; top: -5rem; }
-  .pf__media { display: flex; align-items: center; justify-content: center; aspect-ratio: 5 / 4; padding: clamp(16px, 2.6vw, 30px); overflow: hidden; }
-  .pf__media--sage { background: #e4e9e5; } .pf__media--mint { background: #dfeeea; } .pf__media--sand { background: #f2e6d6; } .pf__media--night { background: #18212d; }
-  .pf__frame { display: flex; flex-direction: column; width: 100%; max-width: 520px; border: 1px solid #c8d2d3; border-radius: 9px; overflow: hidden; background: #fff; box-shadow: 0 14px 28px #0002; transition: transform .3s ease; }
-  .pf:hover .pf__frame { transform: translateY(-4px); }
-  .pf__media--night .pf__frame { border-color: #43505d; background: #0c141d; }
-  .pf__bar { display: flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; flex-shrink: 0; font-size: 10px; font-weight: 700; color: #52626c; border-bottom: 1px solid #e6e9e9; }
-  .pf__media--night .pf__bar { color: #b8c8cf; border-color: #2b3946; }
-  .pf__dots { width: 5px; height: 5px; margin-right: 22px; border-radius: 50%; background: #aab8bc; box-shadow: 8px 0 #aab8bc, 16px 0 #aab8bc; }
+  .pf__media { display: block; overflow: hidden; border-bottom: 1px solid #e3e8e6; background: #eef1ef; }
   .pf__img { display: block; width: 100%; height: auto; }
   .pf__info { display: flex; flex-direction: column; flex: 1; padding: clamp(21px, 2.2vw, 26px); }
   .pf__cat { font-size: 11px; font-weight: 650; letter-spacing: .12em; text-transform: uppercase; color: #5d6a72; }
@@ -64,5 +54,5 @@ import { portfolio } from '../../config/portfolio';
   .pf__app:hover { color: var(--ink); }
   .pf a:focus-visible { outline: 2px solid #176b65; outline-offset: 3px; }
   @media (max-width: 760px) { .pf-grid { grid-template-columns: 1fr; } }
-  @media (prefers-reduced-motion: reduce) { .pf, .pf:hover, .pf:hover .pf__frame { transition: none; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .pf, .pf:hover { transition: none; transform: none; } }
 </style>

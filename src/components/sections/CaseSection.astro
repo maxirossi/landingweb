@@ -19,8 +19,7 @@ import { caseStudy as c } from '../../config/home';
         <a href={c.href} target="_blank" rel="noopener noreferrer" class="link-arrow"><span data-i18n="csCta">{c.cta.es}</span> <span aria-hidden="true">↗</span></a>
       </div>
       <a href={c.href} target="_blank" rel="noopener noreferrer" class="cs__media" tabindex="-1" aria-hidden="true">
-        <span class="cs__frame"><span class="cs__bar"><span class="cs__dots"></span>persianasrosario.com</span>
-          <img src={c.img} srcset={`${c.img.replace('.webp', '-800.webp')} 800w, ${c.img} 1600w`} sizes="(max-width: 900px) 92vw, 560px" alt="" width="1600" height="1000" loading="lazy" decoding="async" /></span>
+        <img src={c.img} srcset={`${c.img.replace('.webp', '-800.webp')} 800w, ${c.img} 1600w`} sizes="(max-width: 900px) 92vw, 600px" alt="" width="1600" height="1000" loading="lazy" decoding="async" />
       </a>
     </div>
   </div>
@@ -34,10 +33,7 @@ import { caseStudy as c } from '../../config/home';
   .cs__steps > div { padding-top: 14px; border-top: 1px solid var(--line); }
   .cs__steps dt { text-transform: uppercase; }
   .cs__steps dd { margin: 6px 0 0; color: #d5dde2; font-size: 15px; }
-  .cs__media { display: block; padding: clamp(18px, 3vw, 34px); border: 1px solid var(--line); border-radius: 12px; background: radial-gradient(ellipse at 50% 40%, #173a4a 0, #101b25 55%, #0b1016 90%); }
-  .cs__frame { display: block; overflow: hidden; border-radius: 9px; border: 1px solid #c8d2d3; background: #fff; box-shadow: 0 16px 30px #0006; }
-  .cs__bar { display: flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; font-size: 10px; font-weight: 700; color: #52626c; border-bottom: 1px solid #e6e9e9; }
-  .cs__dots { width: 5px; height: 5px; margin-right: 22px; border-radius: 50%; background: #aab8bc; box-shadow: 8px 0 #aab8bc, 16px 0 #aab8bc; }
-  .cs__frame img { display: block; width: 100%; height: auto; }
+  .cs__media { display: block; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; }
+  .cs__media img { display: block; width: 100%; height: auto; }
   @media (max-width: 900px) { .cs { grid-template-columns: 1fr; } .cs__media { order: -1; } }
 </style>
