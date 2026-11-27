@@ -11,6 +11,8 @@ export interface PortfolioItem {
   imgW: number;
   imgH: number;
   phone?: boolean;
+  /** Ícono de la app (cuadrado), se muestra junto a la captura del teléfono. */
+  icon?: string;
   accent: string;
   es: { tag: string; desc: string; features: [string, string, string]; cta: string; alt: string; note?: string };
   en: { tag: string; desc: string; features: [string, string, string]; cta: string; alt: string; note?: string };
@@ -28,7 +30,7 @@ export const portfolio: PortfolioItem[] = [
     en: { tag: 'Online bookings · Web', desc: 'An online scheduling platform for professionals and businesses. Manage services and availability, and share a link so customers can book.', features: ['Online calendar', 'Booking page', 'Availability management'], cta: 'Explore MateTurnos', alt: 'MateTurnos home page: «Tu agenda online, para que tus clientes reserven solos», with a professional confirming a booking on their phone' },
   },
   {
-    id: 'mateturnos-app', name: 'MateTurnos App', href: 'https://play.google.com/store/apps/details?id=site.mateturnos.app', img: '/images/portfolio/mateturnos-app.webp', imgW: 432, imgH: 960, phone: true, accent: '#2563eb',
+    id: 'mateturnos-app', name: 'MateTurnos App', href: 'https://play.google.com/store/apps/details?id=site.mateturnos.app', img: '/images/portfolio/mateturnos-app.webp', imgW: 432, imgH: 960, phone: true, icon: '/images/portfolio/mateturnos-app-icon.webp', accent: '#2563eb',
     es: { tag: 'App móvil · Android', desc: 'La experiencia móvil de MateTurnos para consultar y gestionar reservas, servicios y disponibilidad desde el celular.', features: ['Gestión desde el celular', 'Agenda y reservas', 'Disponible en Google Play'], cta: 'Ver en Google Play', alt: 'Pantalla de servicios de la app MateTurnos para Android, con datos de demostración', note: 'Parte de la plataforma MateTurnos.' },
     en: { tag: 'Mobile app · Android', desc: 'The mobile experience of MateTurnos for viewing and managing bookings, services and availability on your phone.', features: ['Manage from your phone', 'Calendar and bookings', 'Available on Google Play'], cta: 'View on Google Play', alt: 'Services screen of the MateTurnos Android app, with demo data', note: 'Part of the MateTurnos platform.' },
   },
