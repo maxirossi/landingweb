@@ -125,11 +125,35 @@ import { servicios, recursos, nosotros } from '../config/nav';
     const closeMega = (except) => triggers.forEach((t) => {
       if (t !== except) { t.setAttribute('aria-expanded', 'false'); panelOf(t).hidden = true; }
     });
-    triggers.forEach((t) => t.addEventListener('click', () => {
+    const openMega = (t) => { closeMega(t); t.setAttribute('aria-expanded', 'true'); panelOf(t).hidden = false; };
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+    triggers.forEach((t) => t.addEventListener('click', (e) => {
       const wasOpen = t.getAttribute('aria-expanded') === 'true';
+      // Con mouse el panel ya se abrió al pasar: el clic no lo cierra. Con teclado (detail 0) alterna.
+      if (wasOpen && e.detail > 0 && canHover.matches) return;
       closeMega();
-      if (!wasOpen) { t.setAttribute('aria-expanded', 'true'); panelOf(t).hidden = false; }
+      if (!wasOpen) openMega(t);
     }));
+
+    // PC con mouse: se despliega al pasar el cursor y se cierra al salir
+    // (con una pausa corta para poder bajar del botón al panel).
+    const isMouse = (e) => e.pointerType === 'mouse' && canHover.matches;
+    let closeTimer = 0;
+    triggers.forEach((t) => {
+      t.addEventListener('pointerenter', (e) => {
+        if (!isMouse(e)) return;
+        clearTimeout(closeTimer);
+        if (t.getAttribute('aria-expanded') !== 'true') openMega(t);
+      });
+      [t, panelOf(t)].forEach((el) => {
+        el.addEventListener('pointerenter', (e) => { if (isMouse(e)) clearTimeout(closeTimer); });
+        el.addEventListener('pointerleave', (e) => {
+          if (!isMouse(e)) return;
+          clearTimeout(closeTimer);
+          closeTimer = setTimeout(() => closeMega(), 200);
+        });
+      });
+    });
     header.querySelectorAll('.mega a').forEach((a) => a.addEventListener('click', () => closeMega()));
     document.addEventListener('click', (e) => { if (!header.contains(e.target)) closeMega(); });
     header.addEventListener('focusout', (e) => { if (e.relatedTarget && !header.contains(e.relatedTarget)) closeMega(); });

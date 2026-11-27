@@ -84,6 +84,40 @@ test('menú de servicios (escritorio): abre, navega y cierra con Escape', async 
   await expect(page).toHaveURL(/\/servicios\/plataformas-web-y-saas\/$/);
 });
 
+test('menús del header (escritorio): se despliegan al pasar el mouse en todas las páginas', async ({ page }) => {
+  test.skip(isMobile(page), 'hover de escritorio');
+  for (const path of ['/', '/servicios/', '/nosotros/']) {
+    await page.goto(path);
+    const svc = page.locator('#mega-servicios');
+    const res = page.locator('#mega-recursos');
+    await page.hover('[data-mega="servicios"]');
+    await expect(svc).toBeVisible();
+    await expect(page.locator('[data-mega="servicios"]')).toHaveAttribute('aria-expanded', 'true');
+    // bajar del botón al panel no lo cierra
+    await page.locator('#mega-servicios .mega__opt').first().hover();
+    await page.waitForTimeout(350);
+    await expect(svc).toBeVisible();
+    // pasar a Recursos cambia de panel
+    await page.hover('[data-mega="recursos"]');
+    await expect(res).toBeVisible();
+    await expect(svc).toBeHidden();
+    // el clic con mouse no cierra el que ya está abierto
+    await page.locator('[data-mega="recursos"]').click();
+    await expect(res).toBeVisible();
+    // salir del header lo cierra
+    await page.mouse.move(700, 850);
+    await expect(res).toBeHidden();
+  }
+  // con teclado sigue alternando con Enter
+  await page.goto('/');
+  await page.mouse.move(700, 850);
+  await page.locator('[data-mega="servicios"]').focus();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#mega-servicios')).toBeVisible();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#mega-servicios')).toBeHidden();
+});
+
 test.describe('formulario de contacto (API simulada)', () => {
   test('valida campos y no llama a la API si faltan datos', async ({ page }) => {
     let calls = 0;
