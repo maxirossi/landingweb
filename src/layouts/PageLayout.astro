@@ -8,14 +8,14 @@ const { title, description, jsonLd, crumbs } = Astro.props;
 ---
 <Layout title={title} description={description} staticMeta jsonLd={jsonLd}>
   <Header />
-  <main class="pt-16">
+  <main id="main" class="pt-[4.5rem]">
     <div class="container-safe pt-8">
-      <nav aria-label="Ruta de navegación" class="text-sm text-slate-400">
+      <nav aria-label="Ruta de navegación" class="text-sm text-ink-muted">
         <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
           {crumbs.map(([label, href], i) => (
             <li class="flex items-center gap-2">
-              {i > 0 && <span aria-hidden="true" class="text-slate-600">/</span>}
-              {i < crumbs.length - 1 ? <a href={href} class="hover:text-white transition-colors">{label}</a> : <span aria-current="page" class="text-slate-300">{label}</span>}
+              {i > 0 && <span aria-hidden="true" class="text-ink-line">/</span>}
+              {i < crumbs.length - 1 ? <a href={href} class="hover:text-white transition-colors">{label}</a> : <span aria-current="page" class="text-ink-text">{label}</span>}
             </li>
           ))}
         </ol>

@@ -10,50 +10,61 @@ const currentYear = new Date().getFullYear();
 
 ---
 
-<footer class="border-t border-white/[0.06]" style="background: rgba(3,7,18,0.8);">
-  <div class="container-safe py-10">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr] gap-8">
-      <!-- Brand -->
-      <div class="sm:col-span-2 lg:col-span-1">
+<footer class="site-footer">
+  <div class="container-safe">
+    <div class="ft-grid">
+      <div>
         <Logo />
-        <p class="mt-3 text-sm text-slate-400 max-w-sm" data-i18n="footerDesc">
-          Software a medida, productos digitales e inteligencia artificial aplicada a negocios reales.
-        </p>
-        <ul class="mt-4 space-y-2 text-sm text-slate-400">
-          <li class="flex items-center gap-2"><Icon name="mail" class="w-5 h-5 shrink-0 text-slate-500" /><a href={`mailto:${CONTACT_EMAIL}`} class="hover:text-white transition-colors">{CONTACT_EMAIL}</a></li>
-          <li class="flex items-center gap-2"><Icon name="whatsapp" class="w-5 h-5 shrink-0 text-slate-500" /><a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label={`WhatsApp ${WHATSAPP_DISPLAY}`}>{WHATSAPP_DISPLAY}</a></li>
-          <li class="flex items-center gap-2"><svg class="w-5 h-5 shrink-0 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg><a href="https://www.instagram.com/matelabs.ok/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">@matelabs.ok</a></li>
-          <li class="flex items-center gap-2"><Icon name="pin" class="w-5 h-5 shrink-0 text-slate-500" /><span>Rosario, Argentina</span></li>
+        <p class="ft-desc" data-i18n="footerDesc">Estudio de tecnología y productos digitales. Software a medida e inteligencia artificial aplicada a negocios reales.</p>
+        <ul class="ft-contact">
+          <li><Icon name="mail" class="w-4 h-4" /><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
+          <li><Icon name="whatsapp" class="w-4 h-4" /><a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label={`WhatsApp ${WHATSAPP_DISPLAY}`}>{WHATSAPP_DISPLAY}</a></li>
+          <li><Icon name="pin" class="w-4 h-4" /><span>Rosario, Argentina</span></li>
         </ul>
       </div>
-
-      <!-- Enlaces -->
-      <nav aria-label="Servicios"><h4 class="text-sm font-semibold text-slate-200 mb-3" data-i18n="footerServices">Servicios</h4>
-        <ul class="space-y-2">{servicios.map((i) => <li><a href={i.href} class="text-sm text-slate-400 hover:text-white transition-colors" data-i18n={i.key}>{i.label}</a></li>)}</ul>
+      <nav aria-label="Servicios" class="ft-col"><h2 data-i18n="footerServices">Servicios</h2>
+        <ul>{servicios.map((i) => <li><a href={i.href} data-i18n={i.key}>{i.label}</a></li>)}
+          <li><a href="https://desarrolloappsrosario.com/" target="_blank" rel="noopener noreferrer">Apps Rosario</a></li></ul>
       </nav>
-      <nav aria-label="Proyectos y empresa"><h4 class="text-sm font-semibold text-slate-200 mb-3"><a href="/#portfolio" class="hover:text-white transition-colors" data-i18n="footerProjects">Portfolio</a></h4>
-        <ul class="space-y-2">{portfolio.map((p) => <li><a href={p.href} target="_blank" rel="noopener noreferrer" class="text-sm text-slate-400 hover:text-white transition-colors">{p.name}</a></li>)}</ul>
-        <h4 class="text-sm font-semibold text-slate-200 mt-6 mb-3" data-i18n="footerCompany">Empresa</h4>
-        <ul class="space-y-2">
-          <li><a href="/nosotros/" class="text-sm text-slate-400 hover:text-white transition-colors" data-i18n="navAbout">Nosotros</a></li>
-          <li><a href="https://desarrolloappsrosario.com/" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-400 hover:text-white transition-colors">Apps Rosario</a></li>
-          <li><a href="/#proceso" class="text-sm text-slate-400 hover:text-white transition-colors" data-i18n="navProcess">Proceso</a></li>
-          <li><a href="/#contacto" class="text-sm text-slate-400 hover:text-white transition-colors" data-i18n="navContact">Contactar</a></li>
+      <nav aria-label="Productos" class="ft-col"><h2><a href="/#portfolio" data-i18n="footerProjects">Productos</a></h2>
+        <ul>{portfolio.map((p) => <li><a href={p.href} target="_blank" rel="noopener noreferrer">{p.name}</a></li>)}</ul>
+      </nav>
+      <nav aria-label="Empresa" class="ft-col"><h2 data-i18n="footerCompany">Empresa</h2>
+        <ul>
+          <li><a href="/nosotros/" data-i18n="navAbout">Nosotros</a></li>
+          <li><a href="/#proceso" data-i18n="navProcess">Cómo trabajamos</a></li>
+          <li><a href="/#contacto" data-i18n="navContact">Contacto</a></li>
+          <li><a href="https://www.instagram.com/matelabs.ok/" target="_blank" rel="noopener noreferrer">Instagram @matelabs.ok</a></li>
         </ul>
       </nav>
     </div>
 
-    <div class="mt-10 pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-xs text-slate-500">
-        &copy; {currentYear} MateLabs. <span data-i18n="footerRights">Todos los derechos reservados.</span>
-      </p>
-      <div class="flex items-center gap-4">
-        <a href="https://www.linkedin.com/company/matelabsar/" target="_blank" rel="noopener noreferrer" class="grid h-10 w-10 place-items-center rounded-lg text-[#2d9cf4] hover:text-[#5ab4f7] hover:bg-white/[0.06] transition-colors" aria-label="LinkedIn (se abre en una pestaña nueva)">
-          <BrandIcon name="linkedin" class="w-5 h-5" />
-        </a>
-        <a href="https://www.instagram.com/matelabs.ok/" target="_blank" rel="noopener noreferrer" class="grid h-10 w-10 place-items-center rounded-lg text-[#E1306C] hover:text-[#f0638f] hover:bg-white/[0.06] transition-colors" aria-label="Instagram de MateLabs (se abre en una pestaña nueva)"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a>
-        <a href="https://www.facebook.com/matelabs.ok" target="_blank" rel="noopener noreferrer" class="grid h-10 w-10 place-items-center rounded-lg text-[#4c9bf5] hover:text-[#79b4f8] hover:bg-white/[0.06] transition-colors" aria-label="Facebook de MateLabs (se abre en una pestaña nueva)"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a>
+    <div class="ft-copy">
+      <p>&copy; {currentYear} MateLabs. <span data-i18n="footerRights">Todos los derechos reservados.</span></p>
+      <div class="ft-social">
+        <a href="https://www.linkedin.com/company/matelabsar/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de MateLabs (se abre en una pestaña nueva)"><BrandIcon name="linkedin" class="w-5 h-5" /></a>
+        <a href="https://www.instagram.com/matelabs.ok/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de MateLabs (se abre en una pestaña nueva)"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a>
+        <a href="https://www.facebook.com/matelabs.ok" target="_blank" rel="noopener noreferrer" aria-label="Facebook de MateLabs (se abre en una pestaña nueva)"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a>
       </div>
     </div>
   </div>
 </footer>
+
+<style>
+  .site-footer { padding: 46px 0 24px; border-top: 1px solid var(--line); }
+  .ft-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 28px; }
+  .ft-desc { margin-top: 12px; max-width: 300px; font-size: 13px; color: var(--muted); }
+  .ft-contact { display: grid; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--muted); }
+  .ft-contact li { display: flex; align-items: center; gap: 8px; }
+  .ft-col h2 { margin-bottom: 12px; font-size: 13px; font-weight: 650; color: var(--text); }
+  .ft-col ul { display: grid; gap: 9px; margin: 0; padding: 0; list-style: none; }
+  .site-footer a { color: inherit; }
+  .ft-col ul a, .ft-contact a { font-size: 13px; color: var(--muted); }
+  .site-footer a:hover { color: var(--accent); }
+  .ft-copy { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 35px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+  .ft-social { display: flex; gap: 4px; }
+  .ft-social a { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 6px; color: var(--muted); }
+  .ft-social a:hover { background: var(--surface); }
+  @media (max-width: 900px) { .ft-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .ft-grid { grid-template-columns: 1fr; } .ft-copy { flex-direction: column; align-items: flex-start; } }
+</style>

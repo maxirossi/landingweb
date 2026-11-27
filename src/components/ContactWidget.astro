@@ -3,7 +3,7 @@ import Icon from './Icon.astro';
 import { WHATSAPP_URL } from '../config/contact';
 ---
 <!-- Floating contact widget — bottom right -->
-<div id="contact-widget" class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+<div id="contact-widget" class="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-50 flex flex-col items-end gap-3">
   <!-- Panel -->
   <div id="widget-panel" class="hidden widget-panel w-[360px] max-w-[calc(100vw-2.5rem)] rounded-2xl overflow-hidden">
     <!-- Header -->
@@ -56,7 +56,7 @@ import { WHATSAPP_URL } from '../config/contact';
     <!-- Step 2: Form -->
     <div id="widget-form-view" class="hidden px-5 py-4">
       <!-- Context bubble -->
-      <div class="rounded-xl p-3 mb-4" style="background: rgba(20,184,166,0.06); border: 1px solid rgba(20,184,166,0.1);">
+      <div class="rounded-xl p-3 mb-4" style="background: rgba(121,228,214,0.06); border: 1px solid #27323e;">
         <p id="widget-reply-text" class="text-sm text-slate-300 leading-relaxed"></p>
       </div>
 
@@ -136,29 +136,28 @@ import { WHATSAPP_URL } from '../config/contact';
     border-radius: 50%;
     display: grid;
     place-items: center;
-    color: white;
+    color: #081e1e;
     cursor: pointer;
     border: none;
-    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 60%, #0f766e 100%);
-    box-shadow: 0 4px 20px rgba(20,184,166,0.35), 0 2px 8px rgba(0,0,0,0.3);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #79e4d6;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    transition: transform .2s, background-color .2s;
   }
   .widget-fab:hover {
-    transform: scale(1.08);
-    box-shadow: 0 6px 28px rgba(20,184,166,0.5), 0 4px 12px rgba(0,0,0,0.3);
+    transform: translateY(-2px);
+    background: #a1f2e8;
   }
   .widget-fab.is-open {
-    background: rgba(255,255,255,0.1);
+    background: #1b2731;
+    color: #f1f4f5;
     box-shadow: 0 4px 16px rgba(0,0,0,0.3);
   }
 
   .widget-panel {
-    background: linear-gradient(135deg, rgba(8,12,28,0.95) 0%, rgba(3,7,18,0.97) 100%);
-    backdrop-filter: blur(24px) saturate(1.4);
-    -webkit-backdrop-filter: blur(24px) saturate(1.4);
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 32px rgba(20,184,166,0.06), inset 0 1px 0 rgba(255,255,255,0.05);
-    animation: widgetSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #111921;
+    border: 1px solid #27323e;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    animation: widgetSlideUp 0.2s ease-out;
   }
 
   .widget-opt--wa { text-decoration: none; }
@@ -169,19 +168,18 @@ import { WHATSAPP_URL } from '../config/contact';
     width: 100%;
     text-align: left;
     padding: 0.75rem 1rem;
-    border-radius: 0.75rem;
+    border-radius: 8px;
     font-size: 0.875rem;
-    color: #cbd5e1;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
+    color: #d5dde2;
+    background: transparent;
+    border: 1px solid #27323e;
     cursor: pointer;
     transition: all 0.2s ease;
   }
   .widget-opt:hover {
-    background: rgba(255,255,255,0.07);
-    border-color: rgba(20,184,166,0.15);
-    color: white;
-    transform: translateX(2px);
+    background: #1b2731;
+    border-color: #3d5260;
+    color: #f1f4f5;
   }
 
   .widget-input {
@@ -199,8 +197,8 @@ import { WHATSAPP_URL } from '../config/contact';
     color: #64748b;
   }
   .widget-input:focus {
-    border-color: rgba(20,184,166,0.3);
-    box-shadow: 0 0 0 2px rgba(20,184,166,0.08);
+    border-color: #79e4d6;
+    box-shadow: 0 0 0 2px rgba(121,228,214,0.15);
   }
 
   @keyframes widgetSlideUp {
@@ -214,6 +212,10 @@ import { WHATSAPP_URL } from '../config/contact';
     }
   }
 
+  @media (prefers-reduced-motion: reduce) { .widget-panel { animation: none; } .widget-fab { transition: none; } }
+  @media (max-width: 640px) {
+    .widget-fab { width: 48px; height: 48px; }
+  }
   @media (max-width: 400px) {
     .widget-panel {
       width: calc(100vw - 2rem) !important;

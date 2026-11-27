@@ -85,7 +85,7 @@ export const services: Service[] = [
       {
         h2: 'Un ejemplo propio: Mateturnos',
         p: [
-          'Mateturnos es un producto propio de MateLabs para organizar la agenda y recibir reservas online. La plataforma web está disponible y la app para Android se encuentra en beta, con acceso por invitación y sin publicación en tiendas.',
+          'MateTurnos es un producto propio de MateLabs para organizar la agenda y recibir reservas online. La plataforma web está disponible y la app para Android tiene su ficha publicada en Google Play.',
           'Trabajar en un producto propio nos permite conocer de primera mano los desafíos de sostener una plataforma en producción.',
         ],
       },

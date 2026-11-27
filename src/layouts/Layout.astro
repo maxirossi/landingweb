@@ -52,14 +52,15 @@ const ogImage = new URL('/og/og-home.png', Astro.site).href;
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <style is:global>
     @import '../styles/global.css';
+    .skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 100; padding: .6rem 1rem; border-radius: 6px; background: #79e4d6; color: #081e1e; font-weight: 650; }
+    .skip-link:focus { top: 1rem; }
   </style>
 </head>
 <body>
+  <a href="#main" class="skip-link" data-i18n="skipLink">Ir al contenido</a>
   <slot />
 
   <script define:vars={{ translations }}>

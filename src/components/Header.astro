@@ -4,7 +4,7 @@ import Icon from './Icon.astro';
 import { servicios, recursos, nosotros } from '../config/nav';
 ---
 <header id="navbar" class="fixed top-0 left-0 right-0 z-50 navbar-glass">
-  <div class="container-safe flex items-center justify-between h-16 navbar-inner">
+  <div class="container-safe flex items-center justify-between gap-4 navbar-inner">
     <Logo />
 
     <!-- Desktop Nav con menús expandibles -->
@@ -23,19 +23,17 @@ import { servicios, recursos, nosotros } from '../config/nav';
 
     <div class="flex items-center gap-3">
       <!-- Language Switcher -->
-      <div class="hidden sm:flex items-center gap-1 rounded-lg border border-white/[0.06] p-1 text-slate-300" style="background: rgba(255,255,255,0.04);" role="group" aria-label="Idioma">
-        <Icon name="globe" class="w-4 h-4 mx-1 text-slate-400" />
-        <button class="h-8 min-w-9 px-1.5 grid place-items-center rounded text-xs font-semibold tracking-wide hover:bg-white/10 transition-colors duration-200 bg-white/10" data-lang-switch="es" lang="es" aria-label="Castellano">ES</button>
-        <button class="h-8 min-w-9 px-1.5 grid place-items-center rounded text-xs font-semibold tracking-wide hover:bg-white/10 transition-colors duration-200" data-lang-switch="en" lang="en" aria-label="English">EN</button>
+      <div class="hidden sm:flex items-center gap-1 rounded-md border border-ink-line p-1 text-ink-muted" role="group" aria-label="Idioma">
+        <Icon name="globe" class="w-4 h-4 mx-1" />
+        <button class="h-8 min-w-9 px-1.5 grid place-items-center rounded text-xs font-semibold tracking-wide hover:text-ink-text transition-colors duration-200 bg-white/10" data-lang-switch="es" lang="es" aria-label="Castellano">ES</button>
+        <button class="h-8 min-w-9 px-1.5 grid place-items-center rounded text-xs font-semibold tracking-wide hover:text-ink-text transition-colors duration-200" data-lang-switch="en" lang="en" aria-label="English">EN</button>
       </div>
 
       <!-- CTA -->
-      <a href="/#contacto" class="btn btn-primary btn-sm" data-i18n="navContact">
-        Contactar
-      </a>
+      <a href="/#contacto" class="btn btn-primary btn-sm hidden sm:inline-flex"><span data-i18n="navTalk">Hablemos</span> <span aria-hidden="true">↗</span></a>
 
       <!-- Mobile Menu Button -->
-      <button id="menu-toggle" type="button" class="lg:hidden grid h-10 w-10 place-items-center rounded-lg text-slate-300 hover:text-white hover:bg-white/[0.06] transition-colors duration-200" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+      <button id="menu-toggle" type="button" class="lg:hidden grid h-11 w-11 place-items-center rounded-md border border-ink-line text-ink-text hover:text-brand transition-colors duration-200" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
         <Icon name="menu" class="w-6 h-6 menu-open" />
         <Icon name="close" class="w-6 h-6 menu-close hidden" />
       </button>
@@ -88,9 +86,10 @@ import { servicios, recursos, nosotros } from '../config/nav';
         <div class="pb-3">{recursos.map((i) => <a class="m mobile-nav-link" href={i.href} {...(i.external ? { target: '_blank', rel: 'noopener' } : {})} data-i18n={i.key}>{i.label}</a>)}</div>
       </details>
       <a class="top mobile-nav-link" href={nosotros.href} data-i18n={nosotros.key}>{nosotros.label}</a>
+      <a class="btn btn-primary btn-lg w-full mt-4 mobile-nav-link" href="/#contacto"><span data-i18n="navTalk">Hablemos</span> <span aria-hidden="true">↗</span></a>
       <!-- Mobile language switcher -->
-      <div class="flex items-center gap-2 mt-3 py-3 border-t border-white/[0.06]">
-        <Icon name="globe" class="w-5 h-5 text-slate-400" />
+      <div class="flex items-center gap-2 mt-3 py-3 border-t border-ink-line">
+        <Icon name="globe" class="w-5 h-5 text-ink-muted" />
         <button class="h-10 min-w-11 px-2 grid place-items-center rounded text-sm font-semibold text-slate-200 bg-white/10 hover:bg-white/15 transition-colors duration-200" data-lang-switch="es" lang="es" aria-label="Castellano">ES</button>
         <button class="h-10 min-w-11 px-2 grid place-items-center rounded text-sm font-semibold text-slate-200 hover:bg-white/10 transition-colors duration-200" data-lang-switch="en" lang="en" aria-label="English">EN</button>
       </div>

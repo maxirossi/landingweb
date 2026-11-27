@@ -9,7 +9,6 @@ import ProcessSection from '../components/sections/ProcessSection.astro';
 import NeedsSection from '../components/sections/NeedsSection.astro';
 import CaseSection from '../components/sections/CaseSection.astro';
 import FaqSection from '../components/sections/FaqSection.astro';
-import CtaBand from '../components/sections/CtaBand.astro';
 import ContactSection from '../components/sections/ContactSection.astro';
 import { homeJsonLd, faqPage } from '../lib/structuredData';
 import { faqs } from '../config/home';
@@ -23,15 +22,14 @@ import ContactWidget from '../components/ContactWidget.astro';
 >
   <Header />
 
-  <main>
+  <main id="main">
     <HeroSection />
     <PortfolioSection />
-    <NeedsSection />
     <ServicesSection />
+    <NeedsSection />
     <CaseSection />
     <ProcessSection />
     <FaqSection />
-    <CtaBand />
     <ContactSection />
   </main>
 

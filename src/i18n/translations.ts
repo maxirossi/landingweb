@@ -1,5 +1,6 @@
 import { portfolioTranslations } from '../config/portfolio';
 import { homeTranslations } from '../config/home';
+import { redesign } from './redesign';
 export const translations: Record<string, Record<string, string>> = {
   es: {
     ...portfolioTranslations('es'),
@@ -112,6 +113,7 @@ export const translations: Record<string, Record<string, string>> = {
     footerDesc: 'Software a medida, productos digitales e inteligencia artificial aplicada a negocios reales.',
     footerNav: 'Navegación',
     footerRights: 'Todos los derechos reservados.',
+    ...redesign.es,
   },
 
   en: {
@@ -225,5 +227,6 @@ export const translations: Record<string, Record<string, string>> = {
     footerDesc: 'Custom software, digital products and artificial intelligence applied to real businesses.',
     footerNav: 'Navigation',
     footerRights: 'All rights reserved.',
+    ...redesign.en,
   }
 };

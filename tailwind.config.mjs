@@ -3,9 +3,10 @@ export default {
   content: ['./src/**/*.{astro,html,md,mdx,js,ts}'],
   theme: {
     extend: {
-      fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+      fontFamily: { sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Noto Sans"', 'Ubuntu', 'sans-serif'] },
       colors: {
-        brand: { DEFAULT: '#14b8a6', light: '#2dd4bf', dark: '#0d9488' },
+        brand: { DEFAULT: '#79e4d6', light: '#79e4d6', dark: '#176b65' },
+        ink: { DEFAULT: '#0b1016', surface: '#111921', line: '#27323e', text: '#f1f4f5', muted: '#a1adb9', paper: '#f3f5f3', dark: '#101922', mint: '#e6f2ed' },
         accent: { DEFAULT: '#8b5cf6', light: '#a78bfa', dark: '#7c3aed' }
       },
       boxShadow: {

@@ -9,11 +9,12 @@ const pillars = [
   ['IA con sentido', 'Integramos inteligencia artificial donde suma valor, no como moda.'],
 ];
 ---
-<PageLayout title="Nosotros: estudio de software en Rosario | MateLabs" description="MateLabs es un estudio de software de Rosario, Argentina: software a medida, plataformas web, inteligencia artificial y productos propios como Mateturnos." crumbs={crumbs}
+<PageLayout title="Nosotros: estudio de software en Rosario | MateLabs" description="MateLabs es un estudio de software de Rosario, Argentina: software a medida, plataformas web, inteligencia artificial y productos propios como eyMate, MateTurnos, QuericoRosario y OctoMateLabs." crumbs={crumbs}
   jsonLd={graph({ ...organization, description: 'Estudio de software de Rosario, Argentina.' }, breadcrumbs(crumbs))}>
   <div class="container-safe py-10 sm:py-14">
     <header class="max-w-3xl">
-      <h1 class="text-3xl sm:text-5xl font-semibold text-white tracking-tight">Un estudio de software de Rosario</h1>
+      <p class="eyebrow">Nosotros</p>
+      <h1 class="page-title">Un estudio de tecnología de Rosario</h1>
       <p class="mt-5 text-lg text-slate-300 leading-relaxed">MateLabs diseña y construye software a medida, plataformas web y soluciones con inteligencia artificial para negocios reales. Combinamos mentalidad de producto, foco técnico y ejecución concreta.</p>
     </header>
 
@@ -28,7 +29,12 @@ const pillars = [
 
       <section>
         <h2 class="text-2xl font-semibold text-white">Productos propios</h2>
-        <p class="mt-4 text-slate-300 leading-relaxed"><a class="text-brand-light underline" href="https://mateturnos.site/" target="_blank" rel="noopener">Mateturnos</a> es nuestra plataforma para organizar la agenda y recibir reservas online. La versión web está disponible y la app para Android se encuentra en beta, con acceso por invitación y sin publicación en tiendas.</p>
+        <ul class="mt-4 space-y-3 text-slate-300 leading-relaxed">
+          <li><a class="text-brand-light underline" href="https://eymate.site/" target="_blank" rel="noopener">eyMate</a>: creador visual de sitios web con herramientas de inteligencia artificial.</li>
+          <li><a class="text-brand-light underline" href="https://mateturnos.site/" target="_blank" rel="noopener">MateTurnos</a>: agenda y reservas online. Tiene versión web y una <a class="text-brand-light underline" href="https://play.google.com/store/apps/details?id=site.mateturnos.app" target="_blank" rel="noopener">ficha publicada en Google Play</a> para la app de Android.</li>
+          <li><a class="text-brand-light underline" href="https://quericorosario.com/" target="_blank" rel="noopener">QuericoRosario</a>: guía gastronómica de Rosario con mapa interactivo.</li>
+          <li><a class="text-brand-light underline" href="https://octomatelabs.site/" target="_blank" rel="noopener">OctoMateLabs</a>: plataforma de IA con distintos modelos y agentes especializados.</li>
+        </ul>
         <p class="mt-4 text-slate-300 leading-relaxed"><a class="text-brand-light underline" href="https://desarrolloappsrosario.com/" target="_blank" rel="noopener">Apps Rosario</a> es la propuesta de MateLabs para desarrollar aplicaciones e integrar sistemas para empresas y emprendedores.</p>
       </section>
 

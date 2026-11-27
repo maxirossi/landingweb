@@ -10,10 +10,12 @@ const t = (es: string, en: string): L => ({ es, en });
 
 export const waLink = (text: string) => `${WHATSAPP_URL}?text=${encodeURIComponent(text)}`;
 
-export const heroStats: { value: L; label: L }[] = [
-  { value: t('5', '5'), label: t('productos propios en producción', 'in-house products live') },
-  { value: t('Web · Android · IA', 'Web · Android · AI'), label: t('lo que construimos', 'what we build') },
-  { value: t('Rosario', 'Rosario'), label: t('equipo propio, en Argentina', 'our own team, in Argentina') },
+// Franja compacta de capacidades bajo el hero (sin cifras inventadas).
+export const capabilities: L[] = [
+  t('Software a medida', 'Custom software'),
+  t('Productos propios', 'In-house products'),
+  t('Inteligencia artificial', 'Artificial intelligence'),
+  t('Hecho en Rosario', 'Made in Rosario'),
 ];
 
 export interface Need { icon: 'globe' | 'calendar' | 'pin' | 'phone' | 'sparkle' | 'code'; title: L; desc: L; product: string; href: string; external: boolean; cta: L }
@@ -52,7 +54,7 @@ export const faqs: { q: L; a: L }[] = [
 // Claves i18n para el sistema data-i18n existente.
 export function homeTranslations(lang: 'es' | 'en'): Record<string, string> {
   const o: Record<string, string> = {};
-  heroStats.forEach((s, i) => { o[`hsV${i}`] = s.value[lang]; o[`hsL${i}`] = s.label[lang]; });
+  capabilities.forEach((c, i) => { o[`cap${i}`] = c[lang]; });
   needs.forEach((n, i) => { o[`ndT${i}`] = n.title[lang]; o[`ndD${i}`] = n.desc[lang]; o[`ndC${i}`] = n.cta[lang]; });
   o.csTag = caseStudy.tag[lang]; o.csTitle = caseStudy.title[lang]; o.csCta = caseStudy.cta[lang];
   caseStudy.steps.forEach((s, i) => { o[`csK${i}`] = s.k[lang]; o[`csV${i}`] = s.v[lang]; });
