@@ -44,9 +44,10 @@ import { portfolio } from '../../config/portfolio';
   .pf { position: relative; display: flex; flex-direction: column; overflow: hidden; border: 1px solid #d5dcd9; border-radius: 12px; background: #fff; transition: transform .2s, box-shadow .2s; }
   .pf:hover { transform: translateY(-3px); box-shadow: 0 14px 25px #182c2214; }
   .pf-anchor { position: absolute; top: -5rem; }
-  .pf__media { display: flex; justify-content: center; height: clamp(205px, 22vw, 260px); padding: clamp(20px, 2.6vw, 30px) clamp(20px, 2.8vw, 32px) 0; overflow: hidden; }
+  .pf__media { display: flex; align-items: center; justify-content: center; aspect-ratio: 5 / 4; padding: clamp(16px, 2.6vw, 30px); overflow: hidden; }
   .pf__media--sage { background: #e4e9e5; } .pf__media--mint { background: #dfeeea; } .pf__media--sand { background: #f2e6d6; } .pf__media--night { background: #18212d; }
-  .pf__frame { display: flex; flex-direction: column; width: 100%; max-width: 500px; border: 1px solid #c8d2d3; border-bottom: 0; border-radius: 9px 9px 0 0; overflow: hidden; background: #fff; box-shadow: 0 12px 24px #0002; }
+  .pf__frame { display: flex; flex-direction: column; width: 100%; max-width: 520px; border: 1px solid #c8d2d3; border-radius: 9px; overflow: hidden; background: #fff; box-shadow: 0 14px 28px #0002; transition: transform .3s ease; }
+  .pf:hover .pf__frame { transform: translateY(-4px); }
   .pf__media--night .pf__frame { border-color: #43505d; background: #0c141d; }
   .pf__bar { display: flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; flex-shrink: 0; font-size: 10px; font-weight: 700; color: #52626c; border-bottom: 1px solid #e6e9e9; }
   .pf__media--night .pf__bar { color: #b8c8cf; border-color: #2b3946; }
@@ -63,5 +64,5 @@ import { portfolio } from '../../config/portfolio';
   .pf__app:hover { color: var(--ink); }
   .pf a:focus-visible { outline: 2px solid #176b65; outline-offset: 3px; }
   @media (max-width: 760px) { .pf-grid { grid-template-columns: 1fr; } }
-  @media (prefers-reduced-motion: reduce) { .pf, .pf:hover { transition: none; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .pf, .pf:hover, .pf:hover .pf__frame { transition: none; transform: none; } }
 </style>

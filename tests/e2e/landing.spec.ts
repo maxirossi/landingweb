@@ -118,6 +118,17 @@ test('menús del header (escritorio): se despliegan al pasar el mouse en todas l
   await expect(page.locator('#mega-servicios')).toBeHidden();
 });
 
+test('portfolio: las capturas de los sitios se ven enteras, sin cortes', async ({ page }) => {
+  await page.goto('/');
+  const gaps = await page.$$eval('.pf', (cards) => cards.map((c) => {
+    const m = c.querySelector('.pf__media')!.getBoundingClientRect();
+    const f = c.querySelector('.pf__frame')!.getBoundingClientRect();
+    return Math.min(f.top - m.top, m.bottom - f.bottom, f.left - m.left, m.right - f.right);
+  }));
+  expect(gaps).toHaveLength(4);
+  for (const g of gaps) expect(g).toBeGreaterThanOrEqual(8);
+});
+
 test.describe('formulario de contacto (API simulada)', () => {
   test('valida campos y no llama a la API si faltan datos', async ({ page }) => {
     let calls = 0;
